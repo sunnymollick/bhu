@@ -1,0 +1,54 @@
+<?php $__env->startSection('content'); ?>
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>RR - Login</a>
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+        <p class="login-box-msg">Sign in</p>
+
+        <form action="<?php echo e(route('auth.login.store')); ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <div class="input-group mb-3">
+                <input type="email" class="form-control" name="email" placeholder="Email">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </div>
+            </div>
+        </form>
+
+        <p class="mb-1">
+            <a href="#">I forgot my password</a>
+        </p>
+        <p class="mb-0">
+            <a href="<?php echo e(route('register')); ?>" class="text-center">Register</a>
+        </p>
+        </div>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script>
+    $(document).ready(function() {
+        // Page-specific scripts can go here
+    });
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend.layouts.single', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragonUpdated\www\rr-app\resources\views/backend/pages/auth/login.blade.php ENDPATH**/ ?>

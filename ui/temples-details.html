@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bengali Hindu Unity</title>
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+
+        <!-- partial:partial/__stylesheets.html -->
+        <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/plugins/animate.min.css">
+        <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+        <link rel="stylesheet" href="assets/css/plugins/slick.css">
+        <link rel="stylesheet" href="assets/css/plugins/slick-theme.css">
+        <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css"> 
+
+        <!-- Icon Fonts -->
+        <link rel="stylesheet" href="assets/fonts/flaticon/flaticon.css">
+        <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <!-- Template Style sheet -->
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="assets/css/developer.css">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightslider/dist/css/lightslider.min.css">
+        <!-- partial -->
+
+        <style>
+            .lSPrev, .lSNext {
+                background: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+                border-radius: 50%; /* Optional: make the background circle */
+                padding: 10px; /* Adds some space around the arrow icon */
+                color: white; /* Make the arrow icon white for contrast */
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10; /* Make sure arrows appear above the slider content */
+            }
+
+            .lSPrev {
+                left: 10px; /* Adjust distance from the left */
+            }
+
+            .lSNext {
+                right: 10px; /* Adjust distance from the right */
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="sigma_preloader">
+            <img src="assets/img/om.svg" alt="preloader">
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade sigma_quick-view-modal" id="quickViewModal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="close-btn close-dark close" data-bs-dismiss="modal">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="sigma_product-single-thumb">
+                                    <img src="assets/img/products/new/1.jpg" alt="product">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sigma_product-single-content">
+                                    <h4 class="entry-title">Koobay 14" Wooden Trousers Bottom Clips Hangers w Rose Gold.</h4>
+                                    <div class="sigma_product-price">
+                                        <span>352$</span>
+                                        <span>245$</span>
+                                    </div>
+                                    <div class="sigma_rating-wrapper">
+                                        <div class="sigma_rating">
+                                            <i class="far fa-star active"></i>
+                                            <i class="far fa-star active"></i>
+                                            <i class="far fa-star active"></i>
+                                            <i class="far fa-star active"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span>255 Reviews</span>
+                                    </div>
+                                    <p><strong class="me-2">Interested: <span>05</span></strong> <strong>Availablity: <span>In Stock</span></strong></p>
+                                    <p class="sigma_product-excerpt">All Religious Books are available in Temple Stores. Our mission is to share the Good of Hinduism, Loving, Faith and Serving.</p>
+                                    <form class="sigma_product-atc-form">
+                                        <div class="sigma_product-variation-wrapper">
+                                            <div class="sigma_product-radio form-group">
+                                                <label><input type="radio" name="size" value="" checked><span>XS</span></label>
+                                                <label><input type="radio" name="size" value=""><span>S</span></label>
+                                                <label><input type="radio" name="size" value=""><span>M</span></label>
+                                                <label><input type="radio" name="size" value=""><span>L</span></label>
+                                                <label><input type="radio" name="size" value=""><span>XL</span></label>
+                                            </div>
+                                        </div>
+                                        <div class="qty-outter">
+                                            <a href="product-single.html" class="sigma_btn-custom secondary">Buy Now</a>
+                                            <div class="qty-inner">
+                                                <h6>Qty:</h6>
+                                                <div class="qty">
+                                                    <span class="qty-subtract"><i class="fa fa-minus"></i></span>
+                                                    <input type="text" name="qty" value="1">
+                                                    <span class="qty-add"><i class="fa fa-plus"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="sigma_post-single-meta">
+                                        <div class="sigma_post-single-meta-item sigma_post-share">
+                                            <h6>Share</h6>
+                                            <ul class="sigma_sm">
+                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="sigma_post-single-meta-item">
+                                            <div class="sigma_product-controls">
+                                                <a href="#" data-toggle="tooltip" title="Compare"><i class="far fa-signal-4"></i></a>
+                                                <a href="#" data-toggle="tooltip" title="Wishlist"><i class="far fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <aside class="sigma_aside sigma_aside-left">
+            <a class="navbar-brand" href="index.html"> <img src="assets/img/rr_logo_resized.jpg" alt="logo"> </a>
+            <ul>
+                <li class="menu-item"> <a href="index.html">Home</a> </li>
+                <li class="menu-item"> <a href="about.html">About Us</a> </li>
+                <li class="menu-item"> <a href="temples.html">Temples</a> </li>
+                <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+                <li class="menu-item"> <a href="#">Contact</a> </li>
+            </ul>
+        </aside>
+        <div class="sigma_aside-overlay aside-trigger-left"></div>
+
+
+        <!-- Header -->
+        <header class="sigma_header header-3 can-sticky">
+            <div class="sigma_header-middle">
+                <nav class="navbar">
+
+                    <!-- Logo Start -->
+                    <div class="sigma_logo-wrapper">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="assets/img/generated-image (1).png" alt="logo">
+                        </a>
+                    </div>
+                    <!-- Logo End -->
+
+                    <!-- Menu -->
+                    <div class="sigma_header-inner">
+                        <div class="sigma_header-top">
+                            <div class="sigma_header-top-inner">
+                                <!-- FIX: Hide top links on smaller screens for better responsiveness -->
+                                <ul class="sigma_header-top-links d-none d-lg-flex">
+                                    <li class="menu-item"> <a href="tel:+123456789"> <i class="fal fa-phone"></i> (+1) 123 456 7890</a> </li>
+                                    <li class="menu-item"> <a href="mailto:info@example.com"> <i class="fal fa-envelope"></i> info@bengalihinduunity.com</a> </li>
+                                </ul>
+                                <!-- FIX: Hide top links on smaller screens for better responsiveness -->
+                                <ul class="sigma_header-top-links d-none d-lg-flex">
+                                    <li class="d-flex align-items-center">
+                                        <a href="">Register</a>
+                                    </li>
+                                    <li class="d-flex align-items-center">
+                                        <a href="#" class="m-0"> Login </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center justify-content-lg-between">
+                            <!-- FIX: Hide desktop navbar on screens smaller than large (992px) -->
+                            <ul class="navbar-nav d-none d-lg-flex">
+                                <li class="menu-item"> <a href="index.html">Home</a> </li>
+                                <li class="menu-item"> <a href="about.html">About Us</a> </li>
+                                <li class="menu-item"> <a href="temples.html">Temples</a> </li>
+                                <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+                                <li class="menu-item"> <a href="#">Contact</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="sigma_header-controls style-2">
+                        <a href="donation.html" class="sigma_btn-custom d-none d-lg-block"> Donate Here</a>
+                        <ul class="sigma_header-controls-inner">
+                            <!-- Mobile Toggler -->
+                            <li class="aside-toggler style-2 aside-trigger-left">
+                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </div>
+        </header>
+
+        <!-- Subheader -->
+        <div class="sigma_subheader">
+            <div class="overlay">
+                <div class="sub-head-banner"></div>
+                <h4 class="header-img-text">Temple Details</h4>
+            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="btn-link" href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a class="btn-link" href="temples.html">Temples</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Temple Details</li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- Body Content -->
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <!-- Main Content -->
+                    <div class="col-lg-9">
+                        <div class="post-detail-wrapper temple-details-img">
+
+                            <div class="entry-content">
+                                <!-- Featured Image -->
+                                <a href="https://placehold.co/1200x800/f4a261/ffffff?text=Main+Temple+View" class="gallery-thumb">
+                                    <img src="https://placehold.co/1200x800/f4a261/ffffff?text=Main+Temple+View" alt="Dhakeshwari Temple" class="img-fluid mb-4 rounded">
+                                </a>
+
+                                <!-- At a Glance Info Box -->
+                                <div class="p-4 mb-4 rounded" style="background-color: #f8f9fa;">
+                                    <h3 class="mt-0">At a Glance</h3>
+                                    <div class="temple-details-meta">
+                                        <ul>
+                                            <!-- In Laravel, replace text with {{ $temple->address }}, etc. -->
+                                            <li><i class="fal fa-map-marker-alt"></i>Dhakeshwari Road, Dhaka 1205, Bangladesh</li>
+                                            <li><i class="fal fa-phone"></i>+880 2 12345678</li>
+                                            <li><i class="fal fa-envelope"></i>info@dhakeshwaritemple.org</li>
+                                            <li><i class="fal fa-clock"></i>Open Daily: 6:00 AM - 2:00 PM, 4:00 PM - 9:00 PM</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Detailed Description -->
+                                <h3>About the Temple</h3>
+                                <p>
+                                    Dhakeshwari Temple (Bengali: ঢাকেশ্বরী মন্দির) is a state-owned Hindu temple in Dhaka, Bangladesh. It is the national temple of Bangladesh. The name "Dhakeshwari"
+                                    means "Goddess of Dhaka". Since the destruction of Ramna Kali Mandir in 1971 by the Pakistan Army during the Bangladesh Liberation War, the Dhakeshwari Temple has
+                                    assumed status as the most important Hindu place of worship in Bangladesh.
+                                </p>
+                                <p>
+                                    The temple's history is intertwined with the history of Dhaka itself. It is widely believed that the city was named after the Goddess Dhakeshwari. The main deity is
+                                    a ten-armed goddess, a form of Durga, which is a significant figure in the Shakta tradition of Hinduism. The temple complex has undergone several renovations and
+                                    additions over the centuries, reflecting the changing architectural styles and the patronage of various rulers and devotees.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Main Content -->
+
+                    <!-- Sidebar -->
+                    <div class="col-lg-3">
+                        <div class="sidebar">
+
+                            <!-- Other Temples Widget -->
+                            <div class="sidebar-widget widget-recent-posts">
+                                <h5>Other Temples</h5>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Dhaka</a>
+                                        <h6><a href="#">Ramna Kali Mandir</a></h6>
+                                    </div>
+                                </article>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Comilla</a>
+                                        <h6><a href="#">Chandranath Temple</a></h6>
+                                    </div>
+                                </article>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Chittagong</a>
+                                        <h6><a href="#">Adinath Temple</a></h6>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="sidebar-widget widget-categories">
+                                <h5>Our Location</h5>
+                                <div id="temple-location-map" style="width:100%; height:400px; border-radius: 5px; background-color: #e5e3df;"></div>
+
+                            </div>
+
+                            <div class="sidebar-widget widget-categories" style="background-color: #fff9f4;">
+                                <h4>Support Our Mission</h4>
+                                <p class="mb-3">Your generous donations help us maintain the temple, organize festivals, and serve the community. Every contribution makes a difference.</p>
+                                <a href="donation.html" class="sigma_btn-custom">Donate Now <i class="far fa-arrow-right"></i></a>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <!-- End Sidebar -->
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <hr class="my-4">
+                        <h3 class="mb-4">Activities & Services</h3>
+                        <div class="row gy-4">
+                            <!-- Daily Rituals -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="border rounded shadow-sm p-3 h-100">
+                                    <h5 class="fw-bold mb-3">Daily Rituals <span class="text-muted fw-normal">(দৈনন্দিন পূজা)</span></h5>
+                                    <ul class="list-unstyled ps-2">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Morning Aarti <small class="text-muted">(প্রাতঃ আরতি)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Evening Aarti <small class="text-muted">(সন্ধ্যা আরতি)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Abhishekam <small class="text-muted">(অভিষেক)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Archana <small class="text-muted">(অর্চনা)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Darshan <small class="text-muted">(দর্শন)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Prasad Distribution <small class="text-muted">(প্রসাদ বিতরণ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Bhajan/Kirtan Sessions <small class="text-muted">(ভজন/কীর্তন)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Chanting & Recitation <small class="text-muted">(স্তোত্র পাঠ ও জপ)</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Festivals -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="border rounded shadow-sm p-3 h-100">
+                                    <h5 class="fw-bold mb-3">Festivals <span class="text-muted fw-normal">(উৎসব)</span></h5>
+                                    <ul class="list-unstyled ps-2">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Diwali Celebration <small class="text-muted">(দীপাবলি উৎসব)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Navaratri Pooja <small class="text-muted">(নবরাত্রি পূজা)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Rath Yatra <small class="text-muted">(রথযাত্রা)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Purnima/Amavasya Pujas <small class="text-muted">(পূর্ণিমা ও অমাবস্যা পূজা)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Ekadashi Fasting and Puja <small class="text-muted">(একাদশী উপবাস ও পূজা)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Durga Puja <small class="text-muted">(দুর্গা পূজা)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Shyama Puja <small class="text-muted">(শ্যামা পূজা)</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Educational -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="border rounded shadow-sm p-3 h-100">
+                                    <h5 class="fw-bold mb-3">Educational <span class="text-muted fw-normal">(শিক্ষামূলক)</span></h5>
+                                    <ul class="list-unstyled ps-2">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Geeta Class <small class="text-muted">(গীতা পাঠ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Bhagavatam Class <small class="text-muted">(ভাগবত পাঠ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Bal Vikas (Children's Class) <small class="text-muted">(বাল বিকাশ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Sanskrit Class <small class="text-muted">(সংস্কৃত পাঠ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Dance <small class="text-muted">(নৃত্য)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Music <small class="text-muted">(সংগীত)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Drama <small class="text-muted">(নাটক)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Satsangs <small class="text-muted">(সৎসঙ্গ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Yoga & Meditation Classes <small class="text-muted">(যোগ ও ধ্যান ক্লাস)</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Community Service -->
+                            <div class="col-lg-6 col-md-6">
+                                <div class="border rounded shadow-sm p-3 h-100">
+                                    <h5 class="fw-bold mb-3">Community Service <span class="text-muted fw-normal">(সমাজসেবা)</span></h5>
+                                    <ul class="list-unstyled ps-2">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Annadanam <small class="text-muted">(অন্নদান)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Health Camp <small class="text-muted">(স্বাস্থ্য শিবির)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Charity Drives <small class="text-muted">(দান কার্যক্রম)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Volunteer Opportunities <small class="text-muted">(স্বেচ্ছাসেবা)</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Special Ceremonies -->
+                            <div class="col-lg-6 col-md-6">
+                                <div class="border rounded shadow-sm p-3 h-100">
+                                    <h5 class="fw-bold mb-3">Special Ceremonies <span class="text-muted fw-normal">(বিশেষ অনুষ্ঠান)</span></h5>
+                                    <ul class="list-unstyled ps-2">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Homa (Fire Ritual) <small class="text-muted">(হোম যজ্ঞ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Upanayan Ceremony <small class="text-muted">(উপনয়ন)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Vivah <small class="text-muted">(বিবাহ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Namakaran <small class="text-muted">(নামকরণ)</small></li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Annaprashan <small class="text-muted">(অন্নপ্রাশন)</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Image Gallery -->
+                        <hr class="my-4">
+                        <h3>Photo Gallery</h3>
+                        <ul class="lightSlider">
+                            <li><img src="https://placehold.co/550x400/e9c46a/ffffff?text=Gallery+1" /></li>
+                            <li><img src="https://placehold.co/550x400/2a9d8f/ffffff?text=Gallery+2" /></li>
+                            <li><img src="https://placehold.co/550x400/e9c46a/ffffff?text=Gallery+3" /></li>
+                            <li><img src="https://placehold.co/550x400/2a9d8f/ffffff?text=Gallery+4" /></li>
+                        </ul>
+
+                        <hr class="my-5">
+                        <h3>Event Gallery</h3>
+                        <ul class="lightSlider">
+                            <li><img src="https://placehold.co/550x400/e9c46a/ffffff?text=Gallery+1" /></li>
+                            <li><img src="https://placehold.co/550x400/2a9d8f/ffffff?text=Gallery+2" /></li>
+                            <li><img src="https://placehold.co/550x400/e9c46a/ffffff?text=Gallery+3" /></li>
+                            <li><img src="https://placehold.co/550x400/2a9d8f/ffffff?text=Gallery+4" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Body Content -->
+        <!-- Footer (Same as your other pages) -->
+
+        <!-- partial:partia/__footer.html -->
+        <footer class="sigma_footer footer-2">
+
+            <!-- Middle Footer -->
+            <div class="sigma_footer-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 footer-widget">
+                            <h5 class="widget-title">About Us</h5>
+                            <p class="mb-4">You need to be sure there isn’t anything embarrassing hidden in the middle of text. </p>
+                            <div class="d-flex align-items-center justify-content-md-start justify-content-center">
+                                <i class="far fa-phone custom-primary me-3"></i>
+                                <span>987-987-930-302</span>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
+                                <i class="far fa-envelope custom-primary me-3"></i>
+                                <span>info@bengalihinduunity.com</span>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
+                                <i class="far fa-map-marker custom-primary me-3"></i>
+                                <span>14/A, Poor Street City Tower, New York USA</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
+                            <h5 class="widget-title">Information</h5>
+                            <ul>
+                                <li> <a href="#">Item 1</a> </li>
+                                <li> <a href="#">Item 2</a> </li>
+                                <li> <a href="#">Item 3</a> </li>
+                                <li> <a href="#">Item 4</a> </li>
+                                <li> <a href="#">Item 5</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
+                            <h5 class="widget-title">Others</h5>
+                            <ul>
+                                <li> <a href="#">Item 1</a> </li>
+                                <li> <a href="#">Item 2</a> </li>
+                                <li> <a href="#">Item 3</a> </li>
+                                <li> <a href="#">Item 4</a> </li>
+                                <li> <a href="#">Item 5</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 d-none d-lg-block footer-widget widget-recent-posts">
+                            <h5 class="widget-title">Recent Posts</h5>
+                            <article class="sigma_recent-post">
+                                <a href="temples-details.html"><img src="assets/img/blog/sm/1.jpg" alt="post"></a>
+                                <div class="sigma_recent-post-body">
+                                    <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                                    <h6> <a href="temples-details.html">As we've all discovered by now, the world can change</a> </h6>
+                                </div>
+                            </article>
+                            <article class="sigma_recent-post">
+                                <a href="temples-details.html"><img src="assets/img/blog/sm/2.jpg" alt="post"></a>
+                                <div class="sigma_recent-post-body">
+                                    <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                                    <h6> <a href="temples-details.html">Testimony love offering so blessed</a> </h6>
+                                </div>
+                            </article>
+                            <article class="sigma_recent-post">
+                                <a href="temples-details.html"><img src="assets/img/blog/sm/3.jpg" alt="post"></a>
+                                <div class="sigma_recent-post-body">
+                                    <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                                    <h6> <a href="temples-details.html">As we've all discovered by now, the world can change</a> </h6>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="sigma_footer-bottom">
+                <div class="container-fluid">
+                    <div class="sigma_footer-copyright">
+                        <p> Copyright © Bengali Hindu Unity - <a href="#" class="custom-primary">2025</a> </p>
+                    </div>
+                    <div class="sigma_footer-logo">
+                        <img class="footer-logo" width="208" height="60" src="assets/img/generated-image (1).png" alt="logo">
+                    </div>
+                    <ul class="sigma_sm square light">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </footer>
+        <!-- partial -->
+        <script src="assets/js/plugins/jquery-3.4.1.min.js"></script>
+        <script src="assets/js/plugins/popper.min.js"></script>
+        <script src="assets/js/plugins/bootstrap.min.js"></script>
+        <script src="assets/js/plugins/imagesloaded.min.js"></script>
+        <script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/plugins/jquery.countdown.min.js"></script>
+        <script src="assets/js/plugins/jquery.waypoints.min.js"></script>
+        <script src="assets/js/plugins/jquery.counterup.min.js"></script>
+        <script src="assets/js/plugins/jquery.zoom.min.js"></script>
+        <script src="assets/js/plugins/jquery.inview.min.js"></script>
+        <script src="assets/js/plugins/jquery.event.move.js"></script>
+        <script src="assets/js/plugins/wow.min.js"></script>
+        <script src="assets/js/plugins/isotope.pkgd.min.js"></script>
+        <script src="assets/js/plugins/slick.min.js"></script>
+        <script src="assets/js/plugins/ion.rangeSlider.min.js"></script>
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <script src="assets/js/main.js"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOr9696DDtCnhDRniUYvN5GyOBmTOBPVI"></script>
+        <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/lightslider/dist/js/lightslider.min.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Swiper Initialization
+                const swiper = new Swiper(".myGallerySwiper", {
+                    loop: true,
+                    spaceBetween: 20,
+                    slidesPerView: 2,
+                    centeredSlides: true,
+                    grabCursor: true,
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev"
+                    },
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true
+                    },
+                    breakpoints: {
+
+                        0: {
+                            slidesPerView: 1,
+                        },
+                        768: {
+                            slidesPerView: 2,
+                        }
+                    }
+                });
+
+
+                // Magnific Popup Initialization
+                $('.gallery-zoom').magnificPopup({
+                    type: 'image',
+                    gallery: {
+                        enabled: true
+                    },
+                    mainClass: 'mfp-with-zoom',
+                    zoom: {
+                        enabled: true,
+                        duration: 300,
+                        easing: 'ease-in-out',
+                    }
+                });
+                // Initialize the single-location map
+                async function initTempleMap() {
+                    const mapElement = document.getElementById('temple-location-map');
+                    if (!mapElement) return;
+
+                    // In a real Laravel app, you would get these from your controller:
+                    // const templeLocation = { lat: {{ $temple->lat }}, lng: {{ $temple->lng }} };
+                    const templeLocation = {
+                        lat: 23.7286,
+                        lng: 90.3880
+                    };
+                    const templeName = "Dhakeshwari Temple";
+
+                    const {
+                        Map
+                    } = await google.maps.importLibrary("maps");
+                    const {
+                        AdvancedMarkerElement
+                    } = await google.maps.importLibrary("marker");
+
+                    const map = new Map(mapElement, {
+                        zoom: 15, // A closer zoom for a single location
+                        center: templeLocation,
+                        mapId: 'TEMPLE_DETAIL_MAP_ID',
+                    });
+
+                    const marker = new AdvancedMarkerElement({
+                        map: map,
+                        position: templeLocation,
+                        title: templeName,
+                    });
+                }
+
+                initTempleMap();
+            });
+
+        </script>
+        <script>
+            $(document).ready(function() {
+                $(".lightSlider").lightSlider({
+                    item: 3,
+                    loop: true,
+                    controls: true // <- Make sure this is true
+                });
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details | Bengali Hindu Unity</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/developer.css">
+    <style>
+        .job-logo {
+            max-width: 120px;
+            max-height: 120px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        .job-header-box {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 32px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .job-header-details {
+            flex: 1;
+        }
+        .job-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .job-meta {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        .job-meta i {
+            color: #007bff;
+            margin-right: 6px;
+        }
+        .job-tags span {
+            display: inline-block;
+            background: #f2f2f2;
+            color: #333;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            padding: 2px 10px;
+            margin-right: 8px;
+            margin-bottom: 2px;
+        }
+        .job-section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+        .job-desc {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+        .job-sidebar {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .job-sidebar h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .job-sidebar .sigma_recent-post img {
+            border-radius: 6px;
+        }
+        .apply-btn {
+            margin-top: 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .job-deadline {
+            color: #dc3545;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader and Modal (unchanged) -->
+    <div class="sigma_preloader">
+        <img src="assets/img/om.svg" alt="preloader">
+    </div>
+    <!-- Mobile Nav (unchanged) -->
+    <aside class="sigma_aside sigma_aside-left">
+        <a class="navbar-brand" href="index.html"> <img src="assets/img/rr_logo_resized.jpg" alt="logo"> </a>
+        <ul>
+            <li class="menu-item"> <a href="index.html">Home</a> </li>
+            <li class="menu-item"> <a href="about.html">About Us</a> </li>
+            <li class="menu-item"> <a href="temples.html">Temples</a> </li>
+            <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+            <li class="menu-item"> <a href="#">Contact</a> </li>
+        </ul>
+    </aside>
+    <div class="sigma_aside-overlay aside-trigger-left"></div>
+    <!-- Header (unchanged) -->
+    <header class="sigma_header header-3 can-sticky">
+        <div class="sigma_header-middle">
+            <nav class="navbar">
+                <div class="sigma_logo-wrapper">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="assets/img/generated-image (1).png" alt="logo">
+                    </a>
+                </div>
+                <div class="sigma_header-inner">
+                    <div class="sigma_header-top">
+                        <div class="sigma_header-top-inner">
+                            <ul class="sigma_header-top-links d-none d-lg-flex">
+                                <li class="menu-item"> <a href="tel:+123456789"> <i class="fal fa-phone"></i> (+1) 123 456 7890</a> </li>
+                                <li class="menu-item"> <a href="mailto:info@example.com"> <i class="fal fa-envelope"></i> info@bengalihinduunity.com</a> </li>
+                            </ul>
+                            <ul class="sigma_header-top-links d-none d-lg-flex">
+                                <li class="d-flex align-items-center">
+                                    <a href="">Register</a>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <a href="#" class="m-0"> Login </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center justify-content-lg-between">
+                        <ul class="navbar-nav d-none d-lg-flex">
+                            <li class="menu-item"> <a href="index.html">Home</a> </li>
+                            <li class="menu-item"> <a href="about.html">About Us</a> </li>
+                            <li class="menu-item"> <a href="temples.html">Temples</a> </li>
+                            <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+                            <li class="menu-item"> <a href="#">Contact</a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sigma_header-controls style-2">
+                    <a href="donation.html" class="sigma_btn-custom d-none d-lg-block"> Donate Here</a>
+                    <ul class="sigma_header-controls-inner">
+                        <li class="aside-toggler style-2 aside-trigger-left">
+                            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Subheader (unchanged) -->
+    <div class="sigma_subheader">
+        <div class="overlay">
+        <div class="sub-head-banner"></div>
+            <h4 class="header-img-text">Job Details</h4>
+        </div>
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="btn-link" href="#">Home</a></li>
+            <li class="breadcrumb-item"><a class="btn-link" href="#">Jobs</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Job Details</li>
+        </ol>
+        </nav>
+    </div>
+    <!-- Main Content -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-9">
+                    <!-- Job Header Box -->
+                    <div class="job-header-box">
+                        <img src="https://placehold.co/200x200" alt="Tech Solutions Ltd. Logo" class="job-logo">
+                        <div class="job-header-details">
+                            <div class="job-title mb-1">Software Engineer</div>
+                            <div class="job-meta mb-2">
+                                <span class="job-label"><i class="fa fa-building"></i> Tech Solutions Ltd.</span>
+                                <span class="job-label"><i class="fa fa-map-marker-alt"></i> Dhaka, Dhaka District</span>
+                                <span class="job-label"><i class="fa fa-briefcase"></i> IT & Telecommunication</span>
+                                <span class="job-label"><i class="fa fa-industry"></i> Information Technology (IT)</span>
+                                <span class="job-deadline"><i class="fa fa-calendar"></i> Deadline: 2025-09-30</span>
+                            </div>
+                            <div class="job-tags mb-2">
+                                <span>Laravel</span>
+                                <span>Vue.js</span>
+                                <span>REST API</span>
+                            </div>
+                            <div class="job-meta">
+                                <span class="job-label"><i class="fa fa-clock"></i> Full Time</span>
+                                <span class="job-label"><i class="fa fa-laptop"></i> Remote</span>
+                            </div>
+                            <a href="#" class="btn btn-primary apply-btn">Apply Now</a>
+                        </div>
+                    </div>
+                    <!-- About Section -->
+                    <div class="job-desc">
+                        <h4>Job Description</h4>
+                        <p>
+                            Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                        </p>
+                        <p>
+                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.
+                        </p>
+                        <p>
+                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.
+                        </p>
+                        <h4>Requirements</h4>
+                        <ul class="sigma_list sigma_list-2">
+                            <li>People ask questions related to Hinduism</li>
+                            <li>We never believe in reborn </li>
+                            <li>People ask questions related to Hinduism</li>
+                            <li>We never believe in reborn </li>
+                        </ul>
+                        <h4>Responsibilities</h4>
+                        <ul class="sigma_list sigma_list-2">
+                            <li>People ask questions related to Hinduism</li>
+                            <li>We never believe in reborn </li>
+                            <li>People ask questions related to Hinduism</li>
+                            <li>We never believe in reborn </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <!-- Sidebar -->
+                <div class="col-lg-3">
+                    <div class="sidebar">
+
+                            <!-- Other Organization Widget -->
+                            <div class="sidebar-widget widget-recent-posts">
+                                <h5 class="underline-title">Similar Jobs</h5>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Dhaka</a>
+                                        <h6><a href="#">Job 1</a></h6>
+                                    </div>
+                                </article>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Comilla</a>
+                                        <h6><a href="#">Job 2</a></h6>
+                                    </div>
+                                </article>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Chittagong</a>
+                                        <h6><a href="#">Job 3</a></h6>
+                                    </div>
+                                </article>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Chittagong</a>
+                                        <h6><a href="#">Job 3</a></h6>
+                                    </div>
+                                </article>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Chittagong</a>
+                                        <h6><a href="#">Job 3</a></h6>
+                                    </div>
+                                </article>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Chittagong</a>
+                                        <h6><a href="#">Job 3</a></h6>
+                                    </div>
+                                </article>
+                                <article class="sigma_recent-post">
+                                    <a href="#"><img src="https://placehold.co/100x100/f4a261/ffffff?text=T" alt="post"></a>
+                                    <div class="sigma_recent-post-body">
+                                        <a href="#"><i class="far fa-calendar"></i> Chittagong</a>
+                                        <h6><a href="#">Job 3</a></h6>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer (unchanged) -->
+    <footer class="sigma_footer footer-2">
+        <div class="sigma_footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 footer-widget">
+                        <h5 class="widget-title">About Us</h5>
+                        <p class="mb-4">You need to be sure there isn’t anything embarrassing hidden in the middle of text. </p>
+                        <div class="d-flex align-items-center justify-content-md-start justify-content-center">
+                            <i class="far fa-phone custom-primary me-3"></i>
+                            <span>987-987-930-302</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
+                            <i class="far fa-envelope custom-primary me-3"></i>
+                            <span>info@bengalihinduunity.com</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
+                            <i class="far fa-map-marker custom-primary me-3"></i>
+                            <span>14/A, Poor Street City Tower, New York USA</span>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
+                        <h5 class="widget-title">Information</h5>
+                        <ul>
+                            <li> <a href="#">Item 1</a> </li>
+                            <li> <a href="#">Item 2</a> </li>
+                            <li> <a href="#">Item 3</a> </li>
+                            <li> <a href="#">Item 4</a> </li>
+                            <li> <a href="#">Item 5</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
+                        <h5 class="widget-title">Others</h5>
+                        <ul>
+                            <li> <a href="#">Item 1</a> </li>
+                            <li> <a href="#">Item 2</a> </li>
+                            <li> <a href="#">Item 3</a> </li>
+                            <li> <a href="#">Item 4</a> </li>
+                            <li> <a href="#">Item 5</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 d-none d-lg-block footer-widget widget-recent-posts">
+                        <h5 class="widget-title">Recent Posts</h5>
+                        <article class="sigma_recent-post">
+                            <a href="temples-details.html"><img src="assets/img/blog/sm/1.jpg" alt="post"></a>
+                            <div class="sigma_recent-post-body">
+                                <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                                <h6> <a href="temples-details.html">As we've all discovered by now, the world can change</a> </h6>
+                            </div>
+                        </article>
+                        <article class="sigma_recent-post">
+                            <a href="temples-details.html"><img src="assets/img/blog/sm/2.jpg" alt="post"></a>
+                            <div class="sigma_recent-post-body">
+                                <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                                <h6> <a href="temples-details.html">Testimony love offering so blessed</a> </h6>
+                            </div>
+                        </article>
+                        <article class="sigma_recent-post">
+                            <a href="temples-details.html"><img src="assets/img/blog/sm/3.jpg" alt="post"></a>
+                            <div class="sigma_recent-post-body">
+                                <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                                <h6> <a href="temples-details.html">As we've all discovered by now, the world can change</a> </h6>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sigma_footer-bottom">
+            <div class="container-fluid">
+                <div class="sigma_footer-copyright">
+                    <p> Copyright © Bengali Hindu Unity - <a href="#" class="custom-primary">2025</a> </p>
+                </div>
+                <div class="sigma_footer-logo">
+                    <img class="footer-logo" width="208" height="60" src="assets/img/generated-image (1).png" alt="logo">
+                </div>
+                <ul class="sigma_sm square light">
+                    <li>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/plugins/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/plugins/popper.min.js"></script>
+    <script src="assets/js/plugins/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

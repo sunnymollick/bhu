@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengali Hindu Unity</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+
+    <!-- partial:partial/__stylesheets.html -->
+    <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/animate.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick-theme.css">
+    <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
+
+    <!-- Icon Fonts -->
+    <link rel="stylesheet" href="assets/fonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
+    <!-- Template Style sheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/developer.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- partial -->
+
+  </head>
+
+  <body>
+    <div class="sigma_preloader">
+      <img src="assets/img/om.svg" alt="preloader">
+    </div>
+
+    <!-- Mobile Nav -->
+    <aside class="sigma_aside sigma_aside-left">
+      <a class="navbar-brand" href="index.html"> <img src="assets/img/rr_logo_resized.jpg" alt="logo"> </a>
+      <ul>
+        <li class="menu-item"> <a href="index.html">Home</a> </li>
+        <li class="menu-item"> <a href="about.html">About Us</a> </li>
+        <li class="menu-item"> <a href="temples.html">Temples</a> </li>
+        <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+        <li class="menu-item"> <a href="#">Contact</a> </li>
+      </ul>
+    </aside>
+    <div class="sigma_aside-overlay aside-trigger-left"></div>
+
+
+    <!-- Header -->
+    <header class="sigma_header header-3 can-sticky">
+      <div class="sigma_header-middle">
+        <nav class="navbar">
+
+          <!-- Logo Start -->
+          <div class="sigma_logo-wrapper">
+            <a class="navbar-brand" href="index.html">
+              <img src="assets/img/generated-image (1).png" alt="logo">
+            </a>
+          </div>
+          <!-- Logo End -->
+
+          <!-- Menu -->
+          <div class="sigma_header-inner">
+            <div class="sigma_header-top">
+              <div class="sigma_header-top-inner">
+                <!-- FIX: Hide top links on smaller screens for better responsiveness -->
+                <ul class="sigma_header-top-links d-none d-lg-flex">
+                  <li class="menu-item"> <a href="tel:+123456789"> <i class="fal fa-phone"></i> (+1) 123 456 7890</a> </li>
+                  <li class="menu-item"> <a href="mailto:info@example.com"> <i class="fal fa-envelope"></i> info@bengalihinduunity.com</a> </li>
+                </ul>
+                <!-- FIX: Hide top links on smaller screens for better responsiveness -->
+                <ul class="sigma_header-top-links d-none d-lg-flex">
+                  <li class="d-flex align-items-center">
+                    <a href="">Register</a>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <a href="#" class="m-0"> Login </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center justify-content-lg-between">
+              <!-- FIX: Hide desktop navbar on screens smaller than large (992px) -->
+              <ul class="navbar-nav d-none d-lg-flex">
+                <li class="menu-item"> <a href="index.html">Home</a> </li>
+                <li class="menu-item"> <a href="about.html">About Us</a> </li>
+                <li class="menu-item"> <a href="temples.html">Temples</a> </li>
+                <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+                <li class="menu-item"> <a href="#">Contact</a> </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="sigma_header-controls style-2">
+            <a href="donation.html" class="sigma_btn-custom d-none d-lg-block"> Donate Here</a>
+            <ul class="sigma_header-controls-inner">
+              <!-- Mobile Toggler -->
+              <li class="aside-toggler style-2 aside-trigger-left">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </li>
+            </ul>
+          </div>
+
+        </nav>
+      </div>
+    </header>
+
+    <!-- Subheader -->
+    <div class="sigma_subheader">
+      <div class="overlay">
+        <div class="sub-head-banner"></div>
+        <h4 class="header-img-text">All Organizations</h4>
+      </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a class="btn-link" href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Organizations</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="section">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="sidebar">
+              <!-- New Temple Filter Controls -->
+              <div class="sidebar-widget widget-temple-filter">
+                <h5 class="underline-title">Filter Organizations</h5>
+                <form id="templeFilterForm" onsubmit="return false;">
+                  <!-- Division -->
+                  <div class="mb-3">
+                    <label class="form-label">Division</label>
+                    <select id="division" class="form-select">
+                      <option value="">Select Division</option>
+                    </select>
+                  </div>
+
+                  <!-- District -->
+                  <div class="mb-3">
+                    <label class="form-label">District</label>
+                    <select id="district" class="form-select">
+                      <option value="">Select District</option>
+                    </select>
+                  </div>
+                  
+                  <!-- Manufacturing and Production -->
+                <div class="mb-3">
+                    <label class="form-label">Manufacturing and Production</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="manufacturers" value="Manufacturers (e.g., machinery, electronics, textiles)">
+                        <label class="form-check-label" for="manufacturers">Manufacturers (e.g., machinery, electronics, textiles)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="food-beverage" value="Food and Beverage Production">
+                        <label class="form-check-label" for="food-beverage">Food and Beverage Production</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="chemical-pharma" value="Chemical and Pharmaceutical Production">
+                        <label class="form-check-label" for="chemical-pharma">Chemical and Pharmaceutical Production</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="automotive" value="Automotive Manufacturing">
+                        <label class="form-check-label" for="automotive">Automotive Manufacturing</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="furniture-wood" value="Furniture and Wood Products">
+                        <label class="form-check-label" for="furniture-wood">Furniture and Wood Products</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="metal-plastic" value="Metal and Plastic Fabrication">
+                        <label class="form-check-label" for="metal-plastic">Metal and Plastic Fabrication</label>
+                    </div>
+                </div>
+
+                <!-- Construction and Real Estate -->
+                <div class="mb-3">
+                    <label class="form-label">Construction and Real Estate</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="general-contractors" value="General Contractors">
+                        <label class="form-check-label" for="general-contractors">General Contractors</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="specialty-contractors" value="Specialty Contractors (e.g., plumbing, electrical, HVAC)">
+                        <label class="form-check-label" for="specialty-contractors">Specialty Contractors (e.g., plumbing, electrical, HVAC)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="property-development" value="Property Development Companies">
+                        <label class="form-check-label" for="property-development">Property Development Companies</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="real-estate-agencies" value="Real Estate Agencies and Brokerages">
+                        <label class="form-check-label" for="real-estate-agencies">Real Estate Agencies and Brokerages</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="property-management" value="Property Management Firms">
+                        <label class="form-check-label" for="property-management">Property Management Firms</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="architecture-design" value="Architecture and Design Services">
+                        <label class="form-check-label" for="architecture-design">Architecture and Design Services</label>
+                    </div>
+                </div>
+
+                <!-- Retail and Wholesale -->
+                <div class="mb-3">
+                    <label class="form-label">Retail and Wholesale</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="retail-shops" value="Retail Shops (e.g., clothing, grocery, electronics)">
+                        <label class="form-check-label" for="retail-shops">Retail Shops (e.g., clothing, grocery, electronics)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="wholesale-distributors" value="Wholesale Distributors">
+                        <label class="form-check-label" for="wholesale-distributors">Wholesale Distributors</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="ecommerce" value="E-commerce Businesses">
+                        <label class="form-check-label" for="ecommerce">E-commerce Businesses</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="franchises" value="Franchises (e.g., chain stores, fast food outlets)">
+                        <label class="form-check-label" for="franchises">Franchises (e.g., chain stores, fast food outlets)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="market-stalls" value="Market Stalls and Small Vendors">
+                        <label class="form-check-label" for="market-stalls">Market Stalls and Small Vendors</label>
+                    </div>
+                </div>
+
+                <!-- Transportation and Logistics -->
+                <div class="mb-3">
+                    <label class="form-label">Transportation and Logistics</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="freight-cargo" value="Freight and Cargo Services">
+                        <label class="form-check-label" for="freight-cargo">Freight and Cargo Services</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="courier-delivery" value="Courier and Delivery Companies">
+                        <label class="form-check-label" for="courier-delivery">Courier and Delivery Companies</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="moving-storage" value="Moving and Storage Services">
+                        <label class="form-check-label" for="moving-storage">Moving and Storage Services</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="passenger-transport" value="Passenger Transport (e.g., taxi, rideshare, bus)">
+                        <label class="form-check-label" for="passenger-transport">Passenger Transport (e.g., taxi, rideshare, bus)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="logistics-supply-chain" value="Logistics and Supply Chain Management">
+                        <label class="form-check-label" for="logistics-supply-chain">Logistics and Supply Chain Management</label>
+                    </div>
+                </div>
+
+                <!-- Hospitality and Food Services -->
+                <div class="mb-3">
+                    <label class="form-label">Hospitality and Food Services</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="restaurants" value="Restaurants, Cafés, and Bakeries">
+                        <label class="form-check-label" for="restaurants">Restaurants, Cafés, and Bakeries</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="catering" value="Catering Companies">
+                        <label class="form-check-label" for="catering">Catering Companies</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="hotels-resorts" value="Hotels and Resorts">
+                        <label class="form-check-label" for="hotels-resorts">Hotels and Resorts</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="event-conference" value="Event and Conference Centers">
+                        <label class="form-check-label" for="event-conference">Event and Conference Centers</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="travel-agencies" value="Travel Agencies and Tour Operators">
+                        <label class="form-check-label" for="travel-agencies">Travel Agencies and Tour Operators</label>
+                    </div>
+                </div>
+
+                <!-- Healthcare and Social Services -->
+                <div class="mb-3">
+                    <label class="form-label">Healthcare and Social Services</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="private-clinics" value="Private Clinics and Medical Practices">
+                        <label class="form-check-label" for="private-clinics">Private Clinics and Medical Practices</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dental-practices" value="Dental Practices">
+                        <label class="form-check-label" for="dental-practices">Dental Practices</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="pharmacies" value="Pharmacies">
+                        <label class="form-check-label" for="pharmacies">Pharmacies</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="diagnostic-lab" value="Diagnostic and Laboratory Services">
+                        <label class="form-check-label" for="diagnostic-lab">Diagnostic and Laboratory Services</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="home-healthcare" value="Home Healthcare Providers">
+                        <label class="form-check-label" for="home-healthcare">Home Healthcare Providers</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="childcare-eldercare" value="Childcare and Elder Care Services">
+                        <label class="form-check-label" for="childcare-eldercare">Childcare and Elder Care Services</label>
+                    </div>
+                </div>
+
+                <!-- Professional and Technical Services -->
+                <div class="mb-3">
+                    <label class="form-label">Professional and Technical Services</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="consulting" value="Consulting Firms (e.g., business, engineering, legal)">
+                        <label class="form-check-label" for="consulting">Consulting Firms (e.g., business, engineering, legal)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="accounting" value="Accounting and Financial Advisory Services">
+                        <label class="form-check-label" for="accounting">Accounting and Financial Advisory Services</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="marketing" value="Marketing and Advertising Agencies">
+                        <label class="form-check-label" for="marketing">Marketing and Advertising Agencies</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="design-studios" value="Design and Creative Studios">
+                        <label class="form-check-label" for="design-studios">Design and Creative Studios</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="research-firms" value="Research and Development Firms">
+                        <label class="form-check-label" for="research-firms">Research and Development Firms</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="it-software" value="IT and Software Development Companies">
+                        <label class="form-check-label" for="it-software">IT and Software Development Companies</label>
+                    </div>
+                </div>
+
+                <!-- Agriculture and Natural Resources -->
+                <div class="mb-3">
+                    <label class="form-label">Agriculture and Natural Resources</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="crop-farming" value="Crop Farming">
+                        <label class="form-check-label" for="crop-farming">Crop Farming</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="livestock" value="Livestock Farming">
+                        <label class="form-check-label" for="livestock">Livestock Farming</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="fisheries" value="Fisheries and Aquaculture">
+                        <label class="form-check-label" for="fisheries">Fisheries and Aquaculture</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="forestry" value="Forestry and Timber Businesses">
+                        <label class="form-check-label" for="forestry">Forestry and Timber Businesses</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="mining" value="Mining and Resource Extraction">
+                        <label class="form-check-label" for="mining">Mining and Resource Extraction</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="agricultural-equipment" value="Agricultural Supply and Equipment">
+                        <label class="form-check-label" for="agricultural-equipment">Agricultural Supply and Equipment</label>
+                    </div>
+                </div>
+                <!-- Energy and Utilities -->
+                <div class="mb-3">
+                    <label class="form-label">Energy and Utilities</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="power-generation" value="Power Generation Companies (e.g., renewable, fossil)">
+                        <label class="form-check-label" for="power-generation">Power Generation Companies (e.g., renewable, fossil)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="water-waste" value="Water and Waste Management Services">
+                        <label class="form-check-label" for="water-waste">Water and Waste Management Services</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="oil-gas" value="Oil and Gas Exploration and Distribution">
+                        <label class="form-check-label" for="oil-gas">Oil and Gas Exploration and Distribution</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="renewable-energy" value="Renewable Energy Firms (e.g., solar, wind)">
+                        <label class="form-check-label" for="renewable-energy">Renewable Energy Firms (e.g., solar, wind)</label>
+                    </div>
+                </div>
+
+                <!-- Education and Training -->
+                <div class="mb-3">
+                    <label class="form-label">Education and Training</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="schools-colleges" value="Schools and Colleges (private institutions)">
+                        <label class="form-check-label" for="schools-colleges">Schools and Colleges (private institutions)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="vocational-training" value="Vocational and Technical Training Centers">
+                        <label class="form-check-label" for="vocational-training">Vocational and Technical Training Centers</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="tutoring" value="Tutoring Services">
+                        <label class="form-check-label" for="tutoring">Tutoring Services</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="corporate-training" value="Corporate Training and Development Firms">
+                        <label class="form-check-label" for="corporate-training">Corporate Training and Development Firms</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="online-education" value="Online Education Platforms">
+                        <label class="form-check-label" for="online-education">Online Education Platforms</label>
+                    </div>
+                </div>
+
+                <!-- Arts, Entertainment, and Media -->
+                <div class="mb-3">
+                    <label class="form-label">Arts, Entertainment, and Media</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="film-tv" value="Film and Television Production">
+                        <label class="form-check-label" for="film-tv">Film and Television Production</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="music-performing" value="Music and Performing Arts Companies">
+                        <label class="form-check-label" for="music-performing">Music and Performing Arts Companies</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="publishing" value="Publishing Houses">
+                        <label class="form-check-label" for="publishing">Publishing Houses</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="digital-media" value="Digital Media and Content Creation">
+                        <label class="form-check-label" for="digital-media">Digital Media and Content Creation</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="event-management" value="Event Management and Entertainment Services">
+                        <label class="form-check-label" for="event-management">Event Management and Entertainment Services</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gaming-animation" value="Gaming and Animation Studios">
+                        <label class="form-check-label" for="gaming-animation">Gaming and Animation Studios</label>
+                    </div>
+                </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Main Content -->
+          <div class="col-lg-9">
+            <!-- SEARCH BOX START -->
+            <div class="custom-search-container mb-4 offset-lg-3">
+              <div class="custom-search-box position-relative">
+                <form action="/search" method="GET" id="temple-search-form">
+                  <input type="text" name="query" class="form-control" placeholder="Search organizations, locations..." aria-label="Search temples">
+                  <button type="submit" class="btn btn-search" aria-label="Search">
+                    <i class="fal fa-search search-icon"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <!-- SEARCH BOX END -->
+            <div class="row">
+                <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+                 <!-- Article Start -->
+                <div class="col-md-4">
+                    <article class="sigma_post">
+                    <div class="sigma_post-thumb">
+                        <a href="organization-details.html">
+                        <img src="https://placehold.co/400x270" alt="post">
+                        </a>
+                    </div>
+                    <div class="sigma_post-body">
+                        <h5> <a href="organization-details.html">Organization Title</a> </h5>
+                        <div class="sigma_post-single-author-content tag-list">
+                            <span class="tag">Business</span>
+                            <span class="tag">Business1</span>
+                            <span class="tag">Business2</span>
+                        </div>
+                    </div>
+                    </article>
+                </div>
+                <!-- Article End -->
+
+              
+
+            </div>
+            <!-- Pagination Start -->
+            <ul class="pagination mb-0">
+              <li class="page-item"><a class="page-link" href="#"> <i class="far fa-chevron-left"></i> </a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#"> <i class="far fa-chevron-right"></i> </a></li>
+            </ul>
+            <!-- Pagination End -->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <footer class="sigma_footer footer-2">
+      <div class="sigma_footer-middle">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 footer-widget">
+              <h5 class="widget-title">About Us</h5>
+              <p class="mb-4">You need to be sure there isn’t anything embarrassing hidden in the middle of text. </p>
+              <div class="d-flex align-items-center justify-content-md-start justify-content-center">
+                <i class="far fa-phone custom-primary me-3"></i>
+                <span>987-987-930-302</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
+                <i class="far fa-envelope custom-primary me-3"></i>
+                <span>info@bengalihinduunity.com</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
+                <i class="far fa-map-marker custom-primary me-3"></i>
+                <span>14/A, Poor Street City Tower, New York USA</span>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
+              <h5 class="widget-title">Information</h5>
+              <ul>
+                <li> <a href="#">Item 1</a> </li>
+                <li> <a href="#">Item 2</a> </li>
+                <li> <a href="#">Item 3</a> </li>
+                <li> <a href="#">Item 4</a> </li>
+                <li> <a href="#">Item 5</a> </li>
+              </ul>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
+              <h5 class="widget-title">Others</h5>
+              <ul>
+                <li> <a href="#">Item 1</a> </li>
+                <li> <a href="#">Item 2</a> </li>
+                <li> <a href="#">Item 3</a> </li>
+                <li> <a href="#">Item 4</a> </li>
+                <li> <a href="#">Item 5</a> </li>
+              </ul>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 d-none d-lg-block footer-widget widget-recent-posts">
+              <h5 class="widget-title">Recent Posts</h5>
+              <article class="sigma_recent-post">
+                <a href="temples-details.html"><img src="assets/img/blog/sm/1.jpg" alt="post"></a>
+                <div class="sigma_recent-post-body">
+                  <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                  <h6> <a href="temples-details.html">As we've all discovered by now, the world can change</a> </h6>
+                </div>
+              </article>
+              <article class="sigma_recent-post">
+                <a href="temples-details.html"><img src="assets/img/blog/sm/2.jpg" alt="post"></a>
+                <div class="sigma_recent-post-body">
+                  <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                  <h6> <a href="temples-details.html">Testimony love offering so blessed</a> </h6>
+                </div>
+              </article>
+              <article class="sigma_recent-post">
+                <a href="temples-details.html"><img src="assets/img/blog/sm/3.jpg" alt="post"></a>
+                <div class="sigma_recent-post-body">
+                  <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                  <h6> <a href="temples-details.html">As we've all discovered by now, the world can change</a> </h6>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="sigma_footer-bottom">
+        <div class="container-fluid">
+          <div class="sigma_footer-copyright">
+            <p> Copyright © Bengali Hindu Unity - <a href="#" class="custom-primary">2025</a> </p>
+          </div>
+          <div class="sigma_footer-logo">
+            <img class="footer-logo" width="208" height="60" src="assets/img/generated-image (1).png" alt="logo">
+          </div>
+          <ul class="sigma_sm square light">
+            <li>
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </footer>
+    <!-- partial -->
+    <script src="assets/js/plugins/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/plugins/popper.min.js"></script>
+    <script src="assets/js/plugins/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/imagesloaded.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOr9696DDtCnhDRniUYvN5GyOBmTOBPVI"></script>
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+
+    <!-- FIX: All filtering and map logic is now in one place -->
+    <script>
+      // Example data - replace with your own or load via AJAX
+      const divisions = [{
+          id: 1,
+          name: 'Dhaka'
+        },
+        {
+          id: 2,
+          name: 'Chittagong'
+        }
+      ];
+      const districts = [{
+          id: 1,
+          division_id: 1,
+          name: 'Dhaka'
+        },
+        {
+          id: 2,
+          division_id: 1,
+          name: 'Gazipur'
+        },
+        {
+          id: 3,
+          division_id: 2,
+          name: 'Comilla'
+        },
+        {
+          id: 4,
+          division_id: 2,
+          name: "Cox's Bazar"
+        }
+      ];
+      const temples = [{
+          id: 1,
+          name: 'Dhakeshwari Temple',
+          division_id: 1,
+          district_id: 1,
+          lat: 23.7286,
+          lng: 90.3880,
+          address: 'Dhaka, Bangladesh'
+        },
+        {
+          id: 2,
+          name: 'Kali Temple',
+          division_id: 1,
+          district_id: 2,
+          lat: 23.9999,
+          lng: 90.4200,
+          address: 'Gazipur, Bangladesh'
+        },
+        {
+          id: 3,
+          name: 'Comilla Temple',
+          division_id: 2,
+          district_id: 3,
+          lat: 23.4607,
+          lng: 91.1809,
+          address: 'Comilla, Bangladesh'
+        },
+        {
+          id: 4,
+          name: "Cox's Bazar Temple",
+          division_id: 2,
+          district_id: 4,
+          lat: 21.4272,
+          lng: 92.0058,
+          address: "Cox's Bazar, Bangladesh"
+        }
+      ];
+
+      // Populate Division dropdown
+      function populateDivisions() {
+        const divisionSelect = document.getElementById('division');
+        divisionSelect.innerHTML = '<option value="">All Divisions</option>';
+        divisions.forEach(div => {
+          let option = document.createElement('option');
+          option.value = div.id;
+          option.text = div.name;
+          divisionSelect.appendChild(option);
+        });
+      }
+
+      // Populate District dropdown based on selected division
+      function populateDistricts(divisionId) {
+        const districtSelect = document.getElementById('district');
+        districtSelect.innerHTML = '<option value="">All Districts</option>';
+        districts
+          .filter(d => !divisionId || d.division_id == divisionId)
+          .forEach(d => {
+            let option = document.createElement('option');
+            option.value = d.id;
+            option.text = d.name;
+            districtSelect.appendChild(option);
+          });
+      }
+
+      // Filter temples based on dropdowns
+      function filterTemples() {
+        const divisionId = document.getElementById('division').value;
+        const districtId = document.getElementById('district').value;
+        return temples.filter(t => {
+          return (!divisionId || t.division_id == divisionId) &&
+            (!districtId || t.district_id == districtId);
+        });
+      }
+
+    </script>
+
+  </body>
+
+</html>

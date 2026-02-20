@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Listings | Bengali Hindu Unity</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/developer.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+  <!-- Header (copied from organizations.html) -->
+  <header class="sigma_header header-3 can-sticky">
+    <div class="sigma_header-middle">
+      <nav class="navbar">
+        <div class="sigma_logo-wrapper">
+          <a class="navbar-brand" href="index.html">
+            <img src="assets/img/generated-image (1).png" alt="logo">
+          </a>
+        </div>
+        <div class="sigma_header-inner">
+          <div class="sigma_header-top">
+            <div class="sigma_header-top-inner">
+              <ul class="sigma_header-top-links d-none d-lg-flex">
+                <li class="menu-item"> <a href="tel:+123456789"> <i class="fal fa-phone"></i> (+1) 123 456 7890</a> </li>
+                <li class="menu-item"> <a href="mailto:info@example.com"> <i class="fal fa-envelope"></i> info@bengalihinduunity.com</a> </li>
+              </ul>
+              <ul class="sigma_header-top-links d-none d-lg-flex">
+                <li class="d-flex align-items-center">
+                  <a href="">Register</a>
+                </li>
+                <li class="d-flex align-items-center">
+                  <a href="#" class="m-0"> Login </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center justify-content-lg-between">
+            <ul class="navbar-nav d-none d-lg-flex">
+              <li class="menu-item"> <a href="index.html">Home</a> </li>
+              <li class="menu-item"> <a href="about.html">About Us</a> </li>
+              <li class="menu-item"> <a href="temples.html">Temples</a> </li>
+              <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+              <li class="menu-item"> <a href="#">Contact</a> </li>
+            </ul>
+          </div>
+        </div>
+        <div class="sigma_header-controls style-2">
+          <a href="donation.html" class="sigma_btn-custom d-none d-lg-block"> Donate Here</a>
+          <ul class="sigma_header-controls-inner">
+            <li class="aside-toggler style-2 aside-trigger-left">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- Subheader -->
+  <div class="sigma_subheader">
+    <div class="overlay">
+      <div class="sub-head-banner"></div>
+        <h4 class="header-img-text">All Jobs</h4>
+    </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="btn-link" href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Jobs</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="section">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Filter Sidebar -->
+        <div class="col-lg-3">
+          <div class="filter-sidebar">
+            <h5 class="underline-title mb-3">Filter Jobs</h5>
+            <form id="jobFilterForm" onsubmit="return false;">
+              <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select class="form-select">
+                  <option value="">All Categories</option>
+                  <option>Accounting/Finance</option>
+                  <option>IT & Telecommunication</option>
+                  <option>Education/Training</option>
+                  <option>Garments/Textile</option>
+                  <option>Healthcare/Medical</option>
+                  <!-- Add more categories -->
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Industry</label>
+                <select class="form-select">
+                  <option value="">All Industries</option>
+                  <option>Agro based Industry</option>
+                  <option>Pharmaceuticals</option>
+                  <option>Information Technology (IT)</option>
+                  <option>Garments/Textile</option>
+                  <option>Education</option>
+                  <!-- Add more industries -->
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Job Type</label>
+                <select class="form-select">
+                  <option value="">Any</option>
+                  <option value="full_time">Full Time</option>
+                  <option value="part_time">Part Time</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Work Mode</label>
+                <select class="form-select">
+                  <option value="">Any</option>
+                  <option value="remote">Remote</option>
+                  <option value="in_person">In-person</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Division</label>
+                <select class="form-select">
+                  <option value="">All Divisions</option>
+                  <option>Dhaka</option>
+                  <option>Chattogram</option>
+                  <option>Khulna</option>
+                  <option>Rajshahi</option>
+                  <!-- Add more divisions -->
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">District</label>
+                <select class="form-select">
+                  <option value="">All Districts</option>
+                  <option>Dhaka</option>
+                  <option>Chattogram</option>
+                  <option>Khulna</option>
+                  <option>Rajshahi</option>
+                  <!-- Add more divisions -->
+                </select>
+              </div>
+              <!-- <div class="mb-3">
+                <label class="form-label">Keyword</label>
+                <input type="text" class="form-control" placeholder="Search by job title, company, or keyword">
+              </div> -->
+              <button type="submit" class="btn btn-primary btn-block">Reset Filter</button>
+            </form>
+          </div>
+        </div>
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <!-- SEARCH BOX START -->
+            <div class="custom-search-container mb-4 offset-lg-3">
+              <div class="custom-search-box position-relative">
+                <form action="/search" method="GET" id="temple-search-form">
+                  <input type="text" name="query" class="form-control" placeholder="Search jobs ..." aria-label="Search jobs">
+                  <button type="submit" class="btn btn-search" aria-label="Search">
+                    <i class="fal fa-search search-icon"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="row mb-1">
+                <div class="sigma_shop-global">
+                <p>Showing <b>20</b> of <b>320</b> jobs </p>
+                <form method="post">
+                <select class="form-control" name="orderby">
+                    <option value="default">Default sorting</option>
+                    <option value="latest">Latest release</option>
+                    <option value="price-down">Price: High - Low</option>
+                    <option value="price-up">Price: Low - High</option>
+                    <option value="popularity">Popularity Sorting</option>
+                </select>
+                </form>
+            </div>
+            </div>
+            <!-- SEARCH BOX END -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="job-listing-card">
+                        <div class="job-title"><a href="job-details.html">Accountant</a></div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Company:</span> Bengal Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Category:</span> Accounting/Finance
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Industry:</span> Bank/Non-Bank Fin. Institution
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Type:</span> Part Time
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Mode:</span> In-person
+                            </div>
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label">Location:</span> Chattogram
+                            </div>
+                        </div>
+                        <div class="job-meta row">
+                            <div class="col-md-4 col-12 mb-1">
+                                <span class="job-label job-deadline">Deadline:</span> 2025-10-10
+                            </div>
+                        </div>
+                        <div class="job-tags mb-2">
+                        <span>Excel</span>
+                        <span>Accounting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <!-- Pagination Start -->
+          <ul class="pagination mb-0 mt-4">
+            <li class="page-item"><a class="page-link" href="#"> <i class="far fa-chevron-left"></i> </a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active">
+              <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#"> <i class="far fa-chevron-right"></i> </a></li>
+          </ul>
+          <!-- Pagination End -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer (copied from organizations.html) -->
+  <footer class="sigma_footer footer-2">
+    <div class="sigma_footer-middle">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 footer-widget">
+            <h5 class="widget-title">About Us</h5>
+            <p class="mb-4">You need to be sure there isn’t anything embarrassing hidden in the middle of text. </p>
+            <div class="d-flex align-items-center justify-content-md-start justify-content-center">
+              <i class="far fa-phone custom-primary me-3"></i>
+              <span>987-987-930-302</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
+              <i class="far fa-envelope custom-primary me-3"></i>
+              <span>info@bengalihinduunity.com</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
+              <i class="far fa-map-marker custom-primary me-3"></i>
+              <span>14/A, Poor Street City Tower, New York USA</span>
+            </div>
+          </div>
+          <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
+            <h5 class="widget-title">Information</h5>
+            <ul>
+              <li> <a href="#">Item 1</a> </li>
+              <li> <a href="#">Item 2</a> </li>
+              <li> <a href="#">Item 3</a> </li>
+              <li> <a href="#">Item 4</a> </li>
+              <li> <a href="#">Item 5</a> </li>
+            </ul>
+          </div>
+          <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
+            <h5 class="widget-title">Others</h5>
+            <ul>
+              <li> <a href="#">Item 1</a> </li>
+              <li> <a href="#">Item 2</a> </li>
+              <li> <a href="#">Item 3</a> </li>
+              <li> <a href="#">Item 4</a> </li>
+              <li> <a href="#">Item 5</a> </li>
+            </ul>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 d-none d-lg-block footer-widget widget-recent-posts">
+            <h5 class="widget-title">Recent Posts</h5>
+            <article class="sigma_recent-post">
+              <a href="temples-details.html"><img src="assets/img/blog/sm/1.jpg" alt="post"></a>
+              <div class="sigma_recent-post-body">
+                <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                <h6> <a href="temples-details.html">As we've all discovered by now, the world can change</a> </h6>
+              </div>
+            </article>
+            <article class="sigma_recent-post">
+              <a href="temples-details.html"><img src="assets/img/blog/sm/2.jpg" alt="post"></a>
+              <div class="sigma_recent-post-body">
+                <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                <h6> <a href="temples-details.html">Testimony love offering so blessed</a> </h6>
+              </div>
+            </article>
+            <article class="sigma_recent-post">
+              <a href="temples-details.html"><img src="assets/img/blog/sm/3.jpg" alt="post"></a>
+              <div class="sigma_recent-post-body">
+                <a href="temples-details.html"> <i class="far fa-calendar"></i> May 20, 2024</a>
+                <h6> <a href="temples-details.html">As we've all discovered by now, the world can change</a> </h6>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sigma_footer-bottom">
+      <div class="container-fluid">
+        <div class="sigma_footer-copyright">
+          <p> Copyright © Bengali Hindu Unity - <a href="#" class="custom-primary">2025</a> </p>
+        </div>
+        <div class="sigma_footer-logo">
+          <img class="footer-logo" width="208" height="60" src="assets/img/generated-image (1).png" alt="logo">
+        </div>
+        <ul class="sigma_sm square light">
+          <li>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/plugins/jquery-3.4.1.min.js"></script>
+  <script src="assets/js/plugins/popper.min.js"></script>
+  <script src="assets/js/plugins/bootstrap.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
