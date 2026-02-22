@@ -277,7 +277,7 @@ class AuthController extends Controller
 
             // Send welcome email with verification link to the new user
             try {
-                Mail::to($user->email)->send(new WelcomeEmail($user, $verificationUrl));
+                Mail::to($user->email)->queue(new WelcomeEmail($user, $verificationUrl));
             } catch (\Exception $mailException) {
                 Log::warning('Failed to send welcome email', [
                     'user_email' => $user->email,
@@ -303,7 +303,7 @@ class AuthController extends Controller
                         $verifyUrl = route('reference.verify', ['token' => $verifyToken, 'user' => $user->id]);
                         $rejectUrl = route('reference.reject', ['token' => $rejectToken, 'user' => $user->id]);
 
-                        Mail::to($referrer->email)->send(new ReferenceNotificationEmail($referrer, $user, $verifyUrl, $rejectUrl));
+                        Mail::to($referrer->email)->queue(new ReferenceNotificationEmail($referrer, $user, $verifyUrl, $rejectUrl));
                     }
                 } catch (\Exception $mailException) {
                     Log::warning('Failed to send reference notification email', [
