@@ -516,9 +516,9 @@ class AuthController extends Controller
         // Create reset URL
         $resetUrl = route('password.reset', ['token' => $token, 'email' => $request->email]);
 
-        // Send email
+        // Send email (queued for better performance and reliability)
         try {
-            Mail::to($user->email)->send(new \App\Mail\PasswordResetEmail(
+            Mail::to($user->email)->queue(new \App\Mail\PasswordResetEmail(
                 $resetUrl,
                 $user->fname . ' ' . $user->lname,
                 60 // expiry time in minutes

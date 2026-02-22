@@ -60,7 +60,12 @@ class DashboardController extends Controller
                 $stats['verified_users'] = User::where('is_verified', 1)->count();
                 // Only count pending users (is_verified is NULL), not rejected (is_verified = 0)
                 $stats['pending_users'] = User::whereNull('is_verified')->count();
-                $stats['pending_user_approvals'] = User::where('is_approved', 0)->orWhereNull('is_approved')->count();
+                // Count users who have verified email but pending admin approval
+                $stats['pending_user_approvals'] = User::whereNotNull('email_verified_at')
+                    ->where(function($query) {
+                        $query->where('is_approved', 0)->orWhereNull('is_approved');
+                    })
+                    ->count();
             } catch (\Exception $e) {
                 $stats['total_users'] = 0;
                 $stats['verified_users'] = 0;
