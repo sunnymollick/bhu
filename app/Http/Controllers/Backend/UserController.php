@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 
@@ -57,30 +59,85 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
-        $obj = new User();
-        $obj->name = $request->name;
-        $obj->email = $request->email;
-        $obj->password = $request->password;
-        // $obj->confirm_password = $request->confirm_password;
-        $obj->contact_no = $request->contact_no;
-        $obj->address = $request->address;
-        $obj->in_website = $request->has('in_website');
-        $obj->role_id = $request->role_id;
-        $obj->created_by = Auth::user()->id;
+        // Validate input with flexible password rules (admin creates, user changes later)
+        $validated = $request->validate([
+            'name' => 'required|string|min:2|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
+            'password' => 'required|string|min:6|same:confirm_password',
+            'confirm_password' => 'required|string|min:6',
+            'contact_no' => ['required', 'string', 'max:20', 'regex:/^[\d\s\+\-\(\)]+$/'],
+            'address' => 'nullable|string|max:255',
+            'role_id' => 'required|exists:roles,id',
+            'in_website' => 'nullable|boolean',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'name.required' => 'Name is required',
+            'name.min' => 'Name must be at least 2 characters',
+            'email.required' => 'Email is required',
+            'email.email' => 'Please enter a valid email address',
+            'email.unique' => 'This email is already registered',
+            'password.required' => 'Password is required',
+            'password.min' => 'Password must be at least 6 characters',
+            'password.same' => 'Password confirmation does not match',
+            'confirm_password.required' => 'Please confirm the password',
+            'contact_no.required' => 'Contact number is required',
+            'contact_no.regex' => 'Phone number can only contain numbers, spaces, +, -, or parentheses',
+            'role_id.required' => 'Please select a role',
+            'role_id.exists' => 'Selected role is invalid',
+            'image.image' => 'File must be an image',
+            'image.mimes' => 'Image must be a JPEG, PNG, JPG or GIF file',
+            'image.max' => 'Image size must not exceed 2MB',
+        ]);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image'); // just get the single uploaded file
+        try {
+            DB::beginTransaction();
 
-            $uniqueName = Str::uuid() . '.' . $image->getClientOriginalExtension();
+            $obj = new User();
+            $obj->name = $validated['name'];
+            $obj->email = $validated['email'];
+            $obj->password = Hash::make($validated['password']);
+            $obj->contact_no = $validated['contact_no'];
+            $obj->address = $validated['address'] ?? null;
+            $obj->in_website = $request->has('in_website');
+            $obj->role_id = $validated['role_id'];
+            $obj->created_by = Auth::user()->id;
 
-            $image->move(public_path('backend/uploads/user'), $uniqueName);
+            // Set defaults for admin-created users
+            $obj->email_verified_at = now(); // Auto-verify for admin-created users
+            $obj->is_approved = true; // Auto-approve since admin is creating
+            $obj->approved_by = Auth::user()->id;
+            $obj->active = true;
 
-            $obj->profile_pic = $uniqueName;
+            // Auto-verify admin/superadmin users when created
+            // Admin/SuperAdmin don't need reference verification
+            if (in_array($validated['role_id'], [1, 2])) {
+                $obj->is_verified = 1; // Admin/SuperAdmin are automatically verified
+                $obj->reference_by = Auth::user()->id; // Creating admin is the reference person
+            }
+            // Regular users remain unverified (is_verified = NULL) until reference verification
 
-        }
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $uniqueName = Str::uuid() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('backend/uploads/user'), $uniqueName);
+                $obj->profile_pic = $uniqueName;
+            }
 
-        if($obj->save()){
-            return redirect()->route('admin.user.all');
+            $obj->save();
+
+            DB::commit();
+
+            return redirect()->route('admin.user.all')->with('success', 'User created successfully!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('User creation failed', [
+                'email' => $validated['email'] ?? 'N/A',
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return back()->withErrors(['error' => 'Failed to create user. Please try again.'])->withInput();
         }
     }
 

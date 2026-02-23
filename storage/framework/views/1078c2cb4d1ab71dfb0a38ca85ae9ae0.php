@@ -1,5 +1,4 @@
-@extends('backend.layouts.default')
-@section('stylesheet')
+<?php $__env->startSection('stylesheet'); ?>
 <style>
 fieldset.scheduler-border {
     border: 1px groove #72cce0 !important;
@@ -85,11 +84,11 @@ legend.scheduler-border {
     padding-right: 40px;
 }
 </style>
-<link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+<link rel="stylesheet" href="<?php echo e(asset('backend/plugins/select2/css/select2.min.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')); ?>">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <section class="content-header">
     <div class="container-fluid">
     <div class="row mb-2">
@@ -98,8 +97,8 @@ legend.scheduler-border {
         </div>
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.user.all') }}">All Users</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard')); ?>">Home</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo e(route('admin.user.all')); ?>">All Users</a></li>
             <li class="breadcrumb-item active">Add User</li>
         </ol>
         </div>
@@ -114,62 +113,92 @@ legend.scheduler-border {
                     <div class="card-header">
                         <h3 class="card-title">Create New User</h3>
                     </div>
-                    <form method="POST" action="{{ route('admin.user.store') }}" enctype="multipart/form-data" id="createUserForm">
-                        @csrf
+                    <form method="POST" action="<?php echo e(route('admin.user.store')); ?>" enctype="multipart/form-data" id="createUserForm">
+                        <?php echo csrf_field(); ?>
 
                         <!-- Display Success Message -->
-                        @if(session('success'))
+                        <?php if(session('success')): ?>
                             <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
-                                <i class="fas fa-check-circle"></i> {{ session('success') }}
+                                <i class="fas fa-check-circle"></i> <?php echo e(session('success')); ?>
+
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        <?php endif; ?>
 
                         <!-- Display Error Message -->
-                        @if($errors->has('error'))
+                        <?php if($errors->has('error')): ?>
                             <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
-                                <i class="fas fa-exclamation-circle"></i> {{ $errors->first('error') }}
+                                <i class="fas fa-exclamation-circle"></i> <?php echo e($errors->first('error')); ?>
+
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        <?php endif; ?>
 
                         <!-- Display General Validation Errors -->
-                        @if($errors->any() && !$errors->has('error'))
+                        <?php if($errors->any() && !$errors->has('error')): ?>
                             <div class="alert alert-warning alert-dismissible fade show m-3" role="alert">
                                 <i class="fas fa-exclamation-triangle"></i> <strong>Please fix the following errors:</strong>
                                 <ul class="mb-0 mt-2">
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        <?php endif; ?>
 
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="name">Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}"  minlength="2">
-                                        @error('name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="text" name="name" class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="name" value="<?php echo e(old('name')); ?>"  minlength="2">
+                                        <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="email">Email <span class="text-danger">*</span></label>
-                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" >
-                                        @error('email')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="email" name="email" class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="email" value="<?php echo e(old('email')); ?>" >
+                                        <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div>
@@ -178,30 +207,58 @@ legend.scheduler-border {
                                     <div class="form-group">
                                         <label for="password">Password <span class="text-danger">*</span></label>
                                         <div class="password-container">
-                                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password"  minlength="6">
+                                            <input type="password" class="form-control <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="password" id="password"  minlength="6">
                                             <span class="password-toggle" onclick="togglePasswordVisibility('password', this)">
                                                 <i class="fas fa-eye" id="password-icon"></i>
                                             </span>
                                         </div>
                                         <small class="form-text text-muted">Minimum 6 characters (user can change later)</small>
-                                        @error('password')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
                                         <div class="password-container">
-                                            <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" id="confirm_password"  minlength="6">
+                                            <input type="password" class="form-control <?php $__errorArgs = ['confirm_password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="confirm_password" id="confirm_password"  minlength="6">
                                             <span class="password-toggle" onclick="togglePasswordVisibility('confirm_password', this)">
                                                 <i class="fas fa-eye" id="confirm_password-icon"></i>
                                             </span>
                                         </div>
                                         <div class="invalid-feedback" id="password_match_error" style="display: none;">Passwords do not match</div>
-                                        @error('confirm_password')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['confirm_password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div>
@@ -209,20 +266,48 @@ legend.scheduler-border {
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="contact_no">Contact No <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no" id="contact_no" value="{{ old('contact_no') }}"  pattern="[\d\s\+\-\(\)]+">
+                                        <input type="text" class="form-control <?php $__errorArgs = ['contact_no'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="contact_no" id="contact_no" value="<?php echo e(old('contact_no')); ?>"  pattern="[\d\s\+\-\(\)]+">
                                         <small class="form-text text-muted">Phone number with optional +, -, spaces, or parentheses</small>
-                                        @error('contact_no')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['contact_no'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="address">Address</label>
-                                        <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" value="{{ old('address') }}">
-                                        @error('address')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="text" class="form-control <?php $__errorArgs = ['address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="address" id="address" value="<?php echo e(old('address')); ?>">
+                                        <?php $__errorArgs = ['address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div>
@@ -230,21 +315,35 @@ legend.scheduler-border {
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="role_id">Select Role <span class="text-danger">*</span></label>
-                                        <select name="role_id" class="form-control @error('role_id') is-invalid @enderror" id="role_id" >
+                                        <select name="role_id" class="form-control <?php $__errorArgs = ['role_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="role_id" >
                                             <option value="">SELECT ROLE</option>
-                                            @foreach($roles as $r)
-                                            <option value="{{ $r->id }}" {{ old('role_id') == $r->id ? 'selected' : '' }}>{{ $r->name }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($r->id); ?>" <?php echo e(old('role_id') == $r->id ? 'selected' : ''); ?>><?php echo e($r->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
-                                        @error('role_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['role_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6">
                                     <label for="in_website">Website Visibility</label>
                                     <div class="form-check mb-1">
-                                        <input class="form-check-input" type="checkbox" name="in_website" id="in_website" {{ old('in_website') ? 'checked' : '' }}>
+                                        <input class="form-check-input" type="checkbox" name="in_website" id="in_website" <?php echo e(old('in_website') ? 'checked' : ''); ?>>
                                         <label class="form-check-label" for="in_website">Show in Website?</label>
                                     </div>
                                 </div>
@@ -256,9 +355,16 @@ legend.scheduler-border {
 
                                         <input type="file" name="image" id="imageInput" accept="image/*">
                                         <small class="form-text text-muted">Recommended size: 400x270px</small>
-                                        @error('image')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['image'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback d-block"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                                         <div id="preview" style="width: 400px; height: 270px; overflow: hidden; background: #f0f0f0; margin-top: 10px; display: none;"></div>
 
@@ -282,22 +388,22 @@ legend.scheduler-border {
         </div>
       </div>
     </section>
-@endsection
-@section('scripts_plugin')
-<script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts_plugin'); ?>
+<script src="<?php echo e(asset('backend/plugins/select2/js/select2.full.min.js')); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-@endsection
-@section('scripts_custom')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts_custom'); ?>
 <script>
   $(function () {
     $('.select2').select2();
 
     // Scroll to top if there are server-side validation errors
-    @if($errors->any())
+    <?php if($errors->any()): ?>
         $('html, body').animate({
             scrollTop: $('.alert').offset().top - 100
         }, 500);
-    @endif
+    <?php endif; ?>
   });
 
   // ============================================
@@ -676,4 +782,6 @@ legend.scheduler-border {
   }, 5000);
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend.layouts.default', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragonUpdated\www\rr-app\resources\views/backend/pages/user/create.blade.php ENDPATH**/ ?>

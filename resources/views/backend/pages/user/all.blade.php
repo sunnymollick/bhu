@@ -90,7 +90,7 @@
                                             <i class="fa fa-ellipsis-v"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="actionDropdown{{ $u->id }}">
-                                            @if($u->is_verified === null)
+                                            @if($u->is_verified === null && !in_array($u->role_id, [1, 2]))
                                                 <a class="dropdown-item" href="{{ route('admin.user.show-verification-reminder', $u->id) }}">
                                                     <i class="fa fa-envelope"></i> Send Email For Complete Verification
                                                 </a>
