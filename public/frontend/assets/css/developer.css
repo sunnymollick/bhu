@@ -41,15 +41,12 @@ span.bottom{
     color: #ffffff;
     box-shadow: none;
 }
-.sigma_btn-custom.dark::before {
-  background-color: #fb7300 !important;
-}
-.sigma_btn-custom.dark:hover,
+/* .sigma_btn-custom.dark:hover,
 .sigma_btn-custom.dark:focus {
   background: #fb7300 !important;
   color: #fff !important;
   border-color: #fb7300 !important;
-}
+} */
 
 .section-title .title {
   display: inline-block;

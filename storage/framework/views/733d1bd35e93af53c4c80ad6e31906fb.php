@@ -69,63 +69,6 @@
         display: block !important;
     }
 
-    /* Responsive banner adjustments */
-    .sigma_banner-slider-inner {
-        background-size: cover;
-        background-repeat: no-repeat;
-        min-height: 520px;
-        display: flex;
-        align-items: center;
-    }
-
-    .sigma_banner-text .title {
-        color: #fff;
-        font-weight: 700;
-        font-size: 48px;
-        line-height: 1.05;
-    }
-
-    .sigma_banner-text .blockquote {
-        color: #f1f1f1;
-        font-size: 16px;
-    }
-
-    .section-button .sigma_btn-custom { white-space: nowrap; }
-
-    /* Mobile-specific image fallback (use <img> on small screens so image scales naturally) */
-    .banner-mobile-img { display: none; width: 100%; height: auto; object-fit: cover; }
-
-    @media (max-width: 767.98px) {
-        .sigma_banner-slider-inner {
-            min-height: 360px;
-            padding: 28px 0;
-            background-position: center !important;
-            background-size: cover !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            text-align: center !important;
-            background-image: none !important;
-        }
-
-        .sigma_banner-slider-inner .container { width: 100%; max-width: 100%; padding-left: 16px; padding-right: 16px; }
-        .sigma_banner-text { width: 100% !important; }
-        .sigma_banner-text .title { font-size: 26px !important; line-height: 1.1; margin-bottom: 10px; }
-        .sigma_banner-text .blockquote { font-size: 15px !important; text-align: center; padding: 0 12px; margin-bottom: 12px; }
-
-        .section-button { display: flex !important; flex-direction: column; gap: 10px; align-items: center; }
-        .section-button .sigma_btn-custom { display: inline-block; width: 100%; max-width: 260px; }
-        .section-button .ms-3 { margin-left: 0 !important; }
-        .section-button .sigma_btn-custom.white { margin-left: 0 !important; }
-
-        .sigma_banner.banner-3 .breadcrumb { bottom: -48px; padding: 12px 18px; }
-    }
-
-    @media (max-width: 767.98px) {
-        .banner-mobile-img { display: block; }
-    }
-
     /* Fixed banner height to prevent shrinking */
     .sigma_banner-slider-inner {
         min-height: 600px;
