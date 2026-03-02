@@ -20,12 +20,12 @@ class TempleSeeder extends Seeder
     {
         // Get some IDs for relations
         $dhakaDivision = Division::where('name', 'Dhaka')->first();
-        $chittagongDivision = Division::where('name', 'Chittagong')->first();
+        $chittagongDivision = Division::where('name', 'Chattogram')->first();
         $rajshahiDivision = Division::where('name', 'Rajshahi')->first();
 
         $dhakaDistrict = District::where('name', 'Dhaka')->first();
         $gazipurDistrict = District::where('name', 'Gazipur')->first();
-        $chittagongDistrict = District::where('name', 'Chittagong')->first();
+        $chittagongDistrict = District::where('name', 'Chattogram')->first();
         $coxsbazarDistrict = District::where('name', "Cox's Bazar")->first();
 
         // Get activities
