@@ -219,29 +219,42 @@
           </li>
 
           @if(in_array(auth()->user()->role?->name, ['Super Admin', 'Admin']))
-          <li class="nav-item has-treeview {{ request()->routeIs(['admin.page.*', 'admin.banner.*', 'admin.post.*']) ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ request()->routeIs(['admin.page.*', 'admin.banner.*', 'admin.post.*']) ? 'active' : '' }}">
+          <!-- Website Management -->
+          <li class="nav-item has-treeview {{ request()->routeIs(['admin.banner.*', 'admin.services.*', 'admin.about.*', 'admin.page.*', 'admin.post.*']) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ request()->routeIs(['admin.banner.*', 'admin.services.*', 'admin.about.*', 'admin.page.*', 'admin.post.*']) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-globe"></i>
                 <p>
-                    Manage Website
+                    Website Management
                     <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('admin.page.all') }}" class="nav-link {{ request()->routeIs(['admin.page.all']) ? 'active' : '' }}>
+                    <a href="{{ route('admin.banner.all') }}" class="nav-link {{ request()->routeIs(['admin.banner.*']) ? 'active' : '' }}">
+                        <i class="far fa-image nav-icon"></i>
+                        <p>Banners</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs(['admin.services.*']) ? 'active' : '' }}">
+                        <i class="fas fa-hands-helping nav-icon"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.about.index') }}" class="nav-link {{ request()->routeIs(['admin.about.*']) ? 'active' : '' }}">
+                        <i class="fas fa-info-circle nav-icon"></i>
+                        <p>About Page</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.page.all') }}" class="nav-link {{ request()->routeIs(['admin.page.*']) ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Pages</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.banner.all') }}" class="nav-link {{ request()->routeIs(['admin.banner.all']) ? 'active' : '' }}>
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Banner</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.post.all') }}" class="nav-link {{ request()->routeIs(['admin.post.all']) ? 'active' : '' }}>
+                    <a href="{{ route('admin.post.all') }}" class="nav-link {{ request()->routeIs(['admin.post.*']) ? 'active' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Posts</p>
                     </a>

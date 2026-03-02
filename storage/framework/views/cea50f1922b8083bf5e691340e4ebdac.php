@@ -2,12 +2,12 @@
     <a class="navbar-brand" href="<?php echo e(route('frontend.index')); ?>"> <img src="<?php echo e(asset('frontend/assets/img/rr_logo_resized.jpg')); ?>" alt="logo"> </a>
     <ul>
     <li class="menu-item"> <a href="<?php echo e(route('frontend.index')); ?>">Home</a> </li>
-    <li class="menu-item"> <a href="about.html">About Us</a> </li>
+    <li class="menu-item"> <a href="<?php echo e(route('frontend.about')); ?>">About Us</a> </li>
     <li class="menu-item"> <a href="<?php echo e(route('frontend.temples')); ?>">Temples</a> </li>
     <li class="menu-item"> <a href="<?php echo e(route('frontend.organizations')); ?>">Organizations</a> </li>
     <li class="menu-item"> <a href="<?php echo e(route('frontend.events')); ?>">Events</a> </li>
     <li class="menu-item"> <a href="<?php echo e(route('frontend.jobs')); ?>">Jobs</a> </li>
-    <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+    <li class="menu-item"> <a href="<?php echo e(route('frontend.teams')); ?>">Our Team</a> </li>
     <li class="menu-item"> <a href="<?php echo e(route('frontend.contact')); ?>">Contact</a> </li>
 
     <?php if(auth()->guard()->check()): ?>

@@ -10,6 +10,8 @@ use App\Models\Organization;
 use App\Models\JobPost;
 use App\Models\News;
 use App\Models\Contact;
+use App\Models\About;
+use Illuminate\Support\Facades\Cache;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +28,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Share about content with the frontend footer globally
+        View::composer('frontend.includes.footer', function ($view) {
+            $footerAbout = Cache::remember('about_content', 3600, function () {
+                return About::active()->latest()->first();
+            });
+            $view->with('footerAbout', $footerAbout);
+        });
+
         // Share pending notifications with backend navbar
         View::composer('backend.includes.nav', function ($view) {
             // Initialize empty collections for non-admin users

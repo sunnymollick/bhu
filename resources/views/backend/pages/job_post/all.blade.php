@@ -81,11 +81,8 @@
                                     </button>
                                 </form>
                             @endif
-                            <a href="{{ route('admin.job_post.edit', $job->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('admin.job_post.destroy', $job->id) }}" method="POST" style="display:inline-block;">
-                                @csrf @method('DELETE')
-                                <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this job post?')">Delete</button>
-                            </form>
+                            <a href="{{ route('admin.job_post.edit', $job->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                            <button class="btn btn-sm btn-danger" onclick="showDeleteModal({{ $job->id }}, 'Job Post', '{{ route('admin.job_post.destroy', $job->id) }}')">Delete</button>
                         </td>
                     </tr>
                 @empty

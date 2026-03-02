@@ -100,9 +100,7 @@
                                         </a>
                                         <button type="button"
                                                 class="btn btn-sm btn-danger"
-                                                onclick="deleteContact({{ $contact->id }})"
-                                                data-toggle="modal"
-                                                data-target="#deleteModal"
+                                                onclick="showDeleteModal({{ $contact->id }}, 'Contact Message', '{{ route('admin.contact.destroy', $contact->id) }}')"
                                                 title="Delete">
                                             <i class="fas fa-trash"></i>
                                         </button>
@@ -135,32 +133,6 @@
         </div>
     </div>
 </section>
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-danger">
-                <h5 class="modal-title text-white" id="deleteModalLabel">Delete Contact Message</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this contact message?</p>
-                <p class="text-danger"><strong>This action cannot be undone!</strong></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <form id="deleteForm" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('scripts_custom')
@@ -172,11 +144,6 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
-
-    // Delete contact function
-    function deleteContact(id) {
-        $('#deleteForm').attr('action', '/admin/contact/' + id);
-    }
 
     // Auto dismiss alerts after 5 seconds
     setTimeout(function() {

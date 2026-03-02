@@ -96,7 +96,7 @@
                                             <a class="dropdown-item" href="{{ route('admin.organization_event.edit', $event->id) }}">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
-                                            <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="deleteEvent({{ $event->id }})">
+                                            <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="showDeleteModal({{ $event->id }}, 'Organization Event', '{{ route('admin.organization_event.destroy', $event->id) }}')">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </div>
@@ -136,32 +136,6 @@
     </div>
 </div>
 
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-danger">
-                <h5 class="modal-title" id="deleteModalLabel">Delete Event</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this event? This will also delete all associated gallery images.</p>
-                <p class="text-danger"><strong>This action cannot be undone!</strong></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <form id="deleteForm" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 @endsection
 @section('scripts_plugin')
 <script src="{{ asset('backend/plugins/datatables/jquery.dataTables.js') }}"></script>
@@ -176,11 +150,6 @@
     function toggleStatus(eventId) {
         $('#toggleForm').attr('action', '/admin/organization-event/toggle/' + eventId);
         $('#toggleModal').modal('show');
-    }
-
-    function deleteEvent(eventId) {
-        $('#deleteForm').attr('action', '/admin/organization-event/' + eventId);
-        $('#deleteModal').modal('show');
     }
 </script>
 @endsection

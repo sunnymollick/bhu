@@ -23,6 +23,10 @@
     </div>
     <?php echo $__env->make('backend.includes.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   </div>
+
+  <!-- Common Delete Modal -->
+  <?php echo $__env->make('backend.includes.delete-modal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
   <script src="<?php echo e(asset('backend/plugins/jquery/jquery.min.js')); ?>"></script>
   <script src="<?php echo e(asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
   <!-- Toastr JS -->

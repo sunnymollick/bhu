@@ -79,11 +79,8 @@
                                     </button>
                                 </form>
                             <?php endif; ?>
-                            <a href="<?php echo e(route('admin.job_post.edit', $job->id)); ?>" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="<?php echo e(route('admin.job_post.destroy', $job->id)); ?>" method="POST" style="display:inline-block;">
-                                <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
-                                <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this job post?')">Delete</button>
-                            </form>
+                            <a href="<?php echo e(route('admin.job_post.edit', $job->id)); ?>" class="btn btn-sm btn-primary">Edit</a>
+                            <button class="btn btn-sm btn-danger" onclick="showDeleteModal(<?php echo e($job->id); ?>, 'Job Post', '<?php echo e(route('admin.job_post.destroy', $job->id)); ?>')">Delete</button>
                         </td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>

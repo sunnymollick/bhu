@@ -104,7 +104,7 @@
                                                 <i class="fa fa-<?php echo e($u->active ? 'ban' : 'check-circle'); ?>"></i> <?php echo e($u->active ? 'Make Inactive' : 'Make Active'); ?>
 
                                             </a>
-                                            <a class="dropdown-item text-danger delete-user-btn" href="#" data-id="<?php echo e($u->id); ?>">
+                                            <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="showDeleteModal(<?php echo e($u->id); ?>, 'User', '<?php echo e(route('admin.user.destroy', $u->id)); ?>')">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </div>
@@ -167,31 +167,6 @@
     </form>
   </div>
 </div>
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <form id="deleteUserForm" method="POST" action="">
-      <?php echo csrf_field(); ?>
-      <?php echo method_field('DELETE'); ?>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Delete User</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete this user?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('scripts_plugin'); ?>
 <script src="<?php echo e(asset('backend/plugins/datatables/jquery.dataTables.js')); ?>"></script>
@@ -237,15 +212,6 @@
 
         $('#toggleActiveForm').attr('action', action);
         $('#toggleActiveModal').modal('show');
-    });
-
-    // Handle delete button click
-    $(document).on('click', '.delete-user-btn', function(e) {
-        e.preventDefault();
-        var userId = $(this).data('id');
-        var action = "<?php echo e(url('admin/user')); ?>/" + userId;
-        $('#deleteUserForm').attr('action', action);
-        $('#deleteUserModal').modal('show');
     });
 </script>
 <?php $__env->stopSection(); ?>

@@ -41,12 +41,15 @@ span.bottom{
     color: #ffffff;
     box-shadow: none;
 }
-/* .sigma_btn-custom.dark:hover,
+.sigma_btn-custom.dark::before {
+  background-color: #fb7300 !important;
+}
+.sigma_btn-custom.dark:hover,
 .sigma_btn-custom.dark:focus {
   background: #fb7300 !important;
   color: #fff !important;
   border-color: #fb7300 !important;
-} */
+}
 
 .section-title .title {
   display: inline-block;
@@ -177,4 +180,33 @@ span.bottom{
       text-shadow: 0 2px 8px rgba(0,0,0,0.2);
     } */
 
+/* ============================================
+   Footer Social Icons & Copyright Year Colors
+   ============================================ */
 
+/* Social icon default state */
+.sigma_footer .sigma_sm.square li a,
+.sigma_footer:not(.sigma_footer-dark) .sigma_sm.square li a {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #dc8a45;
+    border: 1px solid rgba(220, 138, 69, 0.35);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Social icon hover state */
+.sigma_footer .sigma_sm.square li a:hover,
+.sigma_footer:not(.sigma_footer-dark) .sigma_sm.square li a:hover {
+    background-color: #dc8a45;
+    color: #fff;
+    border-color: #dc8a45;
+}
+
+/* Copyright year link color */
+.sigma_footer-copyright a {
+    color: #dc8a45 !important;
+    text-decoration: none;
+}
+
+.sigma_footer-copyright a:hover {
+    color: #b85700 !important;
+}

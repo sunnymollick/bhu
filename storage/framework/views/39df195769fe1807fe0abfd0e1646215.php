@@ -92,7 +92,7 @@
                                             <a class="dropdown-item" href="<?php echo e(route('admin.temple.edit', $t->id)); ?>">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
-                                            <a class="dropdown-item text-danger delete-temple-btn" href="#" data-id="<?php echo e($t->id); ?>">
+                                            <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="showDeleteModal(<?php echo e($t->id); ?>, 'Temple', '<?php echo e(route('admin.temple.destroy', $t->id)); ?>')">
                                                 <i class="fa fa-trash"></i> Delete
                                             </a>
                                         </div>
@@ -107,31 +107,6 @@
         </div>
     </div>
 </section>
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteTempleModal" tabindex="-1" role="dialog" aria-labelledby="deleteTempleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <form id="deleteTempleForm" method="POST" action="">
-      <?php echo csrf_field(); ?>
-      <?php echo method_field('DELETE'); ?>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Delete Temple</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete this temple?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
 
 <!-- Approve Confirmation Modal -->
 <div class="modal fade" id="approveTempleModal" tabindex="-1" role="dialog" aria-labelledby="approveTempleModalLabel" aria-hidden="true">
@@ -205,15 +180,6 @@
         $('#toggleTempleForm').attr('action', action);
         $('#toggleTempleModal').modal('show');
     }
-
-    // Handle delete button click
-    $(document).on('click', '.delete-temple-btn', function(e) {
-        e.preventDefault();
-        var templeId = $(this).data('id');
-        var action = "<?php echo e(url('admin/temple')); ?>/" + templeId;
-        $('#deleteTempleForm').attr('action', action);
-        $('#deleteTempleModal').modal('show');
-    });
 </script>
 <?php $__env->stopSection(); ?>
 

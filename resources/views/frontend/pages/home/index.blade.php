@@ -4,6 +4,22 @@
 
 @section('stylesheet')
 <style>
+    /* Service Icon Styling */
+    .sigma_icon-block .icon-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .sigma_icon-block .icon-wrapper i {
+        font-size: 48px;
+        color: #dc8a45;
+        transition: all 0.3s ease;
+    }
+
+    .sigma_icon-block:hover .icon-wrapper i {
+        color: #c77835;
+        transform: scale(1.1);
+    }
+
     /* Banner breadcrumb positioning */
     .sigma_banner.banner-3 {
         position: relative;
@@ -24,10 +40,121 @@
         align-items: center;
     }
 
+    /* Apply standard breadcrumb item styling */
+    .sigma_banner.banner-3 .breadcrumb-item+.breadcrumb-item {
+        padding-left: 15px;
+    }
+
+    .sigma_banner.banner-3 .breadcrumb-item a.btn-link {
+        position: relative;
+        color: #dc8a45 !important;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .sigma_banner.banner-3 .breadcrumb-item a.btn-link:hover {
+        color: #c77835 !important;
+    }
+
+    .sigma_banner.banner-3 .breadcrumb .breadcrumb-item.active {
+        color: #5c5555 !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+
     /* Keep header top section visible when sticky */
     .sigma_header.header-fixed .sigma_header-top,
     .sigma_header.can-sticky .sigma_header-top {
         display: block !important;
+    }
+
+    /* Responsive banner adjustments */
+    .sigma_banner-slider-inner {
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 520px;
+        display: flex;
+        align-items: center;
+    }
+
+    .sigma_banner-text .title {
+        color: #fff;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 1.05;
+    }
+
+    .sigma_banner-text .blockquote {
+        color: #f1f1f1;
+        font-size: 16px;
+    }
+
+    .section-button .sigma_btn-custom { white-space: nowrap; }
+
+    /* Mobile-specific image fallback (use <img> on small screens so image scales naturally) */
+    .banner-mobile-img { display: none; width: 100%; height: auto; object-fit: cover; }
+
+    @media (max-width: 767.98px) {
+        .sigma_banner-slider-inner {
+            min-height: 360px;
+            padding: 28px 0;
+            background-position: center !important;
+            background-size: cover !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            background-image: none !important;
+        }
+
+        .sigma_banner-slider-inner .container { width: 100%; max-width: 100%; padding-left: 16px; padding-right: 16px; }
+        .sigma_banner-text { width: 100% !important; }
+        .sigma_banner-text .title { font-size: 26px !important; line-height: 1.1; margin-bottom: 10px; }
+        .sigma_banner-text .blockquote { font-size: 15px !important; text-align: center; padding: 0 12px; margin-bottom: 12px; }
+
+        .section-button { display: flex !important; flex-direction: column; gap: 10px; align-items: center; }
+        .section-button .sigma_btn-custom { display: inline-block; width: 100%; max-width: 260px; }
+        .section-button .ms-3 { margin-left: 0 !important; }
+        .section-button .sigma_btn-custom.white { margin-left: 0 !important; }
+
+        .sigma_banner.banner-3 .breadcrumb { bottom: -48px; padding: 12px 18px; }
+    }
+
+    @media (max-width: 767.98px) {
+        .banner-mobile-img { display: block; }
+    }
+
+    /* Fixed banner height to prevent shrinking */
+    .sigma_banner-slider-inner {
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    /* Position buttons at bottom left */
+    .banner-buttons-bottom {
+        position: absolute;
+        bottom: 150px;
+        left: 0;
+        z-index: 10;
+    }
+
+    .banner-buttons-bottom .section-button {
+        padding-left: 50px;
+    }
+
+    @media (max-width: 768px) {
+        .sigma_banner-slider-inner {
+            min-height: 400px;
+        }
+        .banner-buttons-bottom {
+            bottom: 30px;
+        }
     }
 </style>
 @endsection
@@ -38,43 +165,56 @@
 
         <div class="sigma_banner-slider">
 
+        @forelse($banners as $banner)
         <!-- Banner Item Start -->
+        <div class="light-bg sigma_banner-slider-inner bg-cover bg-center" style="background-image: url('{{ $banner->image_name === 'h1.webp' ? asset('frontend/assets/img/banner/h1.webp') : ($banner->image_name === 'placeholder.jpg' ? 'https://placehold.co/1920x707' : asset('backend/uploads/banner/' . $banner->image_name)) }}');">
+            <div class="sigma_banner-text">
+                <div class="container">
+                    <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        {{-- <h1 class="title">{{ $banner->title }}</h1>
+                        <p class="blockquote mb-0 bg-transparent">{{ $banner->subtitle }}</p> --}}
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-buttons-bottom">
+                <div class="container">
+                    <div class="section-button d-flex align-items-center">
+                    @if($banner->button_text_1 && $banner->button_link_1)
+                    <a href="{{ url($banner->button_link_1) }}" class="sigma_btn-custom">{{ $banner->button_text_1 }} <i class="far fa-arrow-right"></i> </a>
+                    @endif
+                    @if($banner->button_text_2 && $banner->button_link_2)
+                    <a href="{{ url($banner->button_link_2) }}" class="ms-3 sigma_btn-custom white">{{ $banner->button_text_2 }} <i class="far fa-arrow-right"></i> </a>
+                    @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Banner Item End -->
+        @empty
+        <!-- Default Banner Item -->
         <div class="light-bg sigma_banner-slider-inner bg-cover bg-center" style="background-image: url('{{ asset('frontend/assets/img/banner/h1.webp') }}');">
             <div class="sigma_banner-text">
             <div class="container">
                 <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h1 class="title">BHU (Bengali Hindu Unity) fighting for our rights</h1>
-                    <p class="blockquote mb-0 bg-transparent"> We are concerned Hindus working to unite 20 million fellow Hindus under a single organization to advocate for our rights. </p>
+                    <p class="blockquote mb-0 bg-transparent">We are concerned Hindus working to unite 20 million fellow Hindus under a single organization to advocate for our rights.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="banner-buttons-bottom">
+                <div class="container">
                     <div class="section-button d-flex align-items-center">
                     <a href="{{ url('/contact-us') }}" class="sigma_btn-custom">Join Today <i class="far fa-arrow-right"></i> </a>
                     <a href="{{ url('/services') }}" class="ms-3 sigma_btn-custom white">View Services <i class="far fa-arrow-right"></i> </a>
                     </div>
                 </div>
-                </div>
-            </div>
             </div>
         </div>
-        <!-- Banner Item End -->
-
-        <!-- Banner Item Start -->
-        <div class="light-bg sigma_banner-slider-inner bg-cover bg-center" style="background-image: url('https://placehold.co/1920x707');">
-            <div class="sigma_banner-text">
-            <div class="container">
-                <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="title">Get united under one platform</h1>
-                    <p class="blockquote mb-0 bg-transparent"> Connecting every voice of Hindu heritage—stronger together, smarter together. </p>
-                    <div class="section-button d-flex align-items-center">
-                    <a href="{{ url('/contact-us') }}" class="sigma_btn-custom">Join Today <i class="far fa-arrow-right"></i> </a>
-                    <a href="{{ url('/services') }}" class="ms-3 sigma_btn-custom white">View Services <i class="far fa-arrow-right"></i> </a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!-- Banner Item End -->
+        @endforelse
 
         </div>
 
@@ -90,13 +230,11 @@
     <section class="section section-padding light-bg">
         <div class="container">
             <div class="section-title section-title-2 text-center">
-                <h4 class="title">Who We Are</h4>
+                <h4 class="title">{{ $about?->who_we_are_title ?? 'Who We Are' }}</h4>
             </div>
-            <p class="disc">We are Bangladeshi Hindus from all over the world, united by a common purpose — to protect our community, stand against oppression, and raise our collective voice. Our goal is to ensure dignity, equality, and the right to live a peaceful life in our motherland.
-
-Beyond protection, we aim to preserve our culture, strengthen our networks, and empower the next generation. By connecting temples, organizations, and individuals, we are building a stronger foundation for unity, resilience, and hope.
-
-Together, we stand as one community — proud of our heritage, determined in our struggle, and committed to a brighter future.</p>
+            @if($about?->who_we_are_content)
+                <div class="disc">{!! $about->who_we_are_content !!}</div>
+            @endif
         </div>
     </section>
     <!-- Who We Are Section End -->
@@ -109,78 +247,25 @@ Together, we stand as one community — proud of our heritage, determined in our
             </div>
 
             <div class="row">
+                @forelse($services as $service)
                 <div class="col-md-4">
                     <div class="sigma_icon-block icon-block-2">
+                        @if($service->icon)
+                        <div class="icon-wrapper">
+                            <i class="fas {{ $service->icon }}"></i>
+                        </div>
+                        @endif
                         <div class="sigma_icon-block-content">
-                            <h5> Promote Business </h5>
-                            <p>Showcase and support Hindu-owned businesses. Grow your network, find trusted partners, and strengthen our community economy.</p>
+                            <h5>{{ $service->title }}</h5>
+                            <p>{{ Str::limit($service->description, 130) }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="sigma_icon-block icon-block-2">
-                        <div class="sigma_icon-block-content">
-                            <h5> Study Help </h5>
-                            <p>Get access to study materials, tutoring, and peer guidance so Hindu students can achieve their academic goals with confidence.</p>
-                        </div>
-                    </div>
+                @empty
+                <div class="col-12 text-center">
+                    <p>No services available at the moment.</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="sigma_icon-block icon-block-2">
-                        <div class="sigma_icon-block-content">
-                            <h5> Medical Help </h5>
-                            <p>Find reliable doctors, clinics, and medical support within the community. Together, we ensure better healthcare access for all.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="sigma_icon-block icon-block-2">
-                        <div class="sigma_icon-block-content">
-                            <h5> Financial Stability </h5>
-                            <p>Connect with resources, advice, and support systems that help community members achieve financial security and independence.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="sigma_icon-block icon-block-2">
-                        <div class="sigma_icon-block-content">
-                            <h5> Residential Facility </h5>
-                            <p>Discover safe housing options and connect with trusted landlords or facilities that respect and protect our community.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="sigma_icon-block icon-block-2">
-                        <div class="sigma_icon-block-content">
-                            <h5> Counseling </h5>
-                            <p>Receive guidance and emotional support in a safe space. Professional and community counseling is available for those in need.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="sigma_icon-block icon-block-2">
-                        <div class="sigma_icon-block-content">
-                            <h5> Job Finding </h5>
-                            <p>Explore job opportunities shared within the community. We help connect skilled individuals with employers who value their talents.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="sigma_icon-block icon-block-2">
-                        <div class="sigma_icon-block-content">
-                            <h5> Career Advice </h5>
-                            <p>Get mentorship and professional guidance to choose the right career path and achieve long-term success.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="sigma_icon-block icon-block-2">
-                        <div class="sigma_icon-block-content">
-                            <h5> Event Booking </h5>
-                            <p>Search for venues to host cultural, social, and religious events. Easily book spaces that celebrate and respect our traditions.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
 
             <div class="text-center mt-3">
@@ -211,7 +296,7 @@ Together, we stand as one community — proud of our heritage, determined in our
                             <div class="icon">
                                 <i class="fa fa-users fa-3x" aria-hidden="true"></i>
                             </div>
-                            <h3 class="counter title">17 </h3>
+                            <h3 class="counter title">{{ number_format($statistics['users']) }}</h3>
                         </div>
                         <div class="inner">
                             <span class="bottom">Registered Users</span>
@@ -224,7 +309,7 @@ Together, we stand as one community — proud of our heritage, determined in our
                             <div class="icon">
                                 <i class="fa fa-building fa-3x" aria-hidden="true"></i>
                             </div>
-                            <h3 class="counter title mb-0 ms-3">25</h3>
+                            <h3 class="counter title mb-0 ms-3">{{ number_format($statistics['organizations']) }}</h3>
                         </div>
                         <div class="inner">
                             <span class="bottom">Registered Organizations</span>
@@ -237,7 +322,7 @@ Together, we stand as one community — proud of our heritage, determined in our
                             <div class="icon">
                                 <i class="fa fa-university fa-3x" aria-hidden="true"></i>
                             </div>
-                            <h3 class="counter title">100</h3>
+                            <h3 class="counter title">{{ number_format($statistics['temples']) }}</h3>
                         </div>
                         <div class="inner">
                             <span class="bottom">Registered Temples</span>
@@ -272,27 +357,32 @@ Together, we stand as one community — proud of our heritage, determined in our
             center: { lat: 23.6850, lng: 90.3563 }, // Bangladesh center
         });
 
-        // Sample Bangladesh locations
-        const locations = [
-            { lat: 23.8103, lng: 90.4125 }, // Dhaka
-            { lat: 22.3569, lng: 91.7832 }, // Chittagong
-            { lat: 22.8456, lng: 89.5403 }, // Khulna
-            { lat: 24.3745, lng: 88.6042 }, // Rajshahi
-            { lat: 24.8949, lng: 91.8687 }, // Sylhet
-            { lat: 22.7010, lng: 90.3535 }, // Barisal
-            { lat: 25.7439, lng: 89.2752 }, // Rangpur
-            { lat: 23.4607, lng: 91.1809 }  // Comilla
-        ];
+        // Dynamic locations from database
+        const locations = @json($mapLocations);
 
-        // Create markers
-        const markers = locations.map((position, i) => {
-            return new google.maps.Marker({
-                position,
-                title: `Location ${i + 1}`
+        // Create markers with InfoWindow
+        const markers = locations.map((location, i) => {
+            const marker = new google.maps.Marker({
+                position: { lat: location.lat, lng: location.lng },
+                title: location.name
             });
+
+            // Add click listener to show InfoWindow
+            const infoWindow = new google.maps.InfoWindow({
+                content: `<div style="padding: 5px;">
+                            <h6 style="margin: 0 0 5px 0; font-weight: bold;">${location.name}</h6>
+                            <p style="margin: 0; font-size: 13px; color: #666;">${location.address || 'No address available'}</p>
+                          </div>`
+            });
+
+            marker.addListener('click', () => {
+                infoWindow.open(map, marker);
+            });
+
+            return marker;
         });
 
-        // Add marker clusterer
+        // Add marker clusterer for better performance with many markers
         new markerClusterer.MarkerClusterer({ map, markers });
     }
 </script>

@@ -15,7 +15,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.contact');
+        return view('frontend.pages.contact.index');
     }
 
     public function store(Request $request)
