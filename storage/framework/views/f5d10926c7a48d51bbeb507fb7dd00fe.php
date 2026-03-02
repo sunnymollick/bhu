@@ -77,7 +77,7 @@
                                             <i class="fa fa-check"></i>
                                         </button>
                                         <?php endif; ?>
-                                        <button class="btn btn-sm btn-danger delete-news-btn" data-id="<?php echo e($news->id); ?>" title="Delete">
+                                        <button class="btn btn-sm btn-danger" onclick="showDeleteModal(<?php echo e($news->id); ?>, 'News', '<?php echo e(route('admin.news.delete', $news->id)); ?>')" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </div>
@@ -122,31 +122,6 @@
         <img id="fullImage" src="" class="img-fluid" style="max-width:100%; max-height:80vh;">
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteNewsModal" tabindex="-1" role="dialog" aria-labelledby="deleteNewsModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <form id="deleteNewsForm" method="POST" action="">
-      <?php echo csrf_field(); ?>
-      <?php echo method_field('DELETE'); ?>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Delete News</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete this news item?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </div>
-      </div>
-    </form>
   </div>
 </div>
 <?php $__env->stopSection(); ?>
@@ -205,15 +180,6 @@
         var fullImg = $(this).data('full');
         $('#fullImage').attr('src', fullImg);
         $('#fullImageModal').modal('show');
-    });
-
-    // Handle delete button click
-    $(document).on('click', '.delete-news-btn', function(e) {
-        e.preventDefault();
-        var newsId = $(this).data('id');
-        var action = "<?php echo e(url('admin/news/delete')); ?>/" + newsId;
-        $('#deleteNewsForm').attr('action', action);
-        $('#deleteNewsModal').modal('show');
     });
 
     // Handle approve button click

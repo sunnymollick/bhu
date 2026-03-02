@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             JobCategorySeeder::class,
             JobIndustrySeeder::class,
             TempleSeeder::class,
+            HomeBannerSeeder::class,
+            ServiceSeeder::class,
         ]);
     }
 }

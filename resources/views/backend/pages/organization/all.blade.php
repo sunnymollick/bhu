@@ -59,9 +59,9 @@
                                             <a class="dropdown-item" href="{{ route('admin.organization.edit', $o->id) }}">
                                                 <i class="fa fa-edit"></i> Edit
                                             </a>
-                                            <button class="dropdown-item text-danger" type="button" data-toggle="modal" data-target="#deleteModal{{ $o->id }}">
+                                            <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="showDeleteModal({{ $o->id }}, 'Organization', '{{ route('admin.organization.destroy', $o->id) }}')">
                                                 <i class="fa fa-trash"></i> Delete
-                                            </button>
+                                            </a>
                                             @if($o->status !== 'approved' && (Auth::user()->role_id == 1 || Auth::user()->role_id == 2))
                                             <form method="POST" action="{{ route('admin.organization.approve', $o->id) }}" style="display:inline;">
                                                 @csrf
@@ -74,34 +74,6 @@
                                     </div>
                                 </td>
                             </tr>
-
-                            <!-- Delete Confirmation Modal -->
-                            <div class="modal fade" id="deleteModal{{ $o->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $o->id }}" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-danger">
-                                            <h5 class="modal-title text-white" id="deleteModalLabel{{ $o->id }}">Confirm Delete</h5>
-                                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete the organization <strong>"{{ $o->name }}"</strong>?</p>
-                                            <p class="text-muted">This action cannot be undone.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <form method="POST" action="{{ route('admin.organization.destroy', $o->id) }}" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger" type="submit">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             @endforeach
                         </tbody>
                     </table>

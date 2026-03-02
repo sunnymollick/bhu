@@ -23,6 +23,10 @@
     </div>
     @include('backend.includes.footer')
   </div>
+
+  <!-- Common Delete Modal -->
+  @include('backend.includes.delete-modal')
+
   <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <!-- Toastr JS -->

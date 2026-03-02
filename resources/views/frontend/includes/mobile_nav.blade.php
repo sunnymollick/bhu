@@ -2,12 +2,12 @@
     <a class="navbar-brand" href="{{ route('frontend.index') }}"> <img src="{{ asset('frontend/assets/img/rr_logo_resized.jpg') }}" alt="logo"> </a>
     <ul>
     <li class="menu-item"> <a href="{{ route('frontend.index') }}">Home</a> </li>
-    <li class="menu-item"> <a href="about.html">About Us</a> </li>
+    <li class="menu-item"> <a href="{{ route('frontend.about') }}">About Us</a> </li>
     <li class="menu-item"> <a href="{{ route('frontend.temples') }}">Temples</a> </li>
     <li class="menu-item"> <a href="{{ route('frontend.organizations') }}">Organizations</a> </li>
     <li class="menu-item"> <a href="{{ route('frontend.events') }}">Events</a> </li>
     <li class="menu-item"> <a href="{{ route('frontend.jobs') }}">Jobs</a> </li>
-    <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+    <li class="menu-item"> <a href="{{ route('frontend.teams') }}">Our Team</a> </li>
     <li class="menu-item"> <a href="{{ route('frontend.contact') }}">Contact</a> </li>
 
     @auth

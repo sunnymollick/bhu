@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('designation')->nullable();
             $table->string('nid')->nullable();
             $table->string('main_picture')->nullable();
+            $table->string('service_time')->nullable();
             $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->foreign('upazila_id')->references('id')->on('upazilas')->onDelete('cascade');

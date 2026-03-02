@@ -16,10 +16,19 @@ use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\JobPostController;
+use App\Http\Controllers\Backend\ServiceController;
+use App\Http\Controllers\Backend\HomeContentController;
+use App\Http\Controllers\Backend\AboutController;
 
 # Website
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\FrontendTempleController;
-Route::get('/', [FrontendTempleController::class, 'index'])->name('frontend.index');
+
+
+Route::get('/', [HomeController::class, 'index'])->name('frontend.index');
+Route::get('/about', [HomeController::class, 'about'])->name('frontend.about');
+Route::get('/teams', [HomeController::class, 'teams'])->name('frontend.teams');
+Route::post('/teams/volunteer-register', [HomeController::class, 'volunteerRegister'])->name('volunteer.register');
 // Temple Routes Getting Started
 Route::get('/temples', [FrontendTempleController::class, 'temples'])->name('frontend.temples');
 Route::get('/temples/filter', [FrontendTempleController::class, 'filterTemples'])->name('frontend.temples.filter');
@@ -233,6 +242,25 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('post/edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
         Route::put('post/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
         Route::delete('post/{id}', [PostController::class, 'destroy'])->name('admin.post.destroy');
+
+        // Service routes (Homepage "How We Can Help" section)
+        Route::get('services', [ServiceController::class, 'index'])->name('admin.services.index');
+        Route::get('services/create', [ServiceController::class, 'create'])->name('admin.services.create');
+        Route::post('services/store', [ServiceController::class, 'store'])->name('admin.services.store');
+        Route::get('services/edit/{id}', [ServiceController::class, 'edit'])->name('admin.services.edit');
+        Route::put('services/update/{id}', [ServiceController::class, 'update'])->name('admin.services.update');
+        Route::delete('services/{id}', [ServiceController::class, 'destroy'])->name('admin.services.destroy');
+        Route::post('services/toggle-status/{id}', [ServiceController::class, 'toggleStatus'])->name('admin.services.toggle-status');
+
+        // About routes
+        Route::get('about', [AboutController::class, 'index'])->name('admin.about.index');
+        Route::get('about/create', [AboutController::class, 'create'])->name('admin.about.create');
+        Route::post('about/store', [AboutController::class, 'store'])->name('admin.about.store');
+        Route::get('about/edit/{id}', [AboutController::class, 'edit'])->name('admin.about.edit');
+        Route::put('about/update/{id}', [AboutController::class, 'update'])->name('admin.about.update');
+        Route::delete('about/{id}', [AboutController::class, 'destroy'])->name('admin.about.destroy');
+        Route::post('about/toggle-status/{id}', [AboutController::class, 'toggleStatus'])->name('admin.about.toggle-status');
+
     });
 
     // job post routes - Accessible to all users

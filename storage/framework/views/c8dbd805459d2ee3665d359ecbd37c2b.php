@@ -59,13 +59,13 @@
             <!-- FIX: Hide desktop navbar on screens smaller than large (992px) -->
             <ul class="navbar-nav d-none d-lg-flex">
             <li class="menu-item"> <a href="<?php echo e(route('frontend.index')); ?>">Home</a> </li>
-            <li class="menu-item"> <a href="about.html">About Us</a> </li>
+            <li class="menu-item"> <a href="<?php echo e(route('frontend.about')); ?>">About Us</a> </li>
             <li class="menu-item"> <a href="<?php echo e(route('frontend.temples')); ?>">Temples</a> </li>
             <li class="menu-item"> <a href="<?php echo e(route('frontend.organizations')); ?>">Organizations</a> </li>
             <li class="menu-item"> <a href="<?php echo e(route('frontend.events')); ?>">Events</a> </li>
             <li class="menu-item"> <a href="<?php echo e(route('frontend.jobs')); ?>">Jobs</a> </li>
             <li class="menu-item"> <a href="<?php echo e(route('frontend.news')); ?>">News</a> </li>
-            <li class="menu-item"> <a href="volunteers.html">Our Team</a> </li>
+            <li class="menu-item"> <a href="<?php echo e(route('frontend.teams')); ?>">Our Team</a> </li>
             <li class="menu-item"> <a href="<?php echo e(route('frontend.contact')); ?>">Contact</a> </li>
             </ul>
         </div>

@@ -4,7 +4,7 @@
             <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 footer-widget">
                 <h5 class="widget-title">About Us</h5>
-                <p class="mb-4">You need to be sure there isn’t anything embarrassing hidden in the middle of text. </p>
+                <p class="mb-4"><?php echo e($footerAbout?->short_description ?? ''); ?></p>
                 <div class="d-flex align-items-center justify-content-md-start justify-content-center">
                 <i class="far fa-phone custom-primary me-3"></i>
                 <span>987-987-930-302</span>
@@ -100,4 +100,5 @@
         </div>
     </div>
 
-</footer><?php /**PATH C:\laragonUpdated\www\rr-app\resources\views/frontend/includes/footer.blade.php ENDPATH**/ ?>
+</footer>
+<?php /**PATH C:\laragonUpdated\www\rr-app\resources\views/frontend/includes/footer.blade.php ENDPATH**/ ?>
