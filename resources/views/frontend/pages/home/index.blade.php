@@ -4,7 +4,9 @@
 
 @section('stylesheet')
 <style>
-    /* Service Icon Styling */
+    /* =============================================
+       SERVICE ICON STYLING
+       ============================================= */
     .sigma_icon-block .icon-wrapper {
         margin-bottom: 20px;
     }
@@ -20,11 +22,78 @@
         transform: scale(1.1);
     }
 
-    /* Banner breadcrumb positioning */
+    /* =============================================
+       BANNER — BASE (Desktop-first, ≥1200px)
+       ============================================= */
     .sigma_banner.banner-3 {
         position: relative;
     }
 
+    /* Slider slide
+       – Use aspect-ratio so the banner scales proportionally
+       – min-height as a safety net, clamp() for fluid scaling          */
+    .banner-3.sigma_banner .sigma_banner-slider-inner {
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        min-height: clamp(320px, 42vw, 707px);   /* fluid: 320px → 707px */
+        aspect-ratio: 1920 / 707;                 /* matches the original image ratio */
+        padding: 0;
+        overflow: hidden;
+    }
+
+    /* Text overlay (title / subtitle) */
+    .sigma_banner-text {
+        width: 100%;
+    }
+
+    .sigma_banner-text .title {
+        color: #fff;
+        font-weight: 700;
+        font-size: clamp(1.5rem, 2.5vw + 0.5rem, 3rem);
+        line-height: 1.1;
+    }
+
+    .sigma_banner-text .blockquote {
+        color: #f1f1f1;
+        font-size: clamp(0.875rem, 1vw + 0.25rem, 1.125rem);
+    }
+
+    /* CTA buttons row — pinned to bottom of the slide */
+    .banner-buttons-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        padding-bottom: clamp(24px, 5vw, 80px);
+    }
+
+    .banner-buttons-bottom .section-button {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        padding-left: clamp(16px, 3vw, 50px);
+    }
+
+    .section-button .sigma_btn-custom {
+        white-space: nowrap;
+        font-size: clamp(12px, 1vw + 4px, 14px);
+        padding: clamp(8px, 1.2vw, 15px) clamp(16px, 2.5vw, 30px);
+        border-radius: 30px;
+    }
+
+    .section-button .sigma_btn-custom i {
+        margin-left: 6px;
+        font-size: inherit;
+    }
+
+    /* Breadcrumb pill */
     .sigma_banner.banner-3 .breadcrumb {
         position: absolute;
         bottom: -32px;
@@ -35,13 +104,12 @@
         padding: 20px 28px;
         border-radius: 50px;
         margin: 0;
-        box-shadow: 0px 10px 20px 0px rgb(53 82 99 / 9%);
+        box-shadow: 0 10px 20px 0 rgb(53 82 99 / 9%);
         justify-content: center;
         align-items: center;
     }
 
-    /* Apply standard breadcrumb item styling */
-    .sigma_banner.banner-3 .breadcrumb-item+.breadcrumb-item {
+    .sigma_banner.banner-3 .breadcrumb-item + .breadcrumb-item {
         padding-left: 15px;
     }
 
@@ -71,89 +139,182 @@
         display: block !important;
     }
 
-    /* Responsive banner adjustments */
-    .sigma_banner-slider-inner {
-        background-size: cover;
-        background-repeat: no-repeat;
-        min-height: 520px;
-        display: flex;
-        align-items: center;
+    /* =============================================
+       BANNER — LARGE DESKTOP OVERRIDE (≥1400px)
+       ============================================= */
+    @media (min-width: 1400px) {
+        .banner-3.sigma_banner .sigma_banner-slider-inner {
+            min-height: 707px;
+        }
     }
 
-    .sigma_banner-text .title {
-        color: #fff;
-        font-weight: 700;
-        font-size: 48px;
-        line-height: 1.05;
-    }
-
-    .sigma_banner-text .blockquote {
-        color: #f1f1f1;
-        font-size: 16px;
-    }
-
-    .section-button .sigma_btn-custom { white-space: nowrap; }
-
-    /* Mobile-specific image fallback (use <img> on small screens so image scales naturally) */
-    .banner-mobile-img { display: none; width: 100%; height: auto; object-fit: cover; }
-
-    @media (max-width: 767.98px) {
-        .sigma_banner-slider-inner {
-            min-height: 360px;
-            padding: 28px 0;
-            background-position: center !important;
-            background-size: cover !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            text-align: center !important;
-            background-image: none !important;
+    /* =============================================
+       BANNER — TABLET LANDSCAPE (≤1199px)
+       ============================================= */
+    @media (max-width: 1199.98px) {
+        .banner-3.sigma_banner .sigma_banner-slider-inner {
+            min-height: 420px;
         }
 
-        .sigma_banner-slider-inner .container { width: 100%; max-width: 100%; padding-left: 16px; padding-right: 16px; }
-        .sigma_banner-text { width: 100% !important; }
-        .sigma_banner-text .title { font-size: 26px !important; line-height: 1.1; margin-bottom: 10px; }
-        .sigma_banner-text .blockquote { font-size: 15px !important; text-align: center; padding: 0 12px; margin-bottom: 12px; }
-
-        .section-button { display: flex !important; flex-direction: column; gap: 10px; align-items: center; }
-        .section-button .sigma_btn-custom { display: inline-block; width: 100%; max-width: 260px; }
-        .section-button .ms-3 { margin-left: 0 !important; }
-        .section-button .sigma_btn-custom.white { margin-left: 0 !important; }
-
-        .sigma_banner.banner-3 .breadcrumb { bottom: -48px; padding: 12px 18px; }
-    }
-
-    @media (max-width: 767.98px) {
-        .banner-mobile-img { display: block; }
-    }
-
-    /* Fixed banner height to prevent shrinking */
-    .sigma_banner-slider-inner {
-        min-height: 600px;
-        display: flex;
-        align-items: center;
-        position: relative;
-    }
-
-    /* Position buttons at bottom left */
-    .banner-buttons-bottom {
-        position: absolute;
-        bottom: 150px;
-        left: 0;
-        z-index: 10;
-    }
-
-    .banner-buttons-bottom .section-button {
-        padding-left: 50px;
-    }
-
-    @media (max-width: 768px) {
-        .sigma_banner-slider-inner {
-            min-height: 400px;
-        }
         .banner-buttons-bottom {
-            bottom: 30px;
+            padding-bottom: 36px;
+        }
+
+        .banner-buttons-bottom .section-button {
+            padding-left: 30px;
+        }
+    }
+
+    /* =============================================
+       BANNER — TABLET PORTRAIT (≤991px)
+       ============================================= */
+    @media (max-width: 991.98px) {
+        .banner-3.sigma_banner .sigma_banner-slider-inner {
+            min-height: 360px;
+            aspect-ratio: 16 / 9;
+        }
+
+        .sigma_banner-text .title {
+            font-size: 1.75rem;
+        }
+
+        .banner-buttons-bottom {
+            padding-bottom: 28px;
+        }
+
+        .banner-buttons-bottom .section-button {
+            padding-left: 20px;
+            gap: 10px;
+        }
+
+        .section-button .sigma_btn-custom {
+            font-size: 13px;
+            padding: 12px 24px;
+        }
+
+        .sigma_banner.banner-3 .breadcrumb {
+            padding: 16px 22px;
+            bottom: -28px;
+        }
+    }
+
+    /* =============================================
+       BANNER — MOBILE LANDSCAPE (≤767px)
+       ============================================= */
+    @media (max-width: 767.98px) {
+        .banner-3.sigma_banner .sigma_banner-slider-inner {
+            min-height: 280px;
+            aspect-ratio: 16 / 8;
+            align-items: center;
+        }
+
+        .sigma_banner-text .title {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .sigma_banner-text .blockquote {
+            font-size: 0.875rem;
+            margin-bottom: 10px;
+        }
+
+        /* Stack buttons vertically and center */
+        .banner-buttons-bottom {
+            position: absolute;
+            padding-bottom: 20px;
+        }
+
+        .banner-buttons-bottom .section-button {
+            padding-left: 16px;
+            padding-right: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .section-button .sigma_btn-custom {
+            font-size: 12.5px;
+            padding: 10px 20px;
+        }
+
+        .section-button .ms-3 {
+            margin-left: 0 !important;
+        }
+
+        .sigma_banner.banner-3 .breadcrumb {
+            bottom: -24px;
+            padding: 12px 20px;
+            border-radius: 40px;
+        }
+    }
+
+    /* =============================================
+       BANNER — MOBILE PORTRAIT (≤575px)
+       ============================================= */
+    @media (max-width: 575.98px) {
+        .banner-3.sigma_banner .sigma_banner-slider-inner {
+            min-height: 220px;
+            aspect-ratio: 16 / 9;
+        }
+
+        .sigma_banner-text .title {
+            font-size: 1.25rem;
+        }
+
+        .sigma_banner-text .blockquote {
+            font-size: 0.8125rem;
+        }
+
+        .banner-buttons-bottom {
+            padding-bottom: 14px;
+        }
+
+        .banner-buttons-bottom .section-button {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .section-button .sigma_btn-custom {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .sigma_banner.banner-3 .breadcrumb {
+            bottom: -20px;
+            padding: 10px 16px;
+        }
+
+        .sigma_banner.banner-3 .breadcrumb .breadcrumb-item.active,
+        .sigma_banner.banner-3 .breadcrumb-item a.btn-link {
+            font-size: 12px;
+        }
+    }
+
+    /* =============================================
+       BANNER — VERY SMALL SCREENS (≤399px)
+       ============================================= */
+    @media (max-width: 399.98px) {
+        .banner-3.sigma_banner .sigma_banner-slider-inner {
+            min-height: 180px;
+            aspect-ratio: auto;
+        }
+
+        .sigma_banner-text .title {
+            font-size: 1.1rem;
+        }
+
+        .banner-buttons-bottom .section-button {
+            gap: 5px;
+        }
+
+        .section-button .sigma_btn-custom {
+            padding: 6px 12px;
+            font-size: 11px;
+            border-radius: 24px;
+        }
+
+        .section-button .sigma_btn-custom i {
+            margin-left: 4px;
         }
     }
 </style>
@@ -162,59 +323,75 @@
 @section('content')
     <!-- Banner Start -->
     <div class="sigma_banner banner-3">
-
         <div class="sigma_banner-slider">
 
-        @forelse($banners as $banner)
-        <!-- Banner Item Start -->
-        <div class="light-bg sigma_banner-slider-inner bg-cover bg-center" style="background-image: url('{{ $banner->image_name === 'h1.webp' ? asset('frontend/assets/img/banner/h1.webp') : ($banner->image_name === 'placeholder.jpg' ? 'https://placehold.co/1920x707' : asset('backend/uploads/banner/' . $banner->image_name)) }}');">
-            <div class="sigma_banner-text">
-                <div class="container">
-                    <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        {{-- <h1 class="title">{{ $banner->title }}</h1>
-                        <p class="blockquote mb-0 bg-transparent">{{ $banner->subtitle }}</p> --}}
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <div class="banner-buttons-bottom">
-                <div class="container">
-                    <div class="section-button d-flex align-items-center">
-                    @if($banner->button_text_1 && $banner->button_link_1)
-                    <a href="{{ url($banner->button_link_1) }}" class="sigma_btn-custom">{{ $banner->button_text_1 }} <i class="far fa-arrow-right"></i> </a>
-                    @endif
-                    @if($banner->button_text_2 && $banner->button_link_2)
-                    <a href="{{ url($banner->button_link_2) }}" class="ms-3 sigma_btn-custom white">{{ $banner->button_text_2 }} <i class="far fa-arrow-right"></i> </a>
-                    @endif
+            @forelse($banners as $banner)
+            {{-- Resolve image URL once for readability --}}
+            @php
+                $bannerImg = match(true) {
+                    $banner->image_name === 'h1.webp'        => asset('frontend/assets/img/banner/h1.webp'),
+                    $banner->image_name === 'placeholder.jpg' => 'https://placehold.co/1920x707',
+                    default                                   => asset('backend/uploads/banner/' . $banner->image_name),
+                };
+            @endphp
+            <!-- Banner Item Start -->
+            <div class="light-bg sigma_banner-slider-inner" style="background-image: url('{{ $bannerImg }}');">
+
+                <div class="sigma_banner-text">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                {{-- <h1 class="title">{{ $banner->title }}</h1>
+                                <p class="blockquote mb-0 bg-transparent">{{ $banner->subtitle }}</p> --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Banner Item End -->
-        @empty
-        <!-- Default Banner Item -->
-        <div class="light-bg sigma_banner-slider-inner bg-cover bg-center" style="background-image: url('{{ asset('frontend/assets/img/banner/h1.webp') }}');">
-            <div class="sigma_banner-text">
-            <div class="container">
-                <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="title">BHU (Bengali Hindu Unity) fighting for our rights</h1>
-                    <p class="blockquote mb-0 bg-transparent">We are concerned Hindus working to unite 20 million fellow Hindus under a single organization to advocate for our rights.</p>
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="banner-buttons-bottom">
-                <div class="container">
-                    <div class="section-button d-flex align-items-center">
-                    <a href="{{ url('/contact-us') }}" class="sigma_btn-custom">Join Today <i class="far fa-arrow-right"></i> </a>
-                    <a href="{{ url('/services') }}" class="ms-3 sigma_btn-custom white">View Services <i class="far fa-arrow-right"></i> </a>
+
+                @if(($banner->button_text_1 && $banner->button_link_1) || ($banner->button_text_2 && $banner->button_link_2))
+                <div class="banner-buttons-bottom">
+                    <div class="container">
+                        <div class="section-button">
+                            @if($banner->button_text_1 && $banner->button_link_1)
+                            <a href="{{ url($banner->button_link_1) }}" class="sigma_btn-custom">{{ $banner->button_text_1 }} <i class="far fa-arrow-right"></i></a>
+                            @endif
+                            @if($banner->button_text_2 && $banner->button_link_2)
+                            <a href="{{ url($banner->button_link_2) }}" class="sigma_btn-custom white">{{ $banner->button_text_2 }} <i class="far fa-arrow-right"></i></a>
+                            @endif
+                        </div>
                     </div>
                 </div>
+                @endif
+
             </div>
-        </div>
-        @endforelse
+            <!-- Banner Item End -->
+
+            @empty
+            <!-- Default Banner Item -->
+            <div class="light-bg sigma_banner-slider-inner" style="background-image: url('{{ asset('frontend/assets/img/banner/h1.webp') }}');">
+
+                <div class="sigma_banner-text">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <h1 class="title">BHU (Bengali Hindu Unity) fighting for our rights</h1>
+                                <p class="blockquote mb-0 bg-transparent">We are concerned Hindus working to unite 20 million fellow Hindus under a single organization to advocate for our rights.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="banner-buttons-bottom">
+                    <div class="container">
+                        <div class="section-button">
+                            <a href="{{ url('/contact-us') }}" class="sigma_btn-custom">Join Today <i class="far fa-arrow-right"></i></a>
+                            <a href="{{ url('/services') }}" class="sigma_btn-custom white">View Services <i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @endforelse
 
         </div>
 
