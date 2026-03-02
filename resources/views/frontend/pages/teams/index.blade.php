@@ -224,6 +224,232 @@
         outline: none;
         box-shadow: none;
     }
+
+    /* =============================================
+       RESPONSIVE — TABLET LANDSCAPE (≤1199px)
+       ============================================= */
+    @media (max-width: 1199.98px) {
+        .team-member-card .card-photo {
+            height: 260px;
+        }
+
+        .team-member-card .card-body-info {
+            padding: 14px 16px 16px;
+        }
+
+        .team-member-card .card-body-info h5 {
+            font-size: 15px;
+        }
+
+        .team-member-card .card-body-info .role-badge {
+            font-size: 10px;
+            padding: 3px 10px;
+        }
+    }
+
+    /* =============================================
+       RESPONSIVE — TABLET PORTRAIT (≤991px)
+       ============================================= */
+    @media (max-width: 991.98px) {
+        .team-section-title h2 {
+            font-size: 30px;
+        }
+
+        .team-section-title {
+            margin-bottom: 35px;
+        }
+
+        .team-member-card .card-photo {
+            height: 240px;
+        }
+
+        .team-member-card .card-body-info h5 {
+            font-size: 15px;
+        }
+
+        /* Volunteer form */
+        .volunteer-section-title h3 {
+            font-size: 24px;
+        }
+
+        .volunteer-section-title p {
+            font-size: 14px;
+        }
+
+        .volunteer-form .form-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .volunteer-form .form-row .col-lg-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .volunteer-form .form-row .col-lg-12 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    /* =============================================
+       RESPONSIVE — MOBILE LANDSCAPE (≤767px)
+       ============================================= */
+    @media (max-width: 767.98px) {
+        .team-section-title h2 {
+            font-size: 26px;
+        }
+
+        .team-section-title .subtitle {
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .team-section-title {
+            margin-bottom: 30px;
+        }
+
+        .team-member-card {
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        .team-member-card .card-photo {
+            height: 260px;
+        }
+
+        /* Show overlay on mobile since no hover */
+        .team-member-card .card-overlay {
+            opacity: 1;
+            background: linear-gradient(to top, rgba(28,28,28,0.7) 0%, transparent 50%);
+        }
+
+        .team-member-card .card-socials {
+            transform: translateY(0);
+        }
+
+        .team-member-card .card-body-info {
+            padding: 14px 16px 16px;
+            border-top-color: #dc8a45;
+        }
+
+        .team-member-card .card-body-info h5 {
+            font-size: 16px;
+        }
+
+        /* Disable hover lift on touch */
+        .team-member-card:hover {
+            transform: none;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.09);
+        }
+
+        /* Volunteer form */
+        .volunteer-section-title {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .volunteer-section-title h3 {
+            font-size: 22px;
+        }
+
+        .volunteer-form .form-row .col-lg-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        /* Empty state */
+        .team-empty-state {
+            padding: 50px 15px;
+        }
+
+        .team-empty-state i {
+            font-size: 48px;
+        }
+
+        .team-empty-state h4 {
+            font-size: 18px;
+        }
+
+        .team-empty-state p {
+            font-size: 13px;
+        }
+    }
+
+    /* =============================================
+       RESPONSIVE — MOBILE PORTRAIT (≤575px)
+       ============================================= */
+    @media (max-width: 575.98px) {
+        .team-section-title h2 {
+            font-size: 22px;
+        }
+
+        .team-section-title .title-divider {
+            width: 45px;
+        }
+
+        .team-member-card .card-photo {
+            height: 230px;
+        }
+
+        .team-member-card .card-socials li a {
+            width: 32px;
+            height: 32px;
+            font-size: 12px;
+        }
+
+        .team-member-card .card-body-info .role-badge {
+            font-size: 10px;
+            padding: 2px 10px;
+            letter-spacing: 1px;
+        }
+
+        .team-member-card .card-body-info h5 {
+            font-size: 15px;
+        }
+
+        .volunteer-section-title h3 {
+            font-size: 20px;
+        }
+
+        .volunteer-section-title p {
+            font-size: 13px;
+        }
+
+        .volunteer-form .sigma_btn-custom {
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
+
+    /* =============================================
+       RESPONSIVE — VERY SMALL (≤399px)
+       ============================================= */
+    @media (max-width: 399.98px) {
+        .team-section-title h2 {
+            font-size: 20px;
+        }
+
+        .team-member-card .card-photo {
+            height: 200px;
+        }
+
+        .team-member-card .card-body-info {
+            padding: 12px 12px 14px;
+        }
+
+        .team-member-card .card-body-info h5 {
+            font-size: 14px;
+        }
+
+        .volunteer-section-title h3 {
+            font-size: 18px;
+        }
+
+        .volunteer-form .sigma_btn-custom {
+            font-size: 13px;
+        }
+    }
 </style>
 @endsection
 
@@ -257,7 +483,7 @@
 
             @if(isset($teams) && $teams->count() > 0)
                 @foreach($teams as $team)
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                         <div class="team-member-card">
                             <div class="card-photo">
                                 @if($team->profile_pic)
@@ -302,7 +528,7 @@
 <div class="section" style="background: linear-gradient(135deg, #dc8a45 0%, #7a4520 60%, #5c5555 100%)">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-5 mb-lg-30 mb-5">
+            <div class="col-lg-5 mb-lg-0 mb-4">
                 <div class="volunteer-section-title">
                     <h3>Become a Volunteer</h3>
                     <p>Join our community and make a difference. Fill out the form and we'll get in touch with you shortly.</p>
@@ -312,36 +538,36 @@
                 <form class="volunteer-form" method="post" action="{{ route('volunteer.register') }}">
                     @csrf
                     <div class="form-row">
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <i class="far fa-user"></i>
                                 <input type="text" class="form-control transparent" placeholder="First Name" name="first_name" value="{{ old('first_name') }}" required>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <i class="far fa-user"></i>
                                 <input type="text" class="form-control transparent" placeholder="Last Name" name="last_name" value="{{ old('last_name') }}" required>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <i class="far fa-phone"></i>
                                 <input type="text" class="form-control transparent" placeholder="Phone" name="phone" value="{{ old('phone') }}" required>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <i class="far fa-envelope"></i>
                                 <input type="email" class="form-control transparent" placeholder="Email Address" name="email" value="{{ old('email') }}" required>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <div class="form-group">
                                 <textarea name="message" class="form-control transparent" placeholder="Enter Message" rows="4" required>{{ old('message') }}</textarea>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <button type="submit" class="sigma_btn-custom d-block w-100" name="button"> Register as Volunteer <i class="far fa-arrow-right"></i> </button>
                         </div>
                     </div>

@@ -191,6 +191,161 @@
         margin-bottom: 30px;
         font-weight: 600;
     }
+
+    /* =============================================
+    GALLERY — RESPONSIVE OVERRIDES
+       ============================================= */
+
+    /* Tablet portrait (≤991px): gallery moves above text, full width */
+    @media (max-width: 991.98px) {
+        .about-gallery {
+            margin-bottom: 30px;
+        }
+
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-item img {
+            height: 220px;
+        }
+
+        .modal-gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            padding: 15px;
+        }
+
+        .modal-gallery-item img {
+            height: 240px;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content-wrapper {
+            margin: 30px auto;
+            padding: 15px;
+        }
+
+        .modal-close {
+            top: 10px;
+            right: 20px;
+            font-size: 32px;
+        }
+    }
+
+    /* Mobile landscape (≤767px) */
+    @media (max-width: 767.98px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .gallery-item img {
+            height: 180px;
+        }
+
+        .gallery-item:hover {
+            transform: none;
+        }
+
+        .show-more-btn {
+            padding: 10px 22px;
+            font-size: 14px;
+        }
+
+        .gallery-count-badge {
+            padding: 4px 10px;
+            font-size: 11px;
+        }
+
+        .modal-gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .modal-gallery-item img {
+            height: 180px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            padding: 0 10px;
+        }
+
+        .modal-content-wrapper {
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .modal-close {
+            top: 8px;
+            right: 15px;
+            font-size: 28px;
+        }
+    }
+
+    /* Mobile portrait (≤575px) */
+    @media (max-width: 575.98px) {
+        .gallery-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .gallery-item img {
+            height: 200px;
+        }
+
+        .show-more-btn {
+            padding: 8px 18px;
+            font-size: 13px;
+        }
+
+        .gallery-count-badge {
+            padding: 3px 8px;
+            font-size: 10px;
+            margin-left: 6px;
+        }
+
+        .modal-gallery-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .modal-gallery-item img {
+            height: 220px;
+        }
+
+        .modal-title {
+            font-size: 16px;
+        }
+    }
+
+    /* Very small screens (≤399px) */
+    @media (max-width: 399.98px) {
+        .gallery-item img {
+            height: 170px;
+        }
+
+        .show-more-btn {
+            padding: 7px 14px;
+            font-size: 12px;
+        }
+
+        .modal-gallery-item img {
+            height: 180px;
+        }
+    }
+
+    /* About page subtitle — template color */
+    .section-title .subtitle {
+        color: #dc8a45;
+    }
 </style>
 @endsection
 
@@ -216,14 +371,14 @@
     <div class="container">
 
         <div class="row align-items-center">
-            <div class="col-lg-6 d-none d-lg-block">
+            <div class="col-lg-6 order-lg-1 order-2">
                 <div class="about-gallery">
                     @if(!empty($about->gallery) && count($about->gallery) > 0)
                         <div class="gallery-grid" id="galleryGrid">
                             @foreach($about->gallery as $index => $image)
                                 @if($index < 4)
                                     <div class="gallery-item" data-index="{{ $index }}">
-                                        <img src="{{ asset('storage/' . $image) }}" alt="{{ $about->title }} - Gallery Image {{ $index + 1 }}">
+                                        <img src="{{ asset('storage/' . $image) }}" alt="{{ $about->title }} - Gallery Image {{ $index + 1 }}" loading="lazy">
                                     </div>
                                 @endif
                             @endforeach
@@ -255,7 +410,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 order-lg-2 order-1">
                 <div class="me-lg-30">
                     <div class="section-title mb-0 text-start">
                         @if($about->subtitle)
@@ -322,7 +477,7 @@
         <div class="modal-gallery-grid">
             @foreach($about->gallery as $index => $image)
                 <div class="modal-gallery-item" data-index="{{ $index }}">
-                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $about->title }} - Photo {{ $index + 1 }}">
+                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $about->title }} - Photo {{ $index + 1 }}" loading="lazy">
                 </div>
             @endforeach
         </div>
