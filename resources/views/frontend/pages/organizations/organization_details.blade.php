@@ -151,6 +151,168 @@
             max-width: 100%;
         }
     }
+
+    /* Force square "Similar Organization" thumbnails */
+    .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+        width: 75px;
+        height: 75px;
+        object-fit: cover;
+    }
+
+    /* ===== Responsive Fixes ===== */
+
+    /* Tablet only (768px – 1023px) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .header-img-text {
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+    }
+
+    /* Small laptop (1024px – 1365px) */
+    @media (min-width: 1024px) and (max-width: 1365px) {
+        .header-img-text {
+            font-size: 1.3rem;
+            line-height: 1.35;
+        }
+    }
+
+    /* Tablets & small laptops */
+    @media (max-width: 991px) {
+        #temple-location-map {
+            height: 300px;
+            min-height: 300px;
+        }
+    }
+
+    /* Phones – general (≤575px) */
+    @media (max-width: 575px) {
+        .sub-head-banner {
+            height: 200px;
+        }
+        .header-img-text {
+            font-size: 1.15rem;
+            padding: 0 12px;
+            width: 90%;
+        }
+        .sigma_subheader .breadcrumb {
+            padding: 16px 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 94vw;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            display: inline-flex;
+            align-items: center;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 12px !important;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 13px;
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            padding-right: 8px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item {
+            padding-left: 8px;
+        }
+        .event-image {
+            height: 180px;
+        }
+        #temple-location-map {
+            height: 250px;
+            min-height: 250px;
+        }
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 60px;
+            height: 60px;
+        }
+        .widget-recent-posts .sigma_recent-post > a {
+            width: 60px;
+            margin-right: 12px;
+        }
+        .widget-recent-posts .sigma_recent-post h6 {
+            font-size: 13px;
+        }
+    }
+
+    /* Mobile M (≤425px) */
+    @media (max-width: 425px) {
+        .sigma_subheader .breadcrumb {
+            padding: 14px 16px;
+        }
+        .sub-head-banner {
+            height: 170px;
+        }
+        .header-img-text {
+            font-size: 1rem;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            font-size: 11px;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 11px !important;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 11px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 12px;
+        }
+        .temple-details-meta ul li {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+    }
+
+    /* Mobile S (≤375px) */
+    @media (max-width: 375px) {
+        .sigma_subheader .breadcrumb {
+            padding: 12px 14px;
+        }
+        .sub-head-banner {
+            height: 150px;
+        }
+        .header-img-text {
+            font-size: 0.9rem;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            font-size: 10px;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 10px !important;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 10px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 11px;
+            padding-right: 6px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item {
+            padding-left: 6px;
+        }
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 50px;
+            height: 50px;
+        }
+        .widget-recent-posts .sigma_recent-post > a {
+            width: 50px;
+            margin-right: 10px;
+        }
+    }
 </style>
 @endsection
 
@@ -158,12 +320,13 @@
 <div class="sigma_subheader">
     <div class="overlay">
         <div class="sub-head-banner"></div>
-        <h4 class="header-img-text">Organization Details</h4>
+        <h4 class="header-img-text">{{ $organization->name }}</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-details">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.organizations') }}">Organizations</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $organization->name }}</li>
         </ol>
     </nav>
 </div>

@@ -11,6 +11,7 @@ use App\Models\JobPost;
 use App\Models\News;
 use App\Models\Contact;
 use App\Models\About;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +29,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Share site settings globally with all frontend views
+        View::composer('frontend.*', function ($view) {
+            $siteSettings = Cache::remember('site_settings', 3600, function () {
+                return Setting::first();
+            });
+            $view->with('siteSettings', $siteSettings);
+        });
+
         // Share about content with the frontend footer globally
         View::composer('frontend.includes.footer', function ($view) {
             $footerAbout = Cache::remember('about_content', 3600, function () {

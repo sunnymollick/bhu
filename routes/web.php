@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\JobPostController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\HomeContentController;
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\SettingsController;
 
 # Website
 use App\Http\Controllers\Frontend\HomeController;
@@ -260,6 +261,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::put('about/update/{id}', [AboutController::class, 'update'])->name('admin.about.update');
         Route::delete('about/{id}', [AboutController::class, 'destroy'])->name('admin.about.destroy');
         Route::post('about/toggle-status/{id}', [AboutController::class, 'toggleStatus'])->name('admin.about.toggle-status');
+
+        // Settings routes
+        Route::get('settings', [SettingsController::class, 'edit'])->name('admin.settings.edit');
+        Route::put('settings/update', [SettingsController::class, 'update'])->name('admin.settings.update');
 
     });
 

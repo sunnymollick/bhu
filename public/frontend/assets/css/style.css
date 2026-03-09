@@ -2550,7 +2550,7 @@ input[type=radio]:checked+label:after {
 }
 
 .secondary-bg {
-  background- color: #1a1a1a;
+  background-color: #1a1a1a;
 }
 
 .tirtery-bg {
@@ -3203,7 +3203,7 @@ table img {
 
 .sigma_aside ul .menu-item a:hover,
 .sigma_aside ul .menu-item a.active {
-  color: #7E4555;
+  color: #dc8a45;
 }
 
 .navbar-nav .menu-item-has-children>a::after,
@@ -3961,6 +3961,61 @@ table img {
 .sigma_header-bottom-inner>.navbar-nav>.menu-item>a:hover,
 .sigma_header-middle .navbar>.navbar-nav>.menu-item>a:hover {
   color: #7E4555;
+}
+
+/* Active menu item */
+.sigma_header-inner .navbar-nav>.menu-item.current-menu-item>a {
+  color: #dc8a45;
+}
+
+.sigma_header-inner .navbar-nav>.menu-item.current-menu-item>a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  right: 15px;
+  height: 3px;
+  background-color: #dc8a45;
+  border-radius: 2px;
+}
+
+.sigma_header-inner .navbar-nav>.menu-item.current-menu-item:first-child>a::after {
+  left: 0;
+}
+
+/* Mobile aside active menu item */
+.sigma_aside ul .menu-item.current-menu-item>a {
+  color: #dc8a45;
+}
+
+/* Mobile aside logged-in items (Dashboard / Logout) */
+.sigma_aside ul .mobile-auth-item a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  line-height: 1.4;
+}
+
+.sigma_aside ul .mobile-auth-item a i {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+  color: #dc8a45;
+  flex-shrink: 0;
+}
+
+.sigma_aside ul .mobile-auth-item a:hover {
+  color: #dc8a45;
+}
+
+.sigma_aside ul .mobile-auth-item a:hover i {
+  color: #7E4555;
+}
+
+/* Top-bar (Register/Login) active menu item */
+.sigma_header-top-links .current-menu-item>a {
+  color: #fff;
 }
 
 .sigma_header-bottom-inner>.navbar-nav>.menu-item:first-child>a,
@@ -10189,7 +10244,7 @@ small {
 }
 
 .sigma_audio-box {
-  width: 60px height: 60px;
+  width: 60px; height: 60px;
   background-color: #fff;
   color: #1a1a1a;
   border-radius: 50%;

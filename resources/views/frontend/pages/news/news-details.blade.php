@@ -3,6 +3,7 @@
 @section('title', $news->title . ' - Bengali Hindu Unity')
 
 @section('stylesheet')
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/gallery-slider.css') }}">
 <style>
     /* Reading Progress Bar */
     .reading-progress-bar {
@@ -645,6 +646,489 @@
         .related-news-item { flex-direction: column; }
         .related-news-thumb { width: 100%; height: 200px; }
     }
+
+    /* ===== News Details — Mobile/Tablet Responsive ===== */
+
+    /* Tablet Landscape (≤1024px) — reorder + layout */
+    @media (max-width: 1024px) {
+        /* Article header (date/time/location) */
+        .article-header {
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-size: 30px;
+            padding: 15px 20px;
+        }
+        .article-meta {
+            gap: 15px;
+        }
+
+        /* Reorder: content first, sidebar second */
+        .section > .container > .row {
+            display: flex;
+            flex-direction: column;
+        }
+        .section > .container > .row > .col-lg-8 {
+            order: 1;
+            width: 100%;
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+        .section > .container > .row > .col-lg-4 {
+            order: 2;
+            width: 100%;
+            max-width: 100%;
+            flex: 0 0 100%;
+            margin-top: 30px;
+        }
+
+        /* Sidebar widgets order */
+        .section > .container > .row > .col-lg-4 > .sidebar {
+            display: flex;
+            flex-direction: column;
+        }
+        .section > .container > .row > .col-lg-4 > .sidebar > .sidebar-widget.widget-recent-posts {
+            order: 1;
+        }
+        .section > .container > .row > .col-lg-4 > .sidebar > .sidebar-widget.widget-tags {
+            order: 2;
+        }
+
+        /* Featured image responsive */
+        .entry-thumbnail {
+            height: 380px;
+        }
+        .entry-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content readability */
+        .article-content {
+            padding: 30px;
+        }
+        .entry-body {
+            font-size: 16px;
+            line-height: 1.85;
+        }
+        .entry-body h5 {
+            font-size: 22px;
+        }
+
+        /* Recent news cards */
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 75px !important;
+            height: 75px !important;
+        }
+
+        /* Popular tags wrap */
+        .widget-tags .tagcloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .widget-tags .tagcloud a {
+            font-size: 12px;
+            padding: 8px 14px;
+        }
+
+        /* Share buttons */
+        .sigma_post-share {
+            padding: 25px;
+        }
+        .sigma_sm.square li a {
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
+        }
+
+        /* Gallery */
+        .gallery-thumb img {
+            height: 180px;
+        }
+    }
+
+    /* Tablet Portrait (≤768px) */
+    @media (max-width: 768px) {
+        .article-header {
+            padding: 22px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+        }
+        .article-title {
+            font-size: 24px;
+            padding: 12px 16px;
+        }
+        .article-category {
+            font-size: 12px;
+            padding: 6px 14px;
+            margin-bottom: 14px;
+        }
+        .article-meta {
+            gap: 10px;
+        }
+        .article-meta-item {
+            font-size: 13px;
+            padding: 6px 12px;
+            gap: 6px;
+        }
+        .article-meta-item i {
+            font-size: 13px;
+        }
+
+        .entry-thumbnail {
+            height: 280px;
+        }
+
+        .article-content {
+            padding: 22px;
+        }
+        .entry-body {
+            font-size: 15px;
+            line-height: 1.8;
+            padding: 20px 0;
+        }
+        .entry-body h5 {
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-left: 16px;
+        }
+        .entry-body h5::before {
+            width: 4px;
+            height: 24px;
+        }
+
+        /* Related news responsive */
+        .related-news {
+            padding: 22px;
+        }
+        .related-news h5 {
+            font-size: 20px;
+            margin-bottom: 18px;
+        }
+        .related-news-item {
+            padding: 15px;
+            gap: 15px;
+        }
+
+        /* Recent news */
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 65px !important;
+            height: 65px !important;
+        }
+        .widget-recent-posts .sigma_recent-post > a {
+            width: 65px;
+            margin-right: 12px;
+        }
+        .widget-recent-posts .sigma_recent-post h6 {
+            font-size: 14px;
+        }
+
+        /* Social share */
+        .sigma_post-share {
+            padding: 20px;
+        }
+        .sigma_sm.square {
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .sigma_sm.square li a {
+            width: 42px;
+            height: 42px;
+            font-size: 16px;
+        }
+
+        /* Gallery */
+        .entry-gallery .col-md-4 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+        .gallery-thumb img {
+            height: 160px;
+        }
+    }
+
+    /* Mobile L (≤425px) */
+    @media (max-width: 425px) {
+        .article-header {
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        .article-header::before {
+            width: 200px;
+            height: 200px;
+        }
+        .article-title {
+            font-size: 20px;
+            padding: 10px 14px;
+            line-height: 1.35;
+        }
+        .article-category {
+            font-size: 11px;
+            padding: 5px 12px;
+            margin-bottom: 12px;
+        }
+        .article-meta {
+            flex-direction: column;
+            gap: 8px;
+        }
+        .article-meta-item {
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+
+        .entry-thumbnail {
+            height: auto;
+        }
+        .entry-thumbnail img {
+            height: auto;
+        }
+
+        .article-content {
+            padding: 16px;
+        }
+        .entry-body {
+            font-size: 14px;
+            line-height: 1.75;
+            padding: 15px 0;
+        }
+        .entry-body h5 {
+            font-size: 18px;
+            margin-top: 22px;
+            margin-bottom: 12px;
+            padding-left: 14px;
+        }
+        .entry-body p {
+            margin-bottom: 14px;
+        }
+
+        /* Related news stack */
+        .related-news {
+            padding: 16px;
+        }
+        .related-news h5 {
+            font-size: 18px;
+        }
+        .related-news-item {
+            flex-direction: column;
+            padding: 12px;
+            gap: 12px;
+        }
+        .related-news-thumb {
+            width: 100%;
+            height: 180px;
+        }
+        .related-news-content h6 {
+            font-size: 14px;
+        }
+        .related-news-meta {
+            font-size: 12px;
+            gap: 10px;
+        }
+
+        /* Recent news */
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 60px !important;
+            height: 60px !important;
+        }
+        .widget-recent-posts .sigma_recent-post > a {
+            width: 60px;
+            margin-right: 10px;
+        }
+        .widget-recent-posts .sigma_recent-post h6 {
+            font-size: 13px;
+        }
+
+        /* Tags */
+        .widget-tags .tagcloud a {
+            font-size: 11px;
+            padding: 6px 12px;
+        }
+
+        /* Sidebar widget padding */
+        .sidebar .widget,
+        .sidebar .sidebar-widget {
+            padding: 20px;
+        }
+
+        /* Share */
+        .sigma_post-share {
+            padding: 16px;
+        }
+        .sigma_post-share h5 {
+            font-size: 18px;
+        }
+        .sigma_sm.square li a {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+        /* Author */
+        .author-card {
+            padding: 20px;
+        }
+        .author-card img {
+            width: 80px;
+            height: 80px;
+        }
+        .author-info .author-name {
+            font-size: 20px;
+        }
+
+        /* Gallery */
+        .entry-gallery .col-md-4 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+        .gallery-thumb img {
+            height: 140px;
+        }
+    }
+
+    /* Mobile M (≤375px) */
+    @media (max-width: 375px) {
+        .article-header {
+            padding: 14px;
+        }
+        .article-title {
+            font-size: 18px;
+            padding: 8px 12px;
+        }
+        .article-category {
+            font-size: 10px;
+            padding: 4px 10px;
+        }
+        .article-meta-item {
+            font-size: 11px;
+            padding: 5px 8px;
+        }
+
+        .article-content {
+            padding: 14px;
+        }
+        .entry-body {
+            font-size: 13.5px;
+            line-height: 1.7;
+        }
+        .entry-body h5 {
+            font-size: 16px;
+        }
+
+        .related-news {
+            padding: 14px;
+        }
+        .related-news-thumb {
+            height: 160px;
+        }
+        .related-news-content h6 {
+            font-size: 13px;
+        }
+
+        .sidebar .widget,
+        .sidebar .sidebar-widget {
+            padding: 16px;
+        }
+        .widget-title {
+            font-size: 18px;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+        }
+
+        .widget-tags .tagcloud a {
+            font-size: 10px;
+            padding: 5px 10px;
+        }
+
+        .author-card {
+            padding: 16px;
+        }
+        .author-card img {
+            width: 70px;
+            height: 70px;
+        }
+        .author-info .author-name {
+            font-size: 18px;
+        }
+        .author-info .author-time {
+            font-size: 11px;
+            padding: 6px 12px;
+        }
+
+        .gallery-thumb img {
+            height: 120px;
+        }
+    }
+
+    /* Mobile S (≤320px) */
+    @media (max-width: 320px) {
+        .article-header {
+            padding: 12px;
+        }
+        .article-title {
+            font-size: 16px;
+            padding: 6px 10px;
+        }
+        .article-category {
+            font-size: 9px;
+        }
+        .article-meta-item {
+            font-size: 10px;
+        }
+
+        .article-content {
+            padding: 12px;
+        }
+        .entry-body {
+            font-size: 13px;
+            line-height: 1.65;
+        }
+        .entry-body h5 {
+            font-size: 15px;
+        }
+
+        .related-news {
+            padding: 12px;
+        }
+        .related-news-thumb {
+            height: 140px;
+        }
+        .related-news-content h6 {
+            font-size: 12px;
+        }
+
+        .sidebar .widget,
+        .sidebar .sidebar-widget {
+            padding: 14px;
+        }
+        .widget-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .sigma_post-share {
+            padding: 12px;
+        }
+        .sigma_sm.square li a {
+            width: 36px;
+            height: 36px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        .entry-gallery .col-md-4 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        .gallery-thumb img {
+            height: 180px;
+        }
+    }
 </style>
 @endsection
 
@@ -655,7 +1139,7 @@
         <h4 class="header-img-text">{{ Str::limit($news->title, 50) }}</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-details">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.news') }}">News</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($news->title, 30) }}</li>
@@ -694,7 +1178,8 @@
             <div class="col-lg-4">
                 <div class="sidebar">
 
-                    <!-- Search Widget -->
+                    {{-- Search Widget removed from News Details --}}
+                    {{--
                     <div class="sidebar-widget widget-search">
                         <h5 class="widget-title">Search</h5>
                         <form method="GET" action="{{ route('frontend.news') }}">
@@ -704,6 +1189,7 @@
                             </div>
                         </form>
                     </div>
+                    --}}
 
                     <!-- Recent Posts Widget -->
                     <div class="sidebar-widget widget-recent-posts">
@@ -809,15 +1295,10 @@
                         @if($news->attachments && count($news->attachments) > 1)
                         <div class="entry-gallery mt-4">
                             <h5>Gallery</h5>
-                            <div class="row">
-                                @foreach(array_slice($news->attachments, 1) as $attachment)
-                                <div class="col-md-4 mb-3">
-                                    <a href="{{ asset($attachment) }}" class="gallery-thumb">
-                                        <img src="{{ asset($attachment) }}" alt="Gallery Image" class="img-fluid">
-                                    </a>
-                                </div>
-                                @endforeach
-                            </div>
+                            @include('frontend.partials.gallery-slider', [
+                                'images' => array_map(fn($a) => asset($a), array_slice($news->attachments, 1)),
+                                'alt'    => $news->title . ' Gallery',
+                            ])
                         </div>
                         @endif
 
@@ -842,3 +1323,5 @@ window.addEventListener('scroll', function() {
     document.getElementById('progressBar').style.width = scrolled + '%';
 });
 </script>
+<script src="{{ asset('frontend/assets/js/gallery-slider.js') }}"></script>
+@endsection

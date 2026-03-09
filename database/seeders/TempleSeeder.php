@@ -137,6 +137,7 @@ class TempleSeeder extends Seeder
                 'description' => 'Temple dedicated to Lord Vishnu and Goddess Lakshmi.',
                 'activities' => [$durgaPuja, $saraswatiPuja, $namakaran, $annaprashan, $musicClass],
             ],
+            
         ];
 
         foreach ($temples as $templeData) {

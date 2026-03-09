@@ -7,6 +7,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,7 +43,7 @@ class ServiceController extends Controller
             'title_bn' => 'nullable|string|max:255',
             'description' => 'required|string|max:1000',
             'description_bn' => 'nullable|string|max:1000',
-            'icon' => 'nullable|string|max:100',
+            'icon' => 'required|string|max:100',
             'order' => 'required|integer|min:0',
             'status' => 'required|boolean',
         ]);
@@ -54,17 +55,19 @@ class ServiceController extends Controller
         }
 
         try {
-            Service::create([
-                'title' => $request->title,
-                'title_bn' => $request->title_bn,
-                'description' => $request->description,
-                'description_bn' => $request->description_bn,
-                'icon' => $request->icon,
-                'order' => $request->order,
-                'status' => $request->status,
-                'created_by' => Auth::id(),
-                'updated_by' => Auth::id(),
-            ]);
+            DB::transaction(function () use ($request) {
+                Service::create([
+                    'title' => $request->title,
+                    'title_bn' => $request->title_bn,
+                    'description' => $request->description,
+                    'description_bn' => $request->description_bn,
+                    'icon' => $request->icon,
+                    'order' => $request->order,
+                    'status' => $request->status,
+                    'created_by' => Auth::id(),
+                    'updated_by' => Auth::id(),
+                ]);
+            });
 
             // Clear home page cache
             Cache::forget('home_services');
@@ -99,7 +102,7 @@ class ServiceController extends Controller
             'title_bn' => 'nullable|string|max:255',
             'description' => 'required|string|max:1000',
             'description_bn' => 'nullable|string|max:1000',
-            'icon' => 'nullable|string|max:100',
+            'icon' => 'required|string|max:100',
             'order' => 'required|integer|min:0',
             'status' => 'required|boolean',
         ]);
@@ -112,16 +115,19 @@ class ServiceController extends Controller
 
         try {
             $service = Service::findOrFail($id);
-            $service->update([
-                'title' => $request->title,
-                'title_bn' => $request->title_bn,
-                'description' => $request->description,
-                'description_bn' => $request->description_bn,
-                'icon' => $request->icon,
-                'order' => $request->order,
-                'status' => $request->status,
-                'updated_by' => Auth::id(),
-            ]);
+
+            DB::transaction(function () use ($request, $service) {
+                $service->update([
+                    'title' => $request->title,
+                    'title_bn' => $request->title_bn,
+                    'description' => $request->description,
+                    'description_bn' => $request->description_bn,
+                    'icon' => $request->icon,
+                    'order' => $request->order,
+                    'status' => $request->status,
+                    'updated_by' => Auth::id(),
+                ]);
+            });
 
             // Clear home page cache
             Cache::forget('home_services');
@@ -144,7 +150,10 @@ class ServiceController extends Controller
     {
         try {
             $service = Service::findOrFail($id);
-            $service->delete();
+
+            DB::transaction(function () use ($service) {
+                $service->delete();
+            });
 
             // Clear home page cache
             Cache::forget('home_services');

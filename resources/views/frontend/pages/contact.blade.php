@@ -239,6 +239,129 @@
             height: 400px;
         }
     }
+
+    /* ===== Sub-head banner & breadcrumb — Responsive ===== */
+
+    /* Small Laptop (1024px – 1365px) */
+    @media (min-width: 1024px) and (max-width: 1365px) {
+        .sub-head-banner {
+            height: 260px;
+        }
+        .header-img-text {
+            font-size: 1.3rem;
+            line-height: 1.35;
+        }
+    }
+
+    /* Tablet (768px – 1023px) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .sub-head-banner {
+            height: 250px;
+        }
+        .header-img-text {
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+    }
+
+    /* Phones – general (≤575px) */
+    @media (max-width: 575px) {
+        .sub-head-banner {
+            height: 200px;
+        }
+        .header-img-text {
+            font-size: 1.15rem;
+            padding: 0 12px;
+            width: 90%;
+        }
+        .sigma_subheader .breadcrumb {
+            padding: 20px 28px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 94vw;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            display: inline-flex;
+            align-items: center;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 12px !important;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 13px;
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            padding-right: 8px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item {
+            padding-left: 8px;
+        }
+    }
+
+    /* Mobile M / narrow phones (≤425px) */
+    @media (max-width: 425px) {
+        .sigma_subheader .breadcrumb {
+            padding: 18px 24px;
+        }
+        .sub-head-banner {
+            height: 170px;
+        }
+        .header-img-text {
+            font-size: 1rem;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            font-size: 11px;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 11px !important;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 11px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 12px;
+        }
+    }
+
+    /* Mobile S (≤375px) */
+    @media (max-width: 375px) {
+        .sigma_subheader .breadcrumb {
+            padding: 16px 20px;
+        }
+        .sub-head-banner {
+            height: 150px;
+        }
+        .header-img-text {
+            font-size: 0.9rem;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            font-size: 10px;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 10px !important;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 10px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 11px;
+            padding-right: 6px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item {
+            padding-left: 6px;
+        }
+    }
 </style>
 @endsection
 

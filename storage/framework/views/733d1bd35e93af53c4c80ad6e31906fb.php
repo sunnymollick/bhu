@@ -315,6 +315,76 @@
             margin-left: 4px;
         }
     }
+
+    /* =============================================
+       HOME BREADCRUMB — Per-breakpoint refinements
+       Scoped to .sigma_banner.banner-3 .breadcrumb
+       (does NOT affect .breadcrumb-normal or .breadcrumb-details)
+       ============================================= */
+
+    @media (max-width: 1280px) {
+        .sigma_banner.banner-3 .breadcrumb {
+            padding: 18px 26px;
+            bottom: -30px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .sigma_banner.banner-3 .breadcrumb {
+            padding: 16px 24px;
+            bottom: -28px;
+        }
+        .sigma_banner.banner-3 .breadcrumb .breadcrumb-item.active,
+        .sigma_banner.banner-3 .breadcrumb-item a.btn-link {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .sigma_banner.banner-3 .breadcrumb {
+            padding: 12px 20px;
+            bottom: -24px;
+            border-radius: 40px;
+        }
+        .sigma_banner.banner-3 .breadcrumb .breadcrumb-item.active,
+        .sigma_banner.banner-3 .breadcrumb-item a.btn-link {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 425px) {
+        .sigma_banner.banner-3 .breadcrumb {
+            padding: 8px 16px;
+            bottom: -18px;
+            border-radius: 30px;
+        }
+        .sigma_banner.banner-3 .breadcrumb .breadcrumb-item.active,
+        .sigma_banner.banner-3 .breadcrumb-item a.btn-link {
+            font-size: 11px;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .sigma_banner.banner-3 .breadcrumb {
+            padding: 7px 14px;
+            bottom: -16px;
+        }
+        .sigma_banner.banner-3 .breadcrumb .breadcrumb-item.active,
+        .sigma_banner.banner-3 .breadcrumb-item a.btn-link {
+            font-size: 10px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .sigma_banner.banner-3 .breadcrumb {
+            padding: 6px 12px;
+            bottom: -14px;
+        }
+        .sigma_banner.banner-3 .breadcrumb .breadcrumb-item.active,
+        .sigma_banner.banner-3 .breadcrumb-item a.btn-link {
+            font-size: 9px;
+        }
+    }
 </style>
 <?php $__env->stopSection(); ?>
 

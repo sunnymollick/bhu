@@ -388,6 +388,15 @@
     display: block;
   }
 
+  .sigma_aside.sigma_aside-left {
+    width: 350px;
+    left: -350px;
+  }
+
+  .sigma_aside.sigma_aside-left.open {
+    left: 0;
+  }
+
   .sigma_post-single-thumb .sigma_sermon-box .sigma_box {
     position: relative;
     top: 0;
@@ -880,6 +889,11 @@
 }
 
 @media (max-width: 575px) {
+
+  .sigma_aside.sigma_aside-left {
+    width: 85vw;
+    left: -85vw;
+  }
 
   blockquote {
     padding: 20px;

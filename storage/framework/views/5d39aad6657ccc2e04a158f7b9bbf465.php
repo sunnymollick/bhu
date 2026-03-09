@@ -213,8 +213,8 @@
 
           <?php if(in_array(auth()->user()->role?->name, ['Super Admin', 'Admin'])): ?>
           <!-- Website Management -->
-          <li class="nav-item has-treeview <?php echo e(request()->routeIs(['admin.banner.*', 'admin.services.*', 'admin.about.*', 'admin.page.*', 'admin.post.*']) ? 'menu-open' : ''); ?>">
-            <a href="#" class="nav-link <?php echo e(request()->routeIs(['admin.banner.*', 'admin.services.*', 'admin.about.*', 'admin.page.*', 'admin.post.*']) ? 'active' : ''); ?>">
+          <li class="nav-item has-treeview <?php echo e(request()->routeIs(['admin.banner.*', 'admin.services.*', 'admin.about.*', 'admin.page.*', 'admin.post.*', 'admin.settings.*']) ? 'menu-open' : ''); ?>">
+            <a href="#" class="nav-link <?php echo e(request()->routeIs(['admin.banner.*', 'admin.services.*', 'admin.about.*', 'admin.page.*', 'admin.post.*', 'admin.settings.*']) ? 'active' : ''); ?>">
                 <i class="nav-icon fas fa-globe"></i>
                 <p>
                     Website Management
@@ -242,14 +242,20 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo e(route('admin.page.all')); ?>" class="nav-link <?php echo e(request()->routeIs(['admin.page.*']) ? 'active' : ''); ?>">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="far fa-file-alt nav-icon"></i>
                         <p>Pages</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo e(route('admin.post.all')); ?>" class="nav-link <?php echo e(request()->routeIs(['admin.post.*']) ? 'active' : ''); ?>">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="far fa-newspaper nav-icon"></i>
                         <p>Posts</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo e(route('admin.settings.edit')); ?>" class="nav-link <?php echo e(request()->routeIs(['admin.settings.*']) ? 'active' : ''); ?>">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <p>Site Settings</p>
                     </a>
                 </li>
             </ul>

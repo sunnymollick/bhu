@@ -87,16 +87,29 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="icon">FontAwesome Icon Class</label>
-                                <input type="text" class="form-control @error('icon') is-invalid @enderror"
-                                       id="icon" name="icon" value="{{ old('icon') }}"
-                                       placeholder="e.g., fa-briefcase">
-                                <small class="form-text text-muted">
-                                    Visit <a href="https://fontawesome.com/icons" target="_blank">FontAwesome</a> for icons
-                                </small>
-                                @error('icon')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
+                                <label for="icon">FontAwesome Icon Class <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="icon-preview">
+                                            <i class="fas fa-icons"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control @error('icon') is-invalid @enderror"
+                                           id="icon" name="icon" value="{{ old('icon') }}"
+                                           placeholder="e.g., fa-briefcase" required>
+                                    @error('icon')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <small class="form-text text-muted">Type to search or click an icon below</small>
+                            </div>
+
+                            <!-- Icon Picker -->
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm mb-2"
+                                       id="icon-search" placeholder="Search icons...">
+                                <div id="icon-grid" style="max-height: 200px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 4px; padding: 8px;">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -139,4 +152,70 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts_custom')
+<style>
+    .icon-picker-btn {
+        width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center;
+        border: 1px solid #dee2e6; border-radius: 4px; cursor: pointer; margin: 2px;
+        background: #fff; transition: all 0.2s;
+    }
+    .icon-picker-btn:hover { background: #e9ecef; border-color: #adb5bd; }
+    .icon-picker-btn.selected { background: #dc8a45; color: #fff; border-color: #dc8a45; }
+</style>
+<script>
+$(function() {
+    const icons = [
+        'fa-home','fa-briefcase','fa-users','fa-handshake','fa-building','fa-graduation-cap',
+        'fa-heart','fa-star','fa-globe','fa-phone','fa-envelope','fa-map-marker-alt',
+        'fa-calendar','fa-clock','fa-book','fa-bullhorn','fa-camera','fa-chart-bar',
+        'fa-check-circle','fa-cog','fa-comment','fa-database','fa-edit','fa-file',
+        'fa-flag','fa-gift','fa-hand-holding-heart','fa-hands-helping','fa-hospital',
+        'fa-id-card','fa-info-circle','fa-key','fa-laptop','fa-leaf','fa-lightbulb',
+        'fa-link','fa-list','fa-lock','fa-medal','fa-microphone','fa-money-bill',
+        'fa-music','fa-newspaper','fa-paint-brush','fa-paper-plane','fa-pencil-alt',
+        'fa-people-carry','fa-place-of-worship','fa-plane','fa-pray','fa-project-diagram',
+        'fa-puzzle-piece','fa-question-circle','fa-ribbon','fa-rocket',
+        'fa-school','fa-search','fa-seedling','fa-server','fa-shield-alt','fa-shopping-cart',
+        'fa-sign-language','fa-sitemap','fa-smile','fa-solar-panel','fa-spa',
+        'fa-store','fa-sun','fa-sync','fa-tasks','fa-thumbs-up','fa-tools',
+        'fa-trophy','fa-truck','fa-umbrella','fa-university','fa-user','fa-user-friends',
+        'fa-user-graduate','fa-user-shield','fa-users-cog','fa-utensils','fa-video',
+        'fa-volleyball-ball','fa-wallet','fa-wrench','fa-cross','fa-church','fa-om',
+        'fa-dharmachakra','fa-donate','fa-dove','fa-feather','fa-fist-raised'
+    ];
+
+    function renderIcons(filter) {
+        const grid = $('#icon-grid');
+        grid.empty();
+        const selected = $('#icon').val();
+        const q = (filter || '').toLowerCase();
+        icons.forEach(function(icon) {
+            if (q && icon.toLowerCase().indexOf(q) === -1) return;
+            const btn = $('<span class="icon-picker-btn' + (selected === icon ? ' selected' : '') + '" title="' + icon + '"><i class="fas ' + icon + '"></i></span>');
+            btn.on('click', function() {
+                $('#icon').val(icon);
+                $('#icon-preview').html('<i class="fas ' + icon + '"></i>');
+                grid.find('.selected').removeClass('selected');
+                $(this).addClass('selected');
+            });
+            grid.append(btn);
+        });
+    }
+
+    renderIcons();
+
+    $('#icon-search').on('input', function() {
+        renderIcons($(this).val());
+    });
+
+    $('#icon').on('input', function() {
+        const val = $(this).val();
+        $('#icon-preview').html('<i class="fas ' + (val || 'fa-icons') + '"></i>');
+        $('#icon-grid .icon-picker-btn').removeClass('selected')
+            .filter('[title="' + val + '"]').addClass('selected');
+    });
+});
+</script>
 @endsection

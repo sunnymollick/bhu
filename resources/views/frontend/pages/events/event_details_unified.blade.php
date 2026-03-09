@@ -186,13 +186,21 @@
         display: inline-block;
     }
 
+    .event-gallery-slider .slick-dots li button {
+        background-color: #f0d6be;
+    }
+
+    .event-gallery-slider .slick-dots li.slick-active button {
+        background-color: #dc8a45;
+    }
+
     .event-gallery-slider .slick-dots li button:before {
         font-size: 12px;
-        color: #d86800;
+        color: #dc8a45;
     }
 
     .event-gallery-slider .slick-dots li.slick-active button:before {
-        color: #d86800;
+        color: #dc8a45;
     }
 
     .related-events-section {
@@ -334,6 +342,494 @@
     .all-events-btn i {
         margin-left: 8px;
     }
+
+    /* ===== Event Details Components — Responsive ===== */
+
+    /* Small Laptop (≤1280px) */
+    @media (max-width: 1280px) {
+        .event-info-box {
+            padding: 22px;
+        }
+        .event-description,
+        .gallery-section {
+            padding: 25px;
+        }
+        .related-events-section {
+            padding: 25px;
+        }
+        .gallery-slide {
+            height: 350px;
+        }
+        .event-gallery-slider .slick-prev {
+            left: -18px;
+        }
+        .event-gallery-slider .slick-next {
+            right: -18px;
+        }
+    }
+
+    /* Tablet (≤1024px) */
+    @media (max-width: 1024px) {
+        .event-info-box {
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .event-info-label {
+            min-width: 110px;
+        }
+        .event-description,
+        .gallery-section {
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+        .related-events-section {
+            padding: 22px;
+        }
+        .gallery-slide {
+            height: 300px;
+        }
+        .event-gallery-slider .slick-prev,
+        .event-gallery-slider .slick-next {
+            width: 40px;
+            height: 40px;
+        }
+        .event-gallery-slider .slick-prev:before,
+        .event-gallery-slider .slick-next:before {
+            font-size: 20px;
+        }
+        .event-gallery-slider .slick-prev {
+            left: -15px;
+        }
+        .event-gallery-slider .slick-next {
+            right: -15px;
+        }
+        .event-schedule {
+            padding: 18px;
+        }
+        .event-banner-wrapper {
+            margin-bottom: 25px;
+        }
+        .all-events-btn {
+            padding: 10px 16px;
+            font-size: 0.95rem;
+        }
+    }
+
+    /* Tablet Portrait / Large Phone (≤768px) */
+    @media (max-width: 768px) {
+        .event-info-box {
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+        .event-info-box h5 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+        }
+        .event-info-item {
+            padding: 10px 0;
+        }
+        .event-info-label {
+            min-width: 100px;
+            font-size: 0.9rem;
+        }
+        .event-info-label i {
+            font-size: 1rem;
+        }
+        .event-info-value {
+            font-size: 0.9rem;
+        }
+        .event-type-label {
+            font-size: 0.8rem;
+            padding: 5px 10px;
+        }
+        .organizer-link {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .event-banner-wrapper {
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+        .event-description,
+        .gallery-section {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .event-description h3,
+        .gallery-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+        .event-schedule {
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .event-schedule h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+        .gallery-slide {
+            height: 260px;
+        }
+        .event-gallery-slider {
+            margin: 0 -10px;
+        }
+        .gallery-slide {
+            padding: 0 10px;
+        }
+        .event-gallery-slider .slick-prev,
+        .event-gallery-slider .slick-next {
+            width: 36px;
+            height: 36px;
+        }
+        .event-gallery-slider .slick-prev:before,
+        .event-gallery-slider .slick-next:before {
+            font-size: 18px;
+        }
+        .event-gallery-slider .slick-prev {
+            left: -10px;
+        }
+        .event-gallery-slider .slick-next {
+            right: -10px;
+        }
+        .event-gallery-slider .slick-dots li button:before {
+            font-size: 10px;
+        }
+        .related-events-section {
+            padding: 20px;
+        }
+        .related-events-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 18px;
+        }
+        .related-event-card {
+            margin-bottom: 15px;
+        }
+        .related-event-image {
+            height: 130px;
+        }
+        .related-event-content {
+            padding: 12px;
+        }
+        .related-event-title {
+            font-size: 0.95rem;
+        }
+        .all-events-btn {
+            padding: 10px 14px;
+            font-size: 0.9rem;
+        }
+        h1.mb-4 {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Mobile L (≤425px) */
+    @media (max-width: 425px) {
+        .event-info-box {
+            padding: 15px;
+            margin-bottom: 18px;
+        }
+        .event-info-box h5 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        .event-info-item {
+            flex-direction: column;
+            gap: 4px;
+            padding: 10px 0;
+        }
+        .event-info-label {
+            min-width: unset;
+            font-size: 0.85rem;
+        }
+        .event-info-value {
+            font-size: 0.85rem;
+            padding-left: 24px;
+        }
+        .event-type-label {
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            margin-bottom: 10px;
+        }
+        .organizer-link {
+            font-size: 0.88rem;
+            margin-bottom: 12px;
+        }
+        .organizer-link i {
+            margin-right: 6px;
+            font-size: 0.9rem;
+        }
+        .event-banner-wrapper {
+            margin-bottom: 18px;
+            border-radius: 5px;
+        }
+        .event-description,
+        .gallery-section {
+            padding: 16px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+        }
+        .event-description h3,
+        .gallery-section h3 {
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+        }
+        .event-schedule {
+            padding: 14px;
+            margin-bottom: 18px;
+            font-size: 0.9rem;
+        }
+        .event-schedule h4 {
+            font-size: 1rem;
+        }
+        .gallery-slide {
+            height: 220px;
+        }
+        .event-gallery-slider .slick-prev,
+        .event-gallery-slider .slick-next {
+            width: 32px;
+            height: 32px;
+        }
+        .event-gallery-slider .slick-prev:before,
+        .event-gallery-slider .slick-next:before {
+            font-size: 16px;
+        }
+        .event-gallery-slider .slick-prev {
+            left: -6px;
+        }
+        .event-gallery-slider .slick-next {
+            right: -6px;
+        }
+        .related-events-section {
+            padding: 16px;
+            border-radius: 6px;
+        }
+        .related-events-section h3 {
+            font-size: 1.15rem;
+            margin-bottom: 15px;
+        }
+        .related-event-image {
+            height: 120px;
+        }
+        .related-event-content {
+            padding: 10px;
+        }
+        .related-event-title {
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+        .related-event-meta {
+            font-size: 0.8rem;
+        }
+        .all-events-btn {
+            padding: 10px 12px;
+            font-size: 0.85rem;
+        }
+        h1.mb-4 {
+            font-size: 1.3rem;
+        }
+    }
+
+    /* Mobile M (≤375px) */
+    @media (max-width: 375px) {
+        .event-info-box {
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        .event-info-box h5 {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        .event-info-item {
+            padding: 8px 0;
+        }
+        .event-info-label {
+            font-size: 0.82rem;
+        }
+        .event-info-label i {
+            font-size: 0.9rem;
+            margin-right: 6px;
+        }
+        .event-info-value {
+            font-size: 0.82rem;
+            padding-left: 22px;
+        }
+        .event-type-label {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+        }
+        .organizer-link {
+            font-size: 0.82rem;
+            margin-bottom: 10px;
+        }
+        .event-banner-wrapper {
+            margin-bottom: 15px;
+        }
+        .event-description,
+        .gallery-section {
+            padding: 14px;
+            margin-bottom: 15px;
+        }
+        .event-description h3,
+        .gallery-section h3 {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+        }
+        .event-schedule {
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+        .event-schedule h4 {
+            font-size: 0.95rem;
+        }
+        .gallery-slide {
+            height: 190px;
+        }
+        .event-gallery-slider .slick-prev,
+        .event-gallery-slider .slick-next {
+            width: 28px;
+            height: 28px;
+        }
+        .event-gallery-slider .slick-prev:before,
+        .event-gallery-slider .slick-next:before {
+            font-size: 14px;
+        }
+        .related-events-section {
+            padding: 14px;
+        }
+        .related-events-section h3 {
+            font-size: 1.05rem;
+        }
+        .related-event-image {
+            height: 110px;
+        }
+        .related-event-content {
+            padding: 10px;
+        }
+        .related-event-title {
+            font-size: 0.85rem;
+        }
+        .related-event-meta {
+            font-size: 0.78rem;
+        }
+        .all-events-btn {
+            padding: 9px 10px;
+            font-size: 0.82rem;
+        }
+        h1.mb-4 {
+            font-size: 1.2rem;
+        }
+    }
+
+    /* Mobile S (≤320px) */
+    @media (max-width: 320px) {
+        .event-info-box {
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+        .event-info-box h5 {
+            font-size: 0.9rem;
+        }
+        .event-info-item {
+            padding: 7px 0;
+        }
+        .event-info-label {
+            font-size: 0.78rem;
+        }
+        .event-info-label i {
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+        .event-info-value {
+            font-size: 0.78rem;
+            padding-left: 20px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        .event-type-label {
+            font-size: 0.7rem;
+            padding: 3px 7px;
+        }
+        .organizer-link {
+            font-size: 0.78rem;
+            margin-bottom: 8px;
+        }
+        .event-banner-wrapper {
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+        .event-description,
+        .gallery-section {
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 5px;
+        }
+        .event-description h3,
+        .gallery-section h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .event-schedule {
+            padding: 10px;
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+        }
+        .event-schedule h4 {
+            font-size: 0.88rem;
+        }
+        .gallery-slide {
+            height: 160px;
+        }
+        .event-gallery-slider .slick-prev,
+        .event-gallery-slider .slick-next {
+            width: 26px;
+            height: 26px;
+        }
+        .event-gallery-slider .slick-prev:before,
+        .event-gallery-slider .slick-next:before {
+            font-size: 12px;
+        }
+        .event-gallery-slider .slick-prev {
+            left: -4px;
+        }
+        .event-gallery-slider .slick-next {
+            right: -4px;
+        }
+        .event-gallery-slider .slick-dots li button:before {
+            font-size: 8px;
+        }
+        .event-gallery-slider .slick-dots li {
+            margin: 0 3px;
+        }
+        .related-events-section {
+            padding: 12px;
+            border-radius: 5px;
+        }
+        .related-events-section h3 {
+            font-size: 1rem;
+        }
+        .related-event-image {
+            height: 100px;
+        }
+        .related-event-content {
+            padding: 8px;
+        }
+        .related-event-title {
+            font-size: 0.82rem;
+        }
+        .related-event-meta {
+            font-size: 0.75rem;
+        }
+        .all-events-btn {
+            padding: 8px 10px;
+            font-size: 0.78rem;
+        }
+        h1.mb-4 {
+            font-size: 1.1rem;
+        }
+    }
 </style>
 @endsection
 
@@ -341,13 +837,13 @@
 <div class="sigma_subheader">
     <div class="overlay">
         <div class="sub-head-banner"></div>
-        <h4 class="header-img-text">Event Details</h4>
+        <h4 class="header-img-text">{{ $event->event_name }}</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-details">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ url('/') }}">Home</a></li>
-            <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.events') }}">{{ $event->event_name }}</a></li>
-            <li class="breadcrumb-item active">Event Details</li>
+            <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.events') }}">Events</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $event->event_name }}</li>
         </ol>
     </nav>
 </div>

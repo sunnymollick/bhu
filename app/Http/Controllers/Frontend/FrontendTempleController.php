@@ -21,15 +21,27 @@ class FrontendTempleController extends Controller
 
     public function temples(Request $request)
     {
-        // Fetch all divisions, districts, upazilas
-        $divisions = Division::select('id', 'name')->get();
-        $districts = District::select('id', 'division_id', 'name')->get();
-        $upazilas = Upazila::select('id', 'district_id', 'name')->get();
+        // Cache location dropdowns — rarely change (file store, forever)
+        $divisions = Cache::store('file')->rememberForever('temple_divisions', function () {
+            return Division::select('id', 'name')->get();
+        });
+        $districts = Cache::store('file')->rememberForever('temple_districts', function () {
+            return District::select('id', 'division_id', 'name')->get();
+        });
+        $upazilas = Cache::store('file')->rememberForever('temple_upazilas', function () {
+            return Upazila::select('id', 'district_id', 'name')->get();
+        });
 
-        // Fetch activity categories with activities
-        $activityCategories = ActivityCategory::with(['activities' => function($query) {
-            $query->select('id', 'title', 'title_bn', 'activity_category_id');
-        }])->select('id', 'name', 'name_bn')->get();
+        // Cache used activity categories (1 hour)
+        $activityCategories = Cache::store('file')->remember('temple_activity_cats', 3600, function () {
+            return ActivityCategory::with(['activities' => function($query) {
+                $query->select('id', 'title', 'title_bn', 'activity_category_id')
+                      ->whereHas('temples');
+            }])->select('id', 'name', 'name_bn')
+              ->get()
+              ->filter(fn($cat) => $cat->activities->isNotEmpty())
+              ->values();
+        });
 
         // Get filtered and paginated temples
         $temples = $this->applyFilters($request)->paginate(9);
@@ -60,65 +72,41 @@ class FrontendTempleController extends Controller
 
     public function filterTemples(Request $request)
     {
-        // Create cache key based on all filter parameters
-        $cacheKey = 'temples_filter_' . md5(serialize($request->all()));
+        // Build a deterministic cache key from sorted, filtered input
+        $filterParams = collect($request->only([
+            'division_id', 'district_id', 'upazila_id',
+            'residential_facility', 'activities', 'query', 'page'
+        ]))->filter(function ($v) {
+            return $v !== null && $v !== '' && $v !== [];
+        })->sortKeys()->toArray();
 
-        $temples = Cache::remember($cacheKey, 300, function() use ($request) {
-            return $this->applyFilters($request)->paginate(9);
+        $cacheKey = 'temple_filter:' . md5(json_encode($filterParams));
+
+        // Use file-based cache (no DB contention), 60s TTL
+        $cached = Cache::store('file')->remember($cacheKey, 60, function () use ($request) {
+            $temples = $this->applyFilters($request)->paginate(9);
+            return [
+                'templesHtml'    => view('frontend.partials.temples-grid', compact('temples'))->render(),
+                'paginationHtml' => view('frontend.partials.temples-pagination', compact('temples'))->render(),
+                'totalCount'     => $temples->total(),
+            ];
         });
 
-        // Return HTML for temples grid and pagination
-        $templesHtml = view('frontend.partials.temples-grid', compact('temples'))->render();
-        $paginationHtml = view('frontend.partials.temples-pagination', compact('temples'))->render();
-
-        return response()->json([
-            'templesHtml' => $templesHtml,
-            'paginationHtml' => $paginationHtml,
-            'totalCount' => $temples->total()
-        ]);
+        return response()->json($cached);
     }
 
     private function applyFilters(Request $request, $forMap = false)
     {
-
         if ($forMap) {
             $query = Temple::where('status', true)->where('approval_status', 'approved');
         } else {
-            $query = Temple::with(['division', 'district', 'upazila', 'activities.activity'])
+            // Only eager-load what the grid partial actually uses
+            $query = Temple::with(['division:id,name', 'district:id,name', 'upazila:id,name'])
                 ->where('status', true)
                 ->where('approval_status', 'approved');
         }
 
-        // Apply search query filter
-        if ($request->filled('query')) {
-            $searchQuery = $request->input('query');
-            $query->where(function($q) use ($searchQuery) {
-                // Prefix search (uses index efficiently)
-            $q->where('name', 'LIKE', $searchQuery . '%')
-                ->orWhere('name_bn', 'LIKE', $searchQuery . '%')
-                // Fallback to full search
-                ->orWhere('name', 'LIKE', '%' . $searchQuery . '%')
-                ->orWhere('name_bn', 'LIKE', '%' . $searchQuery . '%')
-                ->orWhere('address', 'LIKE', '%' . $searchQuery . '%')
-                // Search by division name
-                ->orWhereHas('division', function($subQ) use ($searchQuery) {
-                    $subQ->where('name', 'LIKE', $searchQuery . '%')
-                        ->orWhere('name', 'LIKE', '%' . $searchQuery . '%');
-                })
-                // Search by district name
-                ->orWhereHas('district', function($subQ) use ($searchQuery) {
-                    $subQ->where('name', 'LIKE', $searchQuery . '%')
-                        ->orWhere('name', 'LIKE', '%' . $searchQuery . '%');
-                })
-                // Search by upazila name
-                ->orWhereHas('upazila', function($subQ) use ($searchQuery) {
-                    $subQ->where('name', 'LIKE', $searchQuery . '%')
-                        ->orWhere('name', 'LIKE', '%' . $searchQuery . '%');
-                });
-            });
-        }
-
-        // Apply location filters
+        // Apply location filters FIRST (uses indexes, narrows dataset early)
         if ($request->filled('division_id')) {
             $query->where('division_id', $request->division_id);
         }
@@ -142,6 +130,26 @@ class FrontendTempleController extends Controller
                     $q->where('activity_id', $activityId);
                 });
             }
+        }
+
+        // Apply search LAST (most expensive — runs on the already-narrowed set)
+        if ($request->filled('query')) {
+            $searchQuery = $request->input('query');
+            $query->where(function($q) use ($searchQuery) {
+                // %keyword% already covers prefix matches — no need for duplicate clauses
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%')
+                  ->orWhere('name_bn', 'LIKE', '%' . $searchQuery . '%')
+                  ->orWhere('address', 'LIKE', '%' . $searchQuery . '%')
+                  ->orWhereHas('division', function($subQ) use ($searchQuery) {
+                      $subQ->where('name', 'LIKE', '%' . $searchQuery . '%');
+                  })
+                  ->orWhereHas('district', function($subQ) use ($searchQuery) {
+                      $subQ->where('name', 'LIKE', '%' . $searchQuery . '%');
+                  })
+                  ->orWhereHas('upazila', function($subQ) use ($searchQuery) {
+                      $subQ->where('name', 'LIKE', '%' . $searchQuery . '%');
+                  });
+            });
         }
 
         return $query->select('id', 'name', 'name_bn', 'division_id', 'district_id', 'upazila_id', 'address', 'main_picture');
@@ -245,25 +253,39 @@ class FrontendTempleController extends Controller
 
     public function organizations(Request $request)
     {
-        // Fetch all divisions, districts
-        $divisions = Division::select('id', 'name')->get();
-        $districts = District::select('id', 'division_id', 'name')->get();
+        // Cache location dropdowns — rarely change (file store, forever)
+        $divisions = Cache::store('file')->rememberForever('org_divisions', function () {
+            return Division::select('id', 'name')->get();
+        });
+        $districts = Cache::store('file')->rememberForever('org_districts', function () {
+            return District::select('id', 'division_id', 'name')->get();
+        });
 
-        // Fetch business categories with businesses (category_type = 'business')
-        $businessCategories = \App\Models\BusinessCategory::with(['businesses' => function($query) {
-            $query->select('id', 'title', 'title_bn', 'business_category_id');
-        }])
-        ->where('category_type', 'business')
-        ->select('id', 'name', 'name_bn')
-        ->get();
+        // Cache used business categories (1 hour)
+        $businessCategories = Cache::store('file')->remember('org_biz_cats', 3600, function () {
+            return \App\Models\BusinessCategory::with(['businesses' => function($query) {
+                $query->select('id', 'title', 'title_bn', 'business_category_id')
+                    ->whereHas('organizationBusinesses');
+            }])
+            ->where('category_type', 'business')
+            ->select('id', 'name', 'name_bn')
+            ->get()
+            ->filter(fn($cat) => $cat->businesses->isNotEmpty())
+            ->values();
+        });
 
-        // Fetch religious categories with businesses (category_type = 'religious')
-        $religiousCategories = \App\Models\BusinessCategory::with(['businesses' => function($query) {
-            $query->select('id', 'title', 'title_bn', 'business_category_id');
-        }])
-        ->where('category_type', 'religious')
-        ->select('id', 'name', 'name_bn')
-        ->get();
+        // Cache used religious categories (1 hour)
+        $religiousCategories = Cache::store('file')->remember('org_rel_cats', 3600, function () {
+            return \App\Models\BusinessCategory::with(['businesses' => function($query) {
+                $query->select('id', 'title', 'title_bn', 'business_category_id')
+                    ->whereHas('organizationBusinesses');
+            }])
+            ->where('category_type', 'religious')
+            ->select('id', 'name', 'name_bn')
+            ->get()
+            ->filter(fn($cat) => $cat->businesses->isNotEmpty())
+            ->values();
+        });
 
         // Get filtered and paginated organizations
         $organizations = $this->applyOrganizationFilters($request)->paginate(9);
@@ -273,58 +295,36 @@ class FrontendTempleController extends Controller
 
     public function filterOrganizations(Request $request)
     {
-        // Create cache key based on all filter parameters
-        $cacheKey = 'organizations_filter_' . md5(serialize($request->all()));
+        // Deterministic sorted cache key (file-based to avoid DB session locking)
+        $params = $request->only(['division_id', 'district_id', 'organization_type', 'businesses', 'query', 'page']);
+        ksort($params);
+        $cacheKey = 'org_filter_' . md5(json_encode($params));
 
-        // Cache results for 5 minutes to improve performance
-        $organizations = Cache::remember($cacheKey, 300, function() use ($request) {
-            return $this->applyOrganizationFilters($request)->paginate(9);
+        // Cache rendered HTML, not the Paginator object (avoids serialization issues)
+        $cached = Cache::store('file')->remember($cacheKey, 60, function () use ($request) {
+            $organizations = $this->applyOrganizationFilters($request)->paginate(9);
+            return [
+                'organizationsHtml' => view('frontend.partials.organizations-grid', compact('organizations'))->render(),
+                'paginationHtml'    => view('frontend.partials.organizations-pagination', compact('organizations'))->render(),
+                'totalCount'        => $organizations->total(),
+            ];
         });
 
-        // Return HTML for organizations grid and pagination
-        $organizationsHtml = view('frontend.partials.organizations-grid', compact('organizations'))->render();
-        $paginationHtml = view('frontend.partials.organizations-pagination', compact('organizations'))->render();
-
-        return response()->json([
-            'organizationsHtml' => $organizationsHtml,
-            'paginationHtml' => $paginationHtml,
-            'totalCount' => $organizations->total()
-        ]);
+        return response()->json($cached);
     }
 
     private function applyOrganizationFilters(Request $request)
     {
-        // Build query for organizations with filters
-        $query = \App\Models\Organization::with(['division', 'district', 'businesses.business'])
+        $query = \App\Models\Organization::with(['division:id,name', 'district:id,name', 'businesses.business'])
             ->where('status', 'approved');
 
-        // Apply search query filter
-        if ($request->filled('query')) {
-            $searchQuery = $request->input('query');
-            $query->where(function($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', $searchQuery . '%')
-                    ->orWhere('name', 'LIKE', '%' . $searchQuery . '%')
-                    ->orWhere('address', 'LIKE', '%' . $searchQuery . '%')
-                    ->orWhereHas('division', function($subQ) use ($searchQuery) {
-                        $subQ->where('name', 'LIKE', $searchQuery . '%')
-                            ->orWhere('name', 'LIKE', '%' . $searchQuery . '%');
-                    })
-                    ->orWhereHas('district', function($subQ) use ($searchQuery) {
-                        $subQ->where('name', 'LIKE', $searchQuery . '%')
-                            ->orWhere('name', 'LIKE', '%' . $searchQuery . '%');
-                    });
-            });
-        }
-
-        // Apply location filters
+        // Indexed column filters first
         if ($request->filled('division_id')) {
             $query->where('division_id', $request->division_id);
         }
         if ($request->filled('district_id')) {
             $query->where('district_id', $request->district_id);
         }
-
-        // Apply organization type filter
         if ($request->filled('organization_type')) {
             $query->where('organization_type', $request->organization_type);
         }
@@ -336,6 +336,21 @@ class FrontendTempleController extends Controller
                     $q->where('business_id', $businessId);
                 });
             }
+        }
+
+        // Expensive search last
+        if ($request->filled('query')) {
+            $searchQuery = $request->input('query');
+            $query->where(function($q) use ($searchQuery) {
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%')
+                    ->orWhere('address', 'LIKE', '%' . $searchQuery . '%')
+                    ->orWhereHas('division', function($subQ) use ($searchQuery) {
+                        $subQ->where('name', 'LIKE', '%' . $searchQuery . '%');
+                    })
+                    ->orWhereHas('district', function($subQ) use ($searchQuery) {
+                        $subQ->where('name', 'LIKE', '%' . $searchQuery . '%');
+                    });
+            });
         }
 
         return $query->orderBy('id', 'desc')
@@ -459,81 +474,73 @@ class FrontendTempleController extends Controller
 
     public function jobs(Request $request)
     {
-        $jobCategories = \App\Models\JobCategory::all();
-        $jobIndustries = \App\Models\JobIndustry::all();
-        $divisions = \App\Models\Division::all();
-        $districts = \App\Models\District::all();
+        $jobCategories = Cache::store('file')->rememberForever('job_categories', function () {
+            return \App\Models\JobCategory::select('id', 'name')->get();
+        });
+        $jobIndustries = Cache::store('file')->rememberForever('job_industries', function () {
+            return \App\Models\JobIndustry::select('id', 'name')->get();
+        });
+        $divisions = Cache::store('file')->rememberForever('job_divisions', function () {
+            return \App\Models\Division::select('id', 'name')->get();
+        });
+        $districts = Cache::store('file')->rememberForever('job_districts', function () {
+            return \App\Models\District::select('id', 'division_id', 'name')->get();
+        });
 
-        // Base query - only show approved job posts
-        $query = \App\Models\JobPost::with(['division', 'district', 'jobCategory', 'jobIndustry'])
-            ->where('is_approved', true);
-
-        // Apply search
-        if ($request->has('query') && $request->input('query') != '') {
-            $searchTerm = $request->input('query');
-            $query->where(function($q) use ($searchTerm) {
-                $q->where('job_title', 'like', '%' . $searchTerm . '%')
-                ->orWhere('company', 'like', '%' . $searchTerm . '%');
-            });
-        }
-
-        // Apply sorting
-        $sortBy = $request->get('sort_by', 'latest');
-        switch ($sortBy) {
-            case 'latest':
-                $query->orderBy('created_at', 'desc');
-                break;
-            case 'oldest':
-                $query->orderBy('created_at', 'asc');
-                break;
-            case 'deadline_soon':
-                $query->orderBy('deadline', 'asc');
-                break;
-            case 'deadline_far':
-                $query->orderBy('deadline', 'desc');
-                break;
-            default:
-                $query->orderBy('created_at', 'desc');
-        }
-
-        // Paginate results
-        $jobs = $query->paginate(10);
+        $jobs = $this->applyJobFilters($request)->paginate(10);
 
         return view('frontend.pages.jobs.jobs', compact('jobs', 'jobCategories', 'jobIndustries', 'divisions', 'districts'));
     }
 
     public function filterJobs(Request $request)
     {
-        $query = \App\Models\JobPost::with(['division', 'district', 'jobCategory', 'jobIndustry'])
+        $params = $request->only(['job_category_id', 'job_industry_id', 'job_type', 'work_mode', 'division_id', 'district_id', 'query', 'sort_by', 'page']);
+        ksort($params);
+        $cacheKey = 'job_filter_' . md5(json_encode($params));
+
+        $cached = Cache::store('file')->remember($cacheKey, 60, function () use ($request) {
+            $jobs = $this->applyJobFilters($request)->paginate(10);
+            return [
+                'grid'       => view('frontend.partials.jobs-grid', compact('jobs'))->render(),
+                'pagination' => view('frontend.partials.jobs-pagination', compact('jobs'))->render(),
+                'count'      => [
+                    'from'  => $jobs->firstItem() ?? 0,
+                    'to'    => $jobs->lastItem() ?? 0,
+                    'total' => $jobs->total(),
+                ],
+            ];
+        });
+
+        return response()->json($cached);
+    }
+
+    private function applyJobFilters(Request $request)
+    {
+        $query = \App\Models\JobPost::with(['division:id,name', 'district:id,name', 'jobCategory:id,name', 'jobIndustry:id,name'])
             ->where('is_approved', true);
 
-        // Apply filters
-        if ($request->job_category_id) {
+        // Indexed column filters first
+        if ($request->filled('job_category_id')) {
             $query->where('job_category_id', $request->job_category_id);
         }
-
-        if ($request->job_industry_id) {
+        if ($request->filled('job_industry_id')) {
             $query->where('job_industry_id', $request->job_industry_id);
         }
-
-        if ($request->job_type) {
+        if ($request->filled('job_type')) {
             $query->where('job_type', $request->job_type);
         }
-
-        if ($request->work_mode) {
+        if ($request->filled('work_mode')) {
             $query->where('work_mode', $request->work_mode);
         }
-
-        if ($request->division_id) {
+        if ($request->filled('division_id')) {
             $query->where('division_id', $request->division_id);
         }
-
-        if ($request->district_id) {
+        if ($request->filled('district_id')) {
             $query->where('district_id', $request->district_id);
         }
 
-        // Apply search
-        if ($request->has('query') && $request->input('query') != '') {
+        // Expensive search last
+        if ($request->filled('query')) {
             $searchTerm = $request->input('query');
             $query->where(function($q) use ($searchTerm) {
                 $q->where('job_title', 'like', '%' . $searchTerm . '%')
@@ -541,51 +548,34 @@ class FrontendTempleController extends Controller
             });
         }
 
-        // Apply sorting
+        // Sorting
         $sortBy = $request->get('sort_by', 'latest');
         switch ($sortBy) {
-            case 'latest':
-                $query->orderBy('created_at', 'desc');
-                break;
-            case 'oldest':
-                $query->orderBy('created_at', 'asc');
-                break;
-            case 'deadline_soon':
-                $query->orderBy('deadline', 'asc');
-                break;
-            case 'deadline_far':
-                $query->orderBy('deadline', 'desc');
-                break;
-            default:
-                $query->orderBy('created_at', 'desc');
+            case 'oldest':        $query->orderBy('created_at', 'asc'); break;
+            case 'deadline_soon': $query->orderBy('deadline', 'asc'); break;
+            case 'deadline_far':  $query->orderBy('deadline', 'desc'); break;
+            default:              $query->orderBy('created_at', 'desc');
         }
 
-        $jobs = $query->paginate(10);
-
-        $gridHtml = view('frontend.partials.jobs-grid', compact('jobs'))->render();
-        $paginationHtml = view('frontend.partials.jobs-pagination', compact('jobs'))->render();
-
-        return response()->json([
-            'grid' => $gridHtml,
-            'pagination' => $paginationHtml,
-            'count' => [
-                'from' => $jobs->firstItem() ?? 0,
-                'to' => $jobs->lastItem() ?? 0,
-                'total' => $jobs->total()
-            ]
-        ]);
+        return $query;
     }
 
     public function searchJobs(Request $request)
     {
         $searchTerm = $request->input('query');
 
-        $jobs = \App\Models\JobPost::with(['division', 'district', 'jobCategory', 'jobIndustry'])
+        if (!$searchTerm || strlen($searchTerm) < 2) {
+            return response()->json([]);
+        }
+
+        $jobs = \App\Models\JobPost::with(['division:id,name', 'district:id,name'])
             ->where('is_approved', true)
             ->where(function($query) use ($searchTerm) {
                 $query->where('job_title', 'like', '%' . $searchTerm . '%')
                     ->orWhere('company', 'like', '%' . $searchTerm . '%');
             })
+            ->select('id', 'job_title', 'company', 'division_id', 'district_id')
+            ->limit(10)
             ->get();
 
         $results = $jobs->map(function($job) {

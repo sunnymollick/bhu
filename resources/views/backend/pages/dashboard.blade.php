@@ -194,9 +194,112 @@
         opacity: 0.3;
     }
 
+    /* ── Collapsible Section Styles ── */
+    .dash-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .dash-section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        cursor: pointer;
+        user-select: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border-left: 4px solid #dc8a45;
+        transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .dash-section-header:hover {
+        background: #fdf6ef;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+
+    .dash-section-header:focus-visible {
+        outline: 2px solid #dc8a45;
+        outline-offset: 2px;
+    }
+
+    .dash-section-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .dash-section-title i {
+        color: #dc8a45;
+    }
+
+    .dash-section-toggle {
+        font-size: 0.85rem;
+        color: #7f8c8d;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .dash-section-header[aria-expanded="true"] .dash-section-toggle {
+        transform: rotate(180deg);
+    }
+
+    .dash-section-body {
+        overflow: hidden;
+        transition: max-height 0.4s ease, opacity 0.3s ease;
+        opacity: 1;
+    }
+
+    .dash-section-body-inner {
+        padding-top: 1rem;
+    }
+
+    .dash-section-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #dc8a45;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 700;
+        border-radius: 50px;
+        padding: 0.15rem 0.55rem;
+        margin-left: 0.5rem;
+        min-width: 22px;
+    }
+
     @media (max-width: 768px) {
         .stat-card {
             margin-bottom: 1rem;
+        }
+
+        .dash-section-header {
+            padding: 0.85rem 1rem;
+        }
+
+        .dash-section-title {
+            font-size: 1rem;
+        }
+
+        .dash-section-body-inner {
+            padding-top: 0.75rem;
+        }
+
+        /* Collapse all sections by default on mobile (CSS-first, no flash) */
+        .dash-section-body {
+            max-height: 0 !important;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        /* When JS marks it expanded, allow it to show */
+        .dash-section-body.is-expanded {
+            max-height: none !important;
+            opacity: 1;
         }
     }
 </style>
@@ -255,6 +358,15 @@
 
         @if(in_array($role ?? '', ['Admin', 'Super Admin']))
             {{-- Admin Dashboard --}}
+
+            {{-- Section: Overview Statistics --}}
+            <div class="dash-section" data-section="admin-stats">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-admin-stats">
+                    <h4 class="dash-section-title"><i class="fas fa-chart-bar"></i> Overview Statistics</h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-admin-stats" role="region">
+                    <div class="dash-section-body-inner">
 
             {{-- Statistics Cards --}}
             <div class="row">
@@ -374,12 +486,22 @@
                 </div>
             </div>
 
-            {{-- Quick Actions --}}
+                    </div>
+                </div>
+            </div>
+
+            {{-- Section: Quick Actions --}}
+            <div class="dash-section" data-section="admin-actions">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-admin-actions">
+                    <h4 class="dash-section-title"><i class="fas fa-bolt"></i> Quick Actions</h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-admin-actions" role="region">
+                    <div class="dash-section-body-inner">
             <div class="row">
                 <div class="col-12">
                     <div class="dashboard-card">
-                        <h3 class="section-title"><i class="fas fa-bolt mr-2"></i>Quick Actions</h3>
-                        <div class="mt-3">
+                        <div class="mt-1">
                             <a href="{{ route('admin.user.all') }}" class="quick-action-btn">
                                 <i class="fas fa-users mr-2"></i>Manage Users
                             </a>
@@ -405,7 +527,18 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
+            {{-- Section: Recent Activity --}}
+            <div class="dash-section" data-section="admin-recent">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-admin-recent">
+                    <h4 class="dash-section-title"><i class="fas fa-clock"></i> Recent Activity</h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-admin-recent" role="region">
+                    <div class="dash-section-body-inner">
             <div class="row">
                 {{-- Recent Users --}}
                 <div class="col-lg-6">
@@ -492,12 +625,27 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
+            {{-- Section: Pending Verifications --}}
+            <div class="dash-section" data-section="admin-pending">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-admin-pending">
+                    <h4 class="dash-section-title">
+                        <i class="fas fa-user-clock"></i> Pending Verifications
+                        @if(isset($pending_verifications) && $pending_verifications->count() > 0)
+                            <span class="dash-section-badge">{{ $pending_verifications->count() }}</span>
+                        @endif
+                    </h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-admin-pending" role="region">
+                    <div class="dash-section-body-inner">
             <div class="row">
                 {{-- Pending Verifications --}}
                 <div class="col-lg-12">
                     <div class="dashboard-card">
-                        <h3 class="section-title"><i class="fas fa-user-clock mr-2"></i>Pending Verifications</h3>
                         @if(isset($pending_verifications) && $pending_verifications->count() > 0)
                             <div class="table-responsive">
                                 <table class="table table-hover">
@@ -561,12 +709,27 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
+            {{-- Section: Contact Messages --}}
+            <div class="dash-section" data-section="admin-contacts">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-admin-contacts">
+                    <h4 class="dash-section-title">
+                        <i class="fas fa-envelope"></i> Recent Contact Messages
+                        @if(isset($recent_contacts) && $recent_contacts->count() > 0)
+                            <span class="dash-section-badge">{{ $recent_contacts->count() }}</span>
+                        @endif
+                    </h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-admin-contacts" role="region">
+                    <div class="dash-section-body-inner">
             <div class="row">
                 {{-- Recent Contacts --}}
                 <div class="col-lg-12">
                     <div class="dashboard-card">
-                        <h3 class="section-title"><i class="fas fa-envelope mr-2"></i>Recent Contact Messages</h3>
                         @if(isset($recent_contacts) && $recent_contacts->count() > 0)
                             <div class="table-responsive">
                                 <table class="table table-hover">
@@ -613,12 +776,22 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
         @else
             {{-- User Dashboard --}}
 
+            {{-- Section: My Statistics --}}
+            <div class="dash-section" data-section="user-stats">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-user-stats">
+                    <h4 class="dash-section-title"><i class="fas fa-chart-pie"></i> My Statistics</h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-user-stats" role="region">
+                    <div class="dash-section-body-inner">
             <div class="row">
-                {{-- Quick Stats for Users - Show only their own data --}}
                 <div class="col-lg-3 col-md-6">
                     <a href="{{ route('admin.temple.all') }}" style="text-decoration: none;">
                         <div class="stat-card primary">
@@ -656,13 +829,22 @@
                     </a>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
-            {{-- Quick Actions for Users --}}
+            {{-- Section: Quick Actions --}}
+            <div class="dash-section" data-section="user-actions">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-user-actions">
+                    <h4 class="dash-section-title"><i class="fas fa-bolt"></i> Quick Actions</h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-user-actions" role="region">
+                    <div class="dash-section-body-inner">
             <div class="row">
                 <div class="col-12">
                     <div class="dashboard-card">
-                        <h3 class="section-title"><i class="fas fa-bolt mr-2"></i>Quick Actions</h3>
-                        <div class="mt-3">
+                        <div class="mt-1">
                             <a href="{{ route('admin.user.profile') }}" class="quick-action-btn">
                                 <i class="fas fa-user mr-2"></i>My Profile
                             </a>
@@ -681,12 +863,21 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
-            {{-- My Job Posts --}}
+            {{-- Section: My Job Posts --}}
+            <div class="dash-section" data-section="user-jobs">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-user-jobs">
+                    <h4 class="dash-section-title"><i class="fas fa-briefcase"></i> My Job Posts</h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-user-jobs" role="region">
+                    <div class="dash-section-body-inner">
             <div class="row">
                 <div class="col-12">
                     <div class="dashboard-card">
-                        <h3 class="section-title"><i class="fas fa-briefcase mr-2"></i>My Job Posts</h3>
                         @if(isset($my_jobs) && $my_jobs->count() > 0)
                             @foreach($my_jobs as $job)
                                 <div class="recent-item">
@@ -719,7 +910,18 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
+            {{-- Section: My Listings --}}
+            <div class="dash-section" data-section="user-listings">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-user-listings">
+                    <h4 class="dash-section-title"><i class="fas fa-th-list"></i> My Temples & Organizations</h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-user-listings" role="region">
+                    <div class="dash-section-body-inner">
             {{-- My Temples --}}
             <div class="row">
                 <div class="col-lg-6">
@@ -793,12 +995,21 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
-            {{-- My Activities/Events --}}
+            {{-- Section: My Events --}}
+            <div class="dash-section" data-section="user-events">
+                <div class="dash-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="section-user-events">
+                    <h4 class="dash-section-title"><i class="fas fa-calendar-alt"></i> My Events</h4>
+                    <span class="dash-section-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dash-section-body" id="section-user-events" role="region">
+                    <div class="dash-section-body-inner">
             <div class="row">
                 <div class="col-12">
                     <div class="dashboard-card">
-                        <h3 class="section-title"><i class="fas fa-calendar-alt mr-2"></i>My Events</h3>
                         @if(isset($my_activities) && $my_activities->count() > 0)
                             <div class="table-responsive">
                                 <table class="table table-hover">
@@ -861,9 +1072,116 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
         @endif
 
     </div>
 </section>
+@endsection
+
+@section('scripts_custom')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    function isMobileView() {
+        return window.innerWidth <= 768;
+    }
+
+    // Initialize all collapsible sections
+    document.querySelectorAll('.dash-section').forEach(function (section) {
+        var header = section.querySelector('.dash-section-header');
+        var body = section.querySelector('.dash-section-body');
+        if (!header || !body) return;
+
+        if (isMobileView()) {
+            // Mobile: start collapsed (CSS already hides it)
+            header.setAttribute('aria-expanded', 'false');
+            body.classList.remove('is-expanded');
+        } else {
+            // Desktop: start expanded
+            header.setAttribute('aria-expanded', 'true');
+            body.classList.add('is-expanded');
+            body.style.maxHeight = 'none';
+        }
+
+        // Click handler
+        header.addEventListener('click', function () {
+            toggleSection(header, body);
+        });
+
+        // Keyboard accessibility (Enter / Space)
+        header.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleSection(header, body);
+            }
+        });
+    });
+
+    function toggleSection(header, body) {
+        var isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+        if (isExpanded) {
+            // Collapse: animate from current height to 0
+            body.style.transition = 'max-height 0.4s ease, opacity 0.3s ease';
+            body.style.maxHeight = body.scrollHeight + 'px';
+            body.offsetHeight; // force reflow
+            body.classList.remove('is-expanded');
+            body.style.maxHeight = '0px';
+            body.style.opacity = '0';
+            header.setAttribute('aria-expanded', 'false');
+        } else {
+            // Expand: animate from 0 to scrollHeight
+            body.style.transition = 'max-height 0.4s ease, opacity 0.3s ease';
+            body.classList.add('is-expanded');
+            body.style.maxHeight = body.scrollHeight + 'px';
+            body.style.opacity = '1';
+            header.setAttribute('aria-expanded', 'true');
+
+            // After transition ends, set max-height to none so content can grow
+            body.addEventListener('transitionend', function handler() {
+                if (header.getAttribute('aria-expanded') === 'true') {
+                    body.style.maxHeight = 'none';
+                }
+                body.removeEventListener('transitionend', handler);
+            });
+        }
+    }
+
+    // Handle window resize
+    var wasMobile = isMobileView();
+    window.addEventListener('resize', function () {
+        var nowMobile = isMobileView();
+
+        if (wasMobile && !nowMobile) {
+            // Switched to desktop: expand all
+            document.querySelectorAll('.dash-section').forEach(function (section) {
+                var header = section.querySelector('.dash-section-header');
+                var body = section.querySelector('.dash-section-body');
+                if (!header || !body) return;
+                body.classList.add('is-expanded');
+                body.style.maxHeight = 'none';
+                body.style.opacity = '1';
+                header.setAttribute('aria-expanded', 'true');
+            });
+        } else if (!wasMobile && nowMobile) {
+            // Switched to mobile: collapse all
+            document.querySelectorAll('.dash-section').forEach(function (section) {
+                var header = section.querySelector('.dash-section-header');
+                var body = section.querySelector('.dash-section-body');
+                if (!header || !body) return;
+                body.classList.remove('is-expanded');
+                body.style.maxHeight = '0px';
+                body.style.opacity = '0';
+                header.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        wasMobile = nowMobile;
+    });
+});
+</script>
 @endsection

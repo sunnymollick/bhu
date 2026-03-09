@@ -298,7 +298,7 @@
         <h4 class="header-img-text">Event Details</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-details">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.temples.details', $event->temple_id) }}">{{ $event->temple->name }}</a></li>
             <li class="breadcrumb-item active">Event Details</li>

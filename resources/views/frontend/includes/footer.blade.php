@@ -7,15 +7,15 @@
                 <p class="mb-4">{{ $footerAbout?->short_description ?? '' }}</p>
                 <div class="d-flex align-items-center justify-content-md-start justify-content-center">
                 <i class="far fa-phone custom-primary me-3"></i>
-                <span>987-987-930-302</span>
+                <span>{{ $siteSettings->primary_phone ?? '' }}</span>
                 </div>
                 <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
                 <i class="far fa-envelope custom-primary me-3"></i>
-                <span>info@bengalihinduunity.com</span>
+                <span>{{ $siteSettings->primary_email ?? '' }}</span>
                 </div>
                 <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-2">
                 <i class="far fa-map-marker custom-primary me-3"></i>
-                <span>14/A, Poor Street City Tower, New York USA</span>
+                <span>{{ $siteSettings->address ?? '' }}</span>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 footer-widget">
@@ -70,29 +70,29 @@
     <div class="sigma_footer-bottom">
         <div class="container-fluid">
             <div class="sigma_footer-copyright">
-            <p> Copyright © Bengali Hindu Unity - <a href="#" class="custom-primary">2025</a> </p>
+            <p> Copyright &copy; Bengali Hindu Unity - <a href="#" class="custom-primary">{{ date('Y') }}</a> </p>
             </div>
             <div class="sigma_footer-logo">
             <img class="footer-logo" width="208" height="60" src="{{ asset('frontend/assets/img/generated-image (1).png') }}" alt="logo">
             </div>
             <ul class="sigma_sm square light">
             <li>
-                <a href="#">
+                <a href="{{ $siteSettings->facebook_url ?? '#' }}" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-facebook-f"></i>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ $siteSettings->linkedin_url ?? '#' }}" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-linkedin-in"></i>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ $siteSettings->x_url ?? '#' }}" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-twitter"></i>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ $siteSettings->youtube_url ?? '#' }}" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-youtube"></i>
                 </a>
             </li>

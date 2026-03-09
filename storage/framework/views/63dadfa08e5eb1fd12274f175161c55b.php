@@ -449,6 +449,446 @@
         position: relative;
         flex: 1;
     }
+    /* ===== Sub-head banner & breadcrumb — Responsive ===== */
+
+    /* Small Laptop (1024px – 1365px) */
+    @media (min-width: 1024px) and (max-width: 1365px) {
+        .sub-head-banner {
+            height: 260px;
+        }
+        .header-img-text {
+            font-size: 1.3rem;
+            line-height: 1.35;
+        }
+    }
+
+    /* Tablet (768px – 1023px) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .sub-head-banner {
+            height: 250px;
+        }
+        .header-img-text {
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+    }
+
+    /* Phones – general (≤575px) */
+    @media (max-width: 575px) {
+        .sub-head-banner {
+            height: 200px;
+        }
+        .header-img-text {
+            font-size: 1.15rem;
+            padding: 0 12px;
+            width: 90%;
+        }
+        .sigma_subheader .breadcrumb {
+            padding: 20px 28px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 94vw;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            display: inline-flex;
+            align-items: center;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 12px !important;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 13px;
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            padding-right: 8px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item {
+            padding-left: 8px;
+        }
+    }
+
+    /* Mobile M / narrow phones (≤425px) */
+    @media (max-width: 425px) {
+        .sigma_subheader .breadcrumb {
+            padding: 18px 24px;
+        }
+        .sub-head-banner {
+            height: 170px;
+        }
+        .header-img-text {
+            font-size: 1rem;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            font-size: 11px;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 11px !important;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 11px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 12px;
+        }
+    }
+
+    /* Mobile S (≤375px) */
+    @media (max-width: 375px) {
+        .sigma_subheader .breadcrumb {
+            padding: 16px 20px;
+        }
+        .sub-head-banner {
+            height: 150px;
+        }
+        .header-img-text {
+            font-size: 0.9rem;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item {
+            font-size: 10px;
+        }
+        .sigma_subheader .breadcrumb li a,
+        .sigma_subheader .breadcrumb-item a.btn-link {
+            font-size: 10px !important;
+        }
+        .sigma_subheader .breadcrumb .breadcrumb-item.active {
+            font-size: 10px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item::before {
+            font-size: 11px;
+            padding-right: 6px;
+        }
+        .sigma_subheader .breadcrumb-item+.breadcrumb-item {
+            padding-left: 6px;
+        }
+    }
+
+    /* ===== Events Page — Mobile/Tablet Responsive ===== */
+    /*
+     * Mobile order: Search (1) → Events (2) → Recent Events (3)
+     * Uses display:contents on sidebar so its children become
+     * direct flex items of the row, enabling independent CSS order.
+     * Desktop layout remains completely untouched.
+     */
+
+    /* Tablet & below: reorder sections */
+    @media (max-width: 1280px) {
+        .events-page-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .events-sidebar-col {
+            display: contents;
+        }
+        /* Search widget (first sidebar child) — top */
+        .events-sidebar-col > .sidebar-widget:first-child {
+            order: 1;
+            width: 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+        /* Events list — middle */
+        .events-main-col {
+            order: 2;
+            width: 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        /* Recent Events widget (second sidebar child) — bottom */
+        .events-sidebar-col > .sidebar-widget:nth-child(2) {
+            order: 3;
+            width: 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-top: 10px;
+        }
+        .event-card {
+            margin-bottom: 25px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .section {
+            padding: 40px 0;
+        }
+        .events-sidebar-col > .sidebar-widget:first-child {
+            margin-bottom: 15px;
+        }
+        .events-sidebar-col > .sidebar-widget:nth-child(2) {
+            margin-top: 5px;
+        }
+        .sidebar-widget {
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .event-image-wrapper {
+            height: 250px;
+        }
+        .event-content {
+            padding: 20px;
+        }
+        .event-card {
+            margin-bottom: 22px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .section {
+            padding: 30px 0;
+        }
+        .events-sidebar-col > .sidebar-widget:first-child {
+            margin-bottom: 12px;
+        }
+        .events-sidebar-col > .sidebar-widget:nth-child(2) {
+            margin-top: 5px;
+        }
+        .sidebar-widget {
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+        .sidebar-widget h5 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        .search-form-wrapper {
+            flex-direction: column;
+            gap: 8px;
+        }
+        .search-form-wrapper select {
+            min-width: 100%;
+        }
+        .recent-event-item {
+            padding: 12px 0;
+        }
+        .recent-event-image {
+            width: 70px;
+            height: 70px;
+        }
+        .recent-event-title {
+            font-size: 0.9rem;
+        }
+        .event-image-wrapper {
+            height: 220px;
+        }
+        .event-content {
+            padding: 18px;
+        }
+        .event-title {
+            font-size: 1.15rem;
+        }
+        .event-card {
+            margin-bottom: 20px;
+        }
+        .join-btn {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 425px) {
+        .section {
+            padding: 25px 0;
+        }
+        .events-sidebar-col > .sidebar-widget:first-child {
+            margin-bottom: 10px;
+        }
+        .events-sidebar-col > .sidebar-widget:nth-child(2) {
+            margin-top: 0;
+        }
+        .sidebar-widget {
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .sidebar-widget h5 {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .recent-event-image {
+            width: 65px;
+            height: 65px;
+        }
+        .recent-event-title {
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        .recent-event-date {
+            font-size: 0.8rem;
+        }
+        .event-image-wrapper {
+            height: 200px;
+        }
+        .event-content {
+            padding: 15px;
+        }
+        .event-title {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+        }
+        .event-description {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .event-meta {
+            font-size: 0.85rem;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .event-card {
+            margin-bottom: 18px;
+        }
+        .event-date-badge {
+            top: 12px;
+            left: 12px;
+            padding: 8px 12px;
+            min-width: 50px;
+        }
+        .event-date-badge .day {
+            font-size: 22px;
+        }
+        .event-date-badge .month {
+            font-size: 12px;
+        }
+        .event-type-badge {
+            top: 12px;
+            right: 12px;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+        }
+        .join-btn {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            width: 100%;
+            justify-content: center;
+        }
+        .show-all-btn {
+            padding: 10px 16px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .section {
+            padding: 20px 0;
+        }
+        .sidebar-widget {
+            padding: 12px;
+        }
+        .sidebar-widget h5 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .recent-event-image {
+            width: 60px;
+            height: 60px;
+        }
+        .recent-event-title {
+            font-size: 0.82rem;
+        }
+        .event-image-wrapper {
+            height: 180px;
+        }
+        .event-content {
+            padding: 12px;
+        }
+        .event-title {
+            font-size: 1rem;
+        }
+        .event-description {
+            font-size: 0.85rem;
+        }
+        .event-meta {
+            font-size: 0.82rem;
+        }
+        .event-card {
+            margin-bottom: 15px;
+        }
+        .search-form input {
+            padding: 10px 45px 10px 12px;
+            font-size: 13px;
+        }
+        .search-form button {
+            padding: 0 15px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .section {
+            padding: 15px 0;
+        }
+        .sidebar-widget {
+            padding: 10px;
+        }
+        .sidebar-widget h5 {
+            font-size: 0.85rem;
+        }
+        .recent-event-image {
+            width: 55px;
+            height: 55px;
+        }
+        .recent-event-title {
+            font-size: 0.8rem;
+        }
+        .recent-event-date {
+            font-size: 0.75rem;
+        }
+        .event-image-wrapper {
+            height: 160px;
+        }
+        .event-content {
+            padding: 10px;
+        }
+        .event-title {
+            font-size: 0.95rem;
+        }
+        .event-description {
+            font-size: 0.82rem;
+            margin-bottom: 12px;
+        }
+        .event-meta {
+            font-size: 0.8rem;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .event-card {
+            margin-bottom: 12px;
+        }
+        .event-date-badge {
+            top: 8px;
+            left: 8px;
+            padding: 6px 10px;
+            min-width: 45px;
+        }
+        .event-date-badge .day {
+            font-size: 18px;
+        }
+        .event-date-badge .month {
+            font-size: 11px;
+        }
+        .event-type-badge {
+            top: 8px;
+            right: 8px;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+        }
+        .join-btn {
+            padding: 8px 16px;
+            font-size: 0.82rem;
+        }
+        .show-all-btn {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+        }
+    }
 </style>
 <?php $__env->stopSection(); ?>
 
@@ -461,7 +901,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a class="btn-link" href="<?php echo e(url('/')); ?>">Home</a></li>
-            <li class="breadcrumb-item active">Events</li>
+            <li class="breadcrumb-item active" aria-current="page">Events</li>
         </ol>
     </nav>
 </div>
@@ -470,14 +910,14 @@
 <?php $__env->startSection('content'); ?>
 <div class="section">
     <div class="container">
-        <div class="row">
+        <div class="row events-page-row">
             <!-- Main Content -->
-            <div class="col-lg-8" id="events-container">
+            <div class="col-lg-8 events-main-col" id="events-container">
                 <?php echo $__env->make('frontend.pages.events.partials.events_grid', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             </div>
 
             <!-- Sidebar -->
-            <div class="col-lg-4">
+            <div class="col-lg-4 events-sidebar-col">
                 <!-- Search Widget -->
                 <div class="sidebar-widget">
                     <h5 class="underline-title">Search Events</h5>

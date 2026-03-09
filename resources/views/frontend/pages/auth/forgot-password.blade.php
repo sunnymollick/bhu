@@ -179,7 +179,7 @@
         <h4 class="header-img-text">Forgot Password</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-normal">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.index') }}">Home</a></li>
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('login') }}">Login</a></li>
             <li class="breadcrumb-item active" aria-current="page">Forgot Password</li>
@@ -231,7 +231,7 @@
                         id="email"
                         class="form-control @error('email') is-invalid @enderror"
                         value="{{ old('email') }}"
-                        
+
                         autocomplete="email"
                     >
                     @error('email')

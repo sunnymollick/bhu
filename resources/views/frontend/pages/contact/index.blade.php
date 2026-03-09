@@ -249,7 +249,7 @@
         <h4 class="header-img-text">Contact Us</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-normal">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
         </ol>
@@ -260,7 +260,7 @@
 @section('content')
 <!-- Map Section -->
 <div class="sigma_map-wrapper">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233667.8223207034!2d90.25487647968428!3d23.78106706485271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1674745745678!5m2!1sen!2sbd" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="{{ $siteSettings->map_embed ?? '' }}" allowfullscreen="" loading="lazy"></iframe>
 </div>
 
 <!-- Contact Form Section with Negative Margin -->
@@ -315,8 +315,8 @@
                         </div>
                         <h5>Email Address</h5>
                         <div class="sigma_info-description">
-                            <p>info@example.com</p>
-                            <p>info@support.com</p>
+                            <p>{{ $siteSettings->primary_email ?? '' }}</p>
+                            <p>{{ $siteSettings->secondary_email ?? '' }}</p>
                         </div>
                         <div class="sigma_info-icon">
                             <i class="far fa-envelope"></i>
@@ -335,8 +335,8 @@
                         </div>
                         <h5>Phone Number</h5>
                         <div class="sigma_info-description">
-                            <p>+123 478 390</p>
-                            <p>+489 472 928</p>
+                            <p>{{ $siteSettings->primary_phone ?? '' }}</p>
+                            <p>{{ $siteSettings->secondary_phone ?? '' }}</p>
                         </div>
                         <div class="sigma_info-icon">
                             <i class="far fa-phone"></i>
@@ -355,8 +355,7 @@
                         </div>
                         <h5>Location</h5>
                         <div class="sigma_info-description">
-                            <p>16/A Daddy Yankee Tower</p>
-                            <p>New York, US</p>
+                            <p>{{ $siteSettings->address ?? '' }}</p>
                         </div>
                         <div class="sigma_info-icon">
                             <i class="fas fa-map-marker-alt"></i>

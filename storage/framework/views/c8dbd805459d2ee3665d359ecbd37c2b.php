@@ -14,8 +14,8 @@
             <div class="sigma_header-top-inner">
             <!-- FIX: Hide top links on smaller screens for better responsiveness -->
             <ul class="sigma_header-top-links d-none d-lg-flex">
-                <li class="menu-item"> <a href="tel:+123456789"> <i class="fal fa-phone"></i> (+1) 123 456 7890</a> </li>
-                <li class="menu-item"> <a href="mailto:info@example.com"> <i class="fal fa-envelope"></i> info@bengalihinduunity.com</a> </li>
+                <li class="menu-item"> <a href="tel:<?php echo e($siteSettings->primary_phone ?? ''); ?>"> <i class="fal fa-phone"></i> <?php echo e($siteSettings->primary_phone ?? ''); ?></a> </li>
+                <li class="menu-item"> <a href="mailto:<?php echo e($siteSettings->primary_email ?? ''); ?>"> <i class="fal fa-envelope"></i> <?php echo e($siteSettings->primary_email ?? ''); ?></a> </li>
             </ul>
             <!-- FIX: Hide top links on smaller screens for better responsiveness -->
             <ul class="sigma_header-top-links d-none d-lg-flex">
@@ -45,10 +45,10 @@
                         </ul>
                     </li>
                 <?php else: ?>
-                    <li class="d-flex align-items-center">
+                    <li class="d-flex align-items-center <?php echo e(Request::is('register') ? 'current-menu-item' : ''); ?>">
                         <a href="<?php echo e(route('register')); ?>">Register</a>
                     </li>
-                    <li class="d-flex align-items-center">
+                    <li class="d-flex align-items-center <?php echo e(Request::is('login') ? 'current-menu-item' : ''); ?>">
                         <a href="<?php echo e(route('login')); ?>" class="m-0"> Login </a>
                     </li>
                 <?php endif; ?>
@@ -58,15 +58,15 @@
         <div class="d-flex justify-content-center justify-content-lg-between">
             <!-- FIX: Hide desktop navbar on screens smaller than large (992px) -->
             <ul class="navbar-nav d-none d-lg-flex">
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.index')); ?>">Home</a> </li>
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.about')); ?>">About Us</a> </li>
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.temples')); ?>">Temples</a> </li>
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.organizations')); ?>">Organizations</a> </li>
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.events')); ?>">Events</a> </li>
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.jobs')); ?>">Jobs</a> </li>
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.news')); ?>">News</a> </li>
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.teams')); ?>">Our Team</a> </li>
-            <li class="menu-item"> <a href="<?php echo e(route('frontend.contact')); ?>">Contact</a> </li>
+            <li class="menu-item <?php echo e(Request::is('/') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.index')); ?>">Home</a> </li>
+            <li class="menu-item <?php echo e(Request::is('about') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.about')); ?>">About Us</a> </li>
+            <li class="menu-item <?php echo e(Request::is('temples') || Request::is('temples/*') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.temples')); ?>">Temples</a> </li>
+            <li class="menu-item <?php echo e(Request::is('organizations') || Request::is('organizations/*') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.organizations')); ?>">Organizations</a> </li>
+            <li class="menu-item <?php echo e(Request::is('events') || Request::is('events/*') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.events')); ?>">Events</a> </li>
+            <li class="menu-item <?php echo e(Request::is('jobs') || Request::is('jobs/*') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.jobs')); ?>">Jobs</a> </li>
+            <li class="menu-item <?php echo e(Request::is('news') || Request::is('news/*') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.news')); ?>">News</a> </li>
+            <li class="menu-item <?php echo e(Request::is('teams') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.teams')); ?>">Our Team</a> </li>
+            <li class="menu-item <?php echo e(Request::is('contact') ? 'current-menu-item' : ''); ?>"> <a href="<?php echo e(route('frontend.contact')); ?>">Contact</a> </li>
             </ul>
         </div>
         </div>

@@ -1,0 +1,145 @@
+/* =============================================
+   Gallery Slider Component
+   Shared by: Temple Details, News Details
+   Deps: slick.css, slick-theme.css
+   ============================================= */
+
+/* Slider container */
+.photo-gallery-slider {
+    margin: 0 -15px;
+}
+
+/* Individual slide wrapper */
+.gallery-card {
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.gallery-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Card styling */
+.gallery-card-inner {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.gallery-card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image container */
+.gallery-image {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-card-inner:hover .gallery-image img {
+    transform: scale(1.1);
+}
+
+/* Slick arrow overrides */
+.photo-gallery-slider .slick-prev,
+.photo-gallery-slider .slick-next {
+    background: rgba(231, 111, 81, 0.9);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+}
+
+.photo-gallery-slider .slick-prev:hover,
+.photo-gallery-slider .slick-next:hover {
+    background: rgba(231, 111, 81, 1);
+}
+
+.photo-gallery-slider .slick-prev {
+    left: -20px;
+}
+
+.photo-gallery-slider .slick-next {
+    right: -20px;
+}
+
+.photo-gallery-slider .slick-prev:before,
+.photo-gallery-slider .slick-next:before {
+    font-size: 20px;
+}
+
+/* Grid fallback when ≤ 3 images */
+.gallery-grid-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.gallery-grid-layout .gallery-card {
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    padding: 0;
+    margin-bottom: 0;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 991px) {
+    .gallery-grid-layout .gallery-card {
+        flex: 0 0 calc(50% - 15px);
+        max-width: calc(50% - 15px);
+    }
+
+    .photo-gallery-slider .slick-prev {
+        left: -10px;
+    }
+
+    .photo-gallery-slider .slick-next {
+        right: -10px;
+    }
+}
+
+@media (max-width: 575px) {
+    .gallery-image {
+        height: 220px;
+    }
+
+    .gallery-grid-layout .gallery-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .photo-gallery-slider .slick-prev {
+        left: 5px;
+    }
+
+    .photo-gallery-slider .slick-next {
+        right: 5px;
+    }
+
+    .photo-gallery-slider .slick-prev,
+    .photo-gallery-slider .slick-next {
+        width: 34px;
+        height: 34px;
+    }
+
+    .photo-gallery-slider .slick-prev:before,
+    .photo-gallery-slider .slick-next:before {
+        font-size: 16px;
+    }
+}

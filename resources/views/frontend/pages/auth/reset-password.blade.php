@@ -245,7 +245,7 @@
         <h4 class="header-img-text">Reset Password</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-normal">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.index') }}">Home</a></li>
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('login') }}">Login</a></li>
             <li class="breadcrumb-item active" aria-current="page">Reset Password</li>

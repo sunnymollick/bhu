@@ -87,6 +87,103 @@
         font-weight: 500;
         margin-left: 10px;
     }
+
+    /* ===== Responsive Fixes ===== */
+
+    /* Tablets & below (≤991px) */
+    @media (max-width: 991px) {
+        .job-header-box {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 16px;
+        }
+        .job-title {
+            font-size: 1.5rem;
+        }
+        .job-section-title {
+            font-size: 1.15rem;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+        .job-desc {
+            padding: 18px;
+            margin-bottom: 24px;
+        }
+        .job-desc h4 {
+            font-size: 1.15rem;
+        }
+    }
+
+    /* Phones – general (≤575px) */
+    @media (max-width: 575px) {
+        .job-header-box {
+            padding: 16px 14px;
+            gap: 12px;
+        }
+        .job-logo {
+            max-width: 80px;
+            max-height: 80px;
+        }
+        .job-title {
+            font-size: 1.25rem;
+        }
+        .job-meta {
+            font-size: 0.9rem;
+        }
+        .job-tags span {
+            font-size: 0.8rem;
+            padding: 2px 8px;
+        }
+        .job-desc {
+            padding: 14px;
+            margin-bottom: 20px;
+        }
+        .job-desc h4 {
+            font-size: 1.05rem;
+        }
+        .job-section-title {
+            font-size: 1.05rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .apply-btn {
+            font-size: 1rem;
+        }
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 60px;
+            height: 60px;
+        }
+        .widget-recent-posts .sigma_recent-post > a {
+            width: 60px;
+            margin-right: 12px;
+        }
+        .widget-recent-posts .sigma_recent-post h6 {
+            font-size: 13px;
+        }
+    }
+
+    /* Mobile M (≤425px) */
+    @media (max-width: 425px) {
+        .job-title {
+            font-size: 1.1rem;
+        }
+        .job-meta {
+            font-size: 0.85rem;
+        }
+    }
+
+    /* Mobile S (≤375px) */
+    @media (max-width: 375px) {
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 50px;
+            height: 50px;
+        }
+        .widget-recent-posts .sigma_recent-post > a {
+            width: 50px;
+            margin-right: 10px;
+        }
+    }
 </style>
 @endsection
 
@@ -94,13 +191,13 @@
 <div class="sigma_subheader">
     <div class="overlay">
         <div class="sub-head-banner"></div>
-        <h4 class="header-img-text">Job Details</h4>
+        <h4 class="header-img-text">{{ $job->job_title }}</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-details">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.jobs') }}">Jobs</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Job Details</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $job->job_title }}</li>
         </ol>
     </nav>
 </div>

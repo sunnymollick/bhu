@@ -10,4 +10,9 @@ class Business extends Model
     {
         return $this->belongsTo(\App\Models\BusinessCategory::class, 'business_category_id');
     }
+
+    public function organizationBusinesses()
+    {
+        return $this->hasMany(\App\Models\OrganizationBusiness::class, 'business_id');
+    }
 }

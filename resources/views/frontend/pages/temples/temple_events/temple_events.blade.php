@@ -291,7 +291,7 @@
         <h4 class="header-img-text">Temple Events</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-normal">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item active">Temple Events</li>
         </ol>

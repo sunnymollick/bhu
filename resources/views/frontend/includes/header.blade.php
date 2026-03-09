@@ -14,8 +14,8 @@
             <div class="sigma_header-top-inner">
             <!-- FIX: Hide top links on smaller screens for better responsiveness -->
             <ul class="sigma_header-top-links d-none d-lg-flex">
-                <li class="menu-item"> <a href="tel:+123456789"> <i class="fal fa-phone"></i> (+1) 123 456 7890</a> </li>
-                <li class="menu-item"> <a href="mailto:info@example.com"> <i class="fal fa-envelope"></i> info@bengalihinduunity.com</a> </li>
+                <li class="menu-item"> <a href="tel:{{ $siteSettings->primary_phone ?? '' }}"> <i class="fal fa-phone"></i> {{ $siteSettings->primary_phone ?? '' }}</a> </li>
+                <li class="menu-item"> <a href="mailto:{{ $siteSettings->primary_email ?? '' }}"> <i class="fal fa-envelope"></i> {{ $siteSettings->primary_email ?? '' }}</a> </li>
             </ul>
             <!-- FIX: Hide top links on smaller screens for better responsiveness -->
             <ul class="sigma_header-top-links d-none d-lg-flex">
@@ -45,10 +45,10 @@
                         </ul>
                     </li>
                 @else
-                    <li class="d-flex align-items-center">
+                    <li class="d-flex align-items-center {{ Request::is('register') ? 'current-menu-item' : '' }}">
                         <a href="{{ route('register') }}">Register</a>
                     </li>
-                    <li class="d-flex align-items-center">
+                    <li class="d-flex align-items-center {{ Request::is('login') ? 'current-menu-item' : '' }}">
                         <a href="{{ route('login') }}" class="m-0"> Login </a>
                     </li>
                 @endauth
@@ -58,15 +58,15 @@
         <div class="d-flex justify-content-center justify-content-lg-between">
             <!-- FIX: Hide desktop navbar on screens smaller than large (992px) -->
             <ul class="navbar-nav d-none d-lg-flex">
-            <li class="menu-item"> <a href="{{ route('frontend.index') }}">Home</a> </li>
-            <li class="menu-item"> <a href="{{ route('frontend.about') }}">About Us</a> </li>
-            <li class="menu-item"> <a href="{{ route('frontend.temples') }}">Temples</a> </li>
-            <li class="menu-item"> <a href="{{ route('frontend.organizations') }}">Organizations</a> </li>
-            <li class="menu-item"> <a href="{{ route('frontend.events') }}">Events</a> </li>
-            <li class="menu-item"> <a href="{{ route('frontend.jobs') }}">Jobs</a> </li>
-            <li class="menu-item"> <a href="{{ route('frontend.news') }}">News</a> </li>
-            <li class="menu-item"> <a href="{{ route('frontend.teams') }}">Our Team</a> </li>
-            <li class="menu-item"> <a href="{{ route('frontend.contact') }}">Contact</a> </li>
+            <li class="menu-item {{ Request::is('/') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.index') }}">Home</a> </li>
+            <li class="menu-item {{ Request::is('about') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.about') }}">About Us</a> </li>
+            <li class="menu-item {{ Request::is('temples') || Request::is('temples/*') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.temples') }}">Temples</a> </li>
+            <li class="menu-item {{ Request::is('organizations') || Request::is('organizations/*') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.organizations') }}">Organizations</a> </li>
+            <li class="menu-item {{ Request::is('events') || Request::is('events/*') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.events') }}">Events</a> </li>
+            <li class="menu-item {{ Request::is('jobs') || Request::is('jobs/*') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.jobs') }}">Jobs</a> </li>
+            <li class="menu-item {{ Request::is('news') || Request::is('news/*') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.news') }}">News</a> </li>
+            <li class="menu-item {{ Request::is('teams') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.teams') }}">Our Team</a> </li>
+            <li class="menu-item {{ Request::is('contact') ? 'current-menu-item' : '' }}"> <a href="{{ route('frontend.contact') }}">Contact</a> </li>
             </ul>
         </div>
         </div>

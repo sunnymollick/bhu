@@ -5,6 +5,7 @@
 @section('stylesheet')
 <!-- Extra CSS for temple details page -->
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/developer.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/gallery-slider.css') }}">
 <style>
     /* Fixed map container */
     #temple-location-map {
@@ -15,52 +16,7 @@
         min-height: 400px;
     }
 
-    /* Photo Gallery Slider Styles */
-    .photo-gallery-slider {
-        margin: 0 -15px;
-    }
-
-    .gallery-card {
-        padding: 0 15px;
-        margin-bottom: 30px;
-    }
-
-    .gallery-card-link {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    .gallery-card-inner {
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: all 0.3s ease;
-        height: 100%;
-    }
-
-    .gallery-card-inner:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    }
-
-    .gallery-image {
-        position: relative;
-        overflow: hidden;
-        height: 300px;
-    }
-
-    .gallery-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .gallery-card-inner:hover .gallery-image img {
-        transform: scale(1.1);
-    }
+    /* Gallery slider styles → gallery-slider.css */
 
     /* Upcoming Events Slider Styles */
     .upcoming-events-slider {
@@ -134,9 +90,9 @@
         color: #e76f51;
     }
 
-    /* Slick Slider Custom Arrows for Gallery */
-    .photo-gallery-slider .slick-prev,
-    .photo-gallery-slider .slick-next,
+    /* Gallery slider arrows → gallery-slider.css */
+
+    /* Slick Slider Custom Arrows for Events */
     .upcoming-events-slider .slick-prev,
     .upcoming-events-slider .slick-next {
         background: rgba(231, 111, 81, 0.9);
@@ -146,32 +102,25 @@
         z-index: 10;
     }
 
-    .photo-gallery-slider .slick-prev:hover,
-    .photo-gallery-slider .slick-next:hover,
     .upcoming-events-slider .slick-prev:hover,
     .upcoming-events-slider .slick-next:hover {
         background: rgba(231, 111, 81, 1);
     }
 
-    .photo-gallery-slider .slick-prev,
     .upcoming-events-slider .slick-prev {
         left: -20px;
     }
 
-    .photo-gallery-slider .slick-next,
     .upcoming-events-slider .slick-next {
         right: -20px;
     }
 
-    .photo-gallery-slider .slick-prev:before,
-    .photo-gallery-slider .slick-next:before,
     .upcoming-events-slider .slick-prev:before,
     .upcoming-events-slider .slick-next:before {
         font-size: 20px;
     }
 
-    /* Grid layout for 3 or fewer items */
-    .gallery-grid-layout,
+    /* Grid layout for 3 or fewer events */
     .events-grid-layout {
         display: flex;
         flex-wrap: wrap;
@@ -179,7 +128,6 @@
         gap: 30px;
     }
 
-    .gallery-grid-layout .gallery-card,
     .events-grid-layout .event-card {
         flex: 0 0 calc(33.333% - 20px);
         max-width: calc(33.333% - 20px);
@@ -188,7 +136,6 @@
     }
 
     @media (max-width: 991px) {
-        .gallery-grid-layout .gallery-card,
         .events-grid-layout .event-card {
             flex: 0 0 calc(50% - 15px);
             max-width: calc(50% - 15px);
@@ -196,7 +143,6 @@
     }
 
     @media (max-width: 575px) {
-        .gallery-grid-layout .gallery-card,
         .events-grid-layout .event-card {
             flex: 0 0 100%;
             max-width: 100%;
@@ -258,6 +204,71 @@
         z-index: 999;
     }
 
+    /* Force square "Other Temples" thumbnails (prevent oval on non-square source images) */
+    .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+        width: 75px;
+        height: 75px;
+        object-fit: cover;
+    }
+
+    /* ===== Mobile Responsive Fixes ===== */
+
+    /* Tablets & small laptops */
+    @media (max-width: 991px) {
+        #temple-location-map {
+            height: 300px;
+            min-height: 300px;
+        }
+    }
+
+    /* Phones – general (≤575px) */
+    @media (max-width: 575px) {
+        .event-image {
+            height: 180px;
+        }
+        .activity-card {
+            padding: 14px;
+        }
+        .activity-card h5 {
+            font-size: 1rem;
+        }
+        #temple-location-map {
+            height: 250px;
+            min-height: 250px;
+        }
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 60px;
+            height: 60px;
+        }
+        .widget-recent-posts .sigma_recent-post > a {
+            width: 60px;
+            margin-right: 12px;
+        }
+        .widget-recent-posts .sigma_recent-post h6 {
+            font-size: 13px;
+        }
+    }
+
+    /* Mobile M / narrow phones (≤425px) */
+    @media (max-width: 425px) {
+        .temple-details-meta ul li {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+    }
+
+    /* Mobile S (≤375px) */
+    @media (max-width: 375px) {
+        .sidebar-widget.widget-recent-posts .sigma_recent-post > a img {
+            width: 50px;
+            height: 50px;
+        }
+        .widget-recent-posts .sigma_recent-post > a {
+            width: 50px;
+            margin-right: 10px;
+        }
+    }
+
     .sigma_header.header-3.sticky {
         position: fixed;
         top: 0;
@@ -282,7 +293,7 @@
         <h4 class="header-img-text">{{ $temple->name }}</h4>
     </div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb breadcrumb-details">
             <li class="breadcrumb-item"><a class="btn-link" href="{{ url('/') }}">Home</a></li>
             <li class="breadcrumb-item"><a class="btn-link" href="{{ route('frontend.temples') }}">Temples</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $temple->name }}</li>
@@ -434,19 +445,10 @@
             <div class="col-lg-12">
                 <hr class="my-4">
                 <h3 class="mb-4">Photo Gallery</h3>
-                <div class="photo-gallery-slider">
-                    @foreach($templeGallery as $gallery)
-                    <div class="gallery-card">
-                        <a href="{{ asset('backend/uploads/temple/gallery/' . $gallery->picture) }}" class="gallery-card-link gallery-zoom">
-                            <div class="gallery-card-inner">
-                                <div class="gallery-image">
-                                    <img src="{{ asset('backend/uploads/temple/gallery/' . $gallery->picture) }}" alt="{{ $temple->name }} Gallery" class="img-fluid">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
+                @include('frontend.partials.gallery-slider', [
+                    'images' => $templeGallery->map(fn($g) => asset('backend/uploads/temple/gallery/' . $g->picture))->toArray(),
+                    'alt'    => $temple->name . ' Gallery',
+                ])
             </div>
         </div>
         @endif
@@ -544,44 +546,7 @@
         // Initial check
         doSticky();
 
-        // Initialize Photo Gallery Slider
-        var gallerySlider = $('.photo-gallery-slider');
-        if (gallerySlider.length > 0) {
-            var galleryCount = gallerySlider.children('.gallery-card').length;
-
-            if (galleryCount > 3) {
-                gallerySlider.slick({
-                    infinite: true,
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 3000,
-                    arrows: true,
-                    dots: false,
-                    centerMode: false,
-                    responsive: [
-                        {
-                            breakpoint: 992,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 576,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1,
-                                centerMode: false
-                            }
-                        }
-                    ]
-                });
-            } else {
-                // Display as a flex grid without slider
-                gallerySlider.addClass('gallery-grid-layout');
-            }
-        }
+        // Gallery slider → gallery-slider.js
 
         // Initialize Events Slider
         var eventSlider = $('.upcoming-events-slider');
@@ -622,19 +587,7 @@
             }
         }
 
-        // Magnific Popup for Gallery
-        $('.gallery-zoom').magnificPopup({
-            type: 'image',
-            gallery: {
-                enabled: true
-            },
-            mainClass: 'mfp-with-zoom',
-            zoom: {
-                enabled: true,
-                duration: 300,
-                easing: 'ease-in-out',
-            }
-        });
+        // Magnific Popup → gallery-slider.js
 
         @if($temple->latitude && $temple->longitude)
         // Initialize Google Maps
@@ -680,6 +633,7 @@
         @endif
     });
 </script>
+<script src="{{ asset('frontend/assets/js/gallery-slider.js') }}"></script>
 
 <!-- Load Google Maps API with async -->
 @if($temple->latitude && $temple->longitude)
